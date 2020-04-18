@@ -1,0 +1,79 @@
+.box {
+  text-align: center;
+}
+  
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+    z-index: 1;
+}
+.popup_forum {
+  margin-left: 70px;
+  margin-right: 70px;
+  border-radius: 5px;
+  width: 400px;
+  position: relative;
+  margin-top:40px;
+}
+
+.popup {
+  margin-left: 70px;
+  margin-right: 70px;
+  top: 40px;
+
+  border-radius: 5px;
+  width: 600px;
+  position: absolute;
+}
+
+.popup .close {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.content {
+  margin-top: 20px;
+}
+.content_image{
+  overflow: auto;
+  width: 80%;
+  height: 50%;
+}
+ .close_forum {
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  z-index: 2;
+}
+.foum_admin{
+  background-color: white;
+}
+.popup_forum1 {
+  position: absolute;
+  margin-left: 40%;
+  margin-right: 40%;
+  margin-top: 20%;
+  
+  border-radius: 15px;
+  width: 350px;
+  min-height: 100px;
+  background-color: whitesmoke;
+  position: relative;
+}

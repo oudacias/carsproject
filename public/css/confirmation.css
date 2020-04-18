@@ -1,0 +1,22 @@
+.animated {
+    width: 60%;
+    height: 40px;
+   background-position: left top;
+   animation-duration: 4s;
+   animation-fill-mode: both;
+}
+@keyframes fadeOut {
+   0% {opacity: 1;}
+   100% {opacity: 0;}
+}
+.fadeOut {
+   animation-name: fadeOut;
+}
+.success{
+background-color: rebeccapurple;
+    color: red
+}
+.failure{
+    background-color: grey;
+    color: red;
+}

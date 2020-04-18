@@ -1,0 +1,92 @@
+.mcd-menu {
+  position: fixed;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  border-radius: 50px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  width: 130px;
+  border-right: 1px solid red;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.mcd-menu li {
+  position: relative;
+}
+.mcd-menu li a {
+  display: block;
+  text-decoration: none;
+  padding: 12px 20px;
+  color: black;
+  padding-top: 40px;
+  text-align: left;
+  height: 36px;
+  position: relative;
+}
+.mcd-menu li a p {
+  float: left;
+  margin: 0 ;
+}
+.mcd-menu li a strong {
+  display: block;
+  text-transform: uppercase;
+}
+.mcd-menu li a small {
+  display: block;
+  font-size: 10px;
+}
+
+.mcd-menu li a i, .mcd-menu li a strong, .mcd-menu li a small {
+  position: relative;
+  transition: all 300ms linear;
+}
+.mcd-menu li:hover > ul,
+.mcd-menu li ul li:hover > ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  left:250px;
+}
+
+.mcd-menu li ul li a i {
+  font-size: 16px;
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+.mcd-menu li ul li ul {
+  left: 230px;
+  top: 0;
+  border: 0;
+  border-left: 4px solid #e67e22;
+}  
+
+.mcd-menu li ul li:hover > ul {
+  top: 0px;
+  left: 200px;
+}
+.dashboard_container{
+  margin-top: 80px;
+  margin-left: 70px;
+  width: 80%;
+}
+.container13{
+  position: absolute;
+  margin-left: 160px;
+  min-width: 100%;
+  height: 100%;
+  background-color: orange;
+  z-index: 1;
+  border-radius: 20px;
+}
+.text_header{
+  text-align: center;
+  font-size: 30px;
+  text-decoration: underline;
+  padding: 40px;
+}
+
+
+    
+    
