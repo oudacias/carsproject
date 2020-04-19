@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +28,10 @@ Route::get('Admin/Admin_forum/{id}','AdminController@SupprimerForum');
 Route::get('Admin/Admin_forum_confirm/{id}','AdminController@ConfirmerForums');
 Route::get('Admin/Admin_users/{id}','AdminController@SupprimerUser');
 Route::get('Admin/Admin_users','AdminController@listusers');
+Route::get('auth/login_admin','AdminController@login');
 
 
 });
-Route::get('auth/login_admin','AdminController@login');
 
 Route::get('Articles/Articles','ArticleController@articles');
 Route::get('Articles/Article/{id}','ArticleController@article');
@@ -38,12 +39,11 @@ Route::get('Forum/Forums', 'ForumController@index');
 Route::post('Forum/Forums', 'ForumController@ajouterSujet');
 Route::get('Forum/Forums/{id}', 'ForumController@Forum');
 
-
-
-
-
-
-
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', function(){
+        $articles = Article::orderBy('created_at','desc')->limit(4)->get();
+        return view('home',['artc'=>$articles]);
+}
+);
+

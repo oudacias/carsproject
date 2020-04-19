@@ -69,7 +69,7 @@
             <div class="col-md-8">
                 <div class="card-block">
                     <div class="card-introduction">
-                        <strong>{{$a->titre}}</strong>
+                        <strong  STYLE="text-transform:uppercase">{{$a->titre}}</strong>
                         <p class="m-t-13 text-muted">{!!html_entity_decode(Str::limit($a->texte, 250))!!}<a class="link_article" href="/Articles/Article/{{$a->id}}">Lire Plus</a>
                     </div>
                     </div>

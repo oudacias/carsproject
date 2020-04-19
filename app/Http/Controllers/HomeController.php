@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Article;
 
 class HomeController extends Controller
 {
@@ -22,9 +21,5 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        $articles = Article::orderBy('created_at','desc')->limit(4)->get();
-        return view('home',['artc'=>$articles]);
-    }
+
 }
