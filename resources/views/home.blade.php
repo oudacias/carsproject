@@ -4,6 +4,7 @@
 
 @include('Components.menu')
 @yield('menu')
+<title>ELAMDASSI ON CARS</title>
 
 <div class="container">
     <div class="row">

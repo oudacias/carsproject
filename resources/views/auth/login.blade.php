@@ -15,12 +15,12 @@
         @csrf
             <span class="contact100-form-title">Bienvenue dans notre Plateforme</span>
             <div class="wrap-input100 validate-input">
-                <input id='email' class="input100" type="text" name="email" placeholder="Votre Email">
+                <input id='email' class="input100" type="text" name="email" placeholder="Votre Email" required>
                 <span class="focus-input100"></span>
             </div>
             <input id='role' type="text" name="role" value="utilisateur" hidden>
             <div class="wrap-input100 validate-input">
-                <input id='password' class="input100" type="password" name="password" placeholder="Votre Mote de Passe">
+                <input id='password' class="input100" type="password" name="password" placeholder="Votre Mote de Passe" required>
                 <span class="focus-input100"></span>
             </div>       
             <div class="container-contact100-form-btn">

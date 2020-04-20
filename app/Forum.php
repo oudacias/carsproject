@@ -10,6 +10,12 @@ class Forum extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+    
+    public function users()
+    {
+        return $this->belongsToMany('App\Forum','user_forum')->withPivot('user_id','commentaire');
+    }
+
     public static function insererForum($titre,$texte){
         $forum = new Forum();
         $forum->user_id = Auth::id();
@@ -17,9 +23,8 @@ class Forum extends Model
         $forum->texte = $texte;
         $forum->save();
     }
-    public static function Confirmerforum($id){
-        $forum = Forum::find($id);
-        $forum->approuve = '1';
-        $forum->save();
-    }
+    /*public static function insertComment(Request $r){
+        $forum = Forum::find($r->id);
+       
+    }*/
 }

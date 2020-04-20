@@ -2,6 +2,8 @@
 <link rel="stylesheet" href="/css/card.css">
 <link rel="stylesheet" href="/css/popup.css">
 <link rel="stylesheet" href="/css/articles.css">
+<title>Forum</title>
+
 @include('Components.menu')
 @yield('menu')
 <div class="container">
@@ -16,7 +18,7 @@
                             @if(Auth::check())
                             <div class="container-contact100" >
                             <div class="wrap-forum">
-                                <form method="post" action="{{ action('ForumController@ajouterSujet') }}">
+                                <form method="post" action="{{ action('ForumController@Sujet') }}">
                                     @csrf
                                     <div class="wrap-input100">
                                         <input class="input100" type="text" name="titre" placeholder="Titre">

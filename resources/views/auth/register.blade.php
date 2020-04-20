@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Articles</title>
+    <title>Register</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/articles.css">
@@ -13,14 +13,14 @@
     <div class="wrap-contact100">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        <span class="contact100-form-title">Ajouter Article</span>
+                        <span class="contact100-form-title">Créer Nouveau Compte</span>
                         <div class="wrap-input100 validate-input">
-                            <input id='nom' class="input100" type="text" name="nom" placeholder="Votre Nom">
+                            <input id='nom' class="input100" type="text" name="nom" placeholder="Votre Nom" required>
                             <span class="focus-input100"></span>
                         </div>
                         
                         <div class="wrap-input100 validate-input">
-                <input id='prenom' class="input100" type="text" name="prenom" placeholder="Votre Prénom">
+                <input id='prenom' class="input100" type="text" name="prenom" placeholder="Votre Prénom" required>
                 <span class="focus-input100"></span>
             </div>
             <div class="wrap-input100 validate-input">
@@ -28,17 +28,17 @@
                 <span class="focus-input100"></span>
             </div>
             <div class="wrap-input100 validate-input">
-                <input id='telephone' class="input100" type="number" name="telephone" placeholder="Téléphone">
+                <input id='telephone' min="10" class="input100" type="number" name="telephone" placeholder="Téléphone" required>
                 <span class="focus-input100"></span>
             </div>
             <input id='role' type="text" name="role" value="utilisateur" hidden>
 
             <div class="wrap-input100 validate-input">
-                <input id='password' class="input100" type="password" name="password" placeholder="Mot de Passe">
+                <input id='password' class="input100" type="password" name="password" placeholder="Mot de Passe" required>
                 <span class="focus-input100"></span>
             </div>
             <div class="wrap-input100 validate-input">
-                <input id='password-confirm' class="input100" type="password" name="password_confirmation" placeholder="Confirmer Mot de Passe">
+                <input id='password-confirm' class="input100" type="password" name="password_confirmation" placeholder="Confirmer Mot de Passe" required>
                 <span class="focus-input100"></span>
             </div>
                         

@@ -38,6 +38,9 @@ Route::get('Articles/Article/{id}','ArticleController@article');
 Route::get('Forum/Forums', 'ForumController@index');
 Route::post('Forum/Forums', 'ForumController@ajouterSujet');
 Route::get('Forum/Forums/{id}', 'ForumController@Forum');
+Route::post('Forum/Forum/', 'ForumController@Sujet');
+Route::post('Forum/Forums/', 'ForumController@insertComment');
+
 
 Auth::routes();
 

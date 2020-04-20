@@ -415,7 +415,13 @@ textarea.input100 {
 
 textarea.input100_forum {
     height: 150px;
-      width: 270px;
-      resize: none;
+    width: 70%;
+    resize: none;
     padding: 9px 26px 0;
+
   }
+  @media (max-width: 48em) {
+    textarea.input100_forum {
+        width: 160px;
+      }
+}
