@@ -41,4 +41,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Forum','user_forum')->withPivot('commentaire');
     }
+    public function boutique()
+    {
+        return $this->hasMany('App\Boutique','user_id');
+    }
+    public function Userimage(){
+        return $this->hasOne('App\Userimage');
+    }
+    public function achatvoiture(){
+        return $this->hasMany('App\Achatvoiture','user_id');
+    }
+
 }

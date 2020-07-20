@@ -33,9 +33,9 @@
 			</div>
 		</td>
       <td><a href="/Articles/Article/{{$a->id}}">Lien Article</a></td>
-	  <td>{{$a->lien_youtube}}</td>
+	  <td><a style="color:blue" href="//{{$a->lien_youtube}}">Lien</a></td>
 	  <td><a href="/Admin/ModifierArticle/{{$a->id}}"><img src="/project_images/document.png" width="20%"></td>
-	  <td><a href="/Admin/Admin_articles/{{$a->id}}"><img src="/project_images/bin.png" width="20%"></a></td>
+	  <td><a href="/Admin/Admin_articles/{{$a->id}}"><img src="/project_images/bin.png" width="20%"></td>
 	</tr>
 	@endforeach
   </tbody>

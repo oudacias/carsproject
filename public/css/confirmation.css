@@ -13,8 +13,11 @@
    animation-name: fadeOut;
 }
 .success{
-background-color: rebeccapurple;
-    color: red
+    background-color: #F9DF92;
+    color: rgb(66, 62, 1);
+    padding-top: 10px;
+    border-radius: 10px;
+    text-align: center;
 }
 .failure{
     background-color: grey;

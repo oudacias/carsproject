@@ -85,7 +85,7 @@ iframe {
     align-items: center;
     padding: 15px;
     position: relative;
-    z-index: 1;
+    z-index: 0;
 }
 .container_connect{
     position:absolute;
@@ -398,10 +398,6 @@ textarea.input100 {
 .contact100-more-highlight {
     color: #bd59d4;
 }
-
-
-
-
 .image-upload > input
 {
     display: none;
@@ -424,4 +420,42 @@ textarea.input100_forum {
     textarea.input100_forum {
         width: 160px;
       }
+}
+
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  box-shadow: 0 10px 30px 0px;
+
+}
+button:disabled,
+button[disabled]:hover{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  box-shadow: 0 10px 30px 0px;
+
+}
+
+.text-contact{
+    height: 200px;
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    display: block;
+    width: 100%;
+    background: transparent;
+    font-family: SourceSansPro-Bold;
+    font-size: 16px;
+    color: #4b2354;
+    line-height: 1.2;
+    padding: 19px 20px 0 23px;
+
+}
+.alert{
+    font-size: smaller;
+    color: #FAB107;
 }

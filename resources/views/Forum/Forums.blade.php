@@ -2,19 +2,18 @@
 <link rel="stylesheet" href="/css/card.css">
 <link rel="stylesheet" href="/css/popup.css">
 <link rel="stylesheet" href="/css/articles.css">
+
 <title>Forum</title>
 
 @include('Components.menu')
 @yield('menu')
 <div class="container">
     <div class="row">
-        <div class="col-12"><label>Partagez vos questions et idées avec nous </label>
+        <div class="col-12" ><label>Partagez vos questions et idées avec nous </label>
             <a href="#new"><img src="/project_images/plus.png" width="40px"></a>
             <div id="new" class="overlay">
                 <div class="popup" >
                     <a class="close_forum" href="#">&times;</a>
-                        
-                        
                             @if(Auth::check())
                             <div class="container-contact100" >
                             <div class="wrap-forum">
@@ -38,7 +37,7 @@
                             @else
                             <div class="container-contact100 container_connect" >
                             <div class="wrap-forum">
-                                Veuillez vous connecter avant de poser votre Sujet </div>
+                                Veuillez vous <a href="/login"><i><u>connecter</u></i></a> avant de poser votre Sujet </div>
                             @endif
                         </div>
                     </div>

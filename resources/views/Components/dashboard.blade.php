@@ -6,8 +6,11 @@
 
 <div class="row">
     <div class="col-md-4">
+	<img class="logo-menu" src="/project_images/logoCars.png">
 		<nav>
 			<ul class="mcd-menu" style="padding-top: 100px">
+			<p class="admin">Espace Administrateur</p>
+
 				<li>
 					<a href="/Admin/Admin_articles">
 						Nos articles
@@ -27,13 +30,28 @@
 					</a>
 				</li>
 				<li>
-					<a href="">
-						Conseil
+					<a href="/Admin/Admin_diagnostic">
+						Diagnostique
 					</a>
 				</li>
 				<li>
-					<a href="">
-						Diagnostique
+					<a href="/Admin/Admin_suivi">
+						Suivi
+					</a>
+				</li>
+				<li>
+					<a href="/Admin/Admin_boutique">
+						Boutiques
+					</a>
+				</li>
+				<li>
+					<a href="/Admin/Admin_voiture">
+						Voitures
+					</a>
+				</li>
+				<li>
+					<a href="/Admin/Admin_contact">
+						Messages
 					</a>
 				</li>
 			</ul>

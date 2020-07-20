@@ -7,8 +7,8 @@
   border-radius: 50px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-  width: 130px;
-  border-right: 1px solid red;
+  width: 180px;
+  border-right: 1px solid orange;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
@@ -18,12 +18,19 @@
 .mcd-menu li a {
   display: block;
   text-decoration: none;
-  padding: 12px 20px;
+  padding-top: 5px;
+  padding-left: 45px;
+  padding-bottom: 10px;
   color: black;
-  padding-top: 40px;
+  margin-top: 5px;
   text-align: left;
   height: 36px;
   position: relative;
+}
+.mcd-menu li :hover {
+  border-radius: 10px;
+  background-color: #FAB107;
+
 }
 .mcd-menu li a p {
   float: left;
@@ -48,6 +55,7 @@
   opacity: 1;
   visibility: visible;
   left:250px;
+  
 }
 
 .mcd-menu li ul li a i {
@@ -73,10 +81,10 @@
 }
 .container13{
   position: absolute;
-  margin-left: 160px;
+  margin-left: 210px;
   min-width: 100%;
-  height: 100%;
-  background-color: orange;
+  min-height: 100%;
+  background-color: #FEDB88;
   z-index: 1;
   border-radius: 20px;
 }
@@ -87,6 +95,20 @@
   padding: 40px;
 }
 
+.logo-menu{
+  margin-top: 30px;
+  margin-left: 60px;
+  border-radius: 100%;
+  border-style: solid;
+  border-color: #FAB107;
+  border-width: thin;
 
+}
+
+.admin{
+  font-size: small;
+  color: gray;
+  text-align: center;
+}
     
     

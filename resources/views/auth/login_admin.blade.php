@@ -11,7 +11,7 @@
 @yield('menu')
 <div class="container-contact100">
     <div class="wrap-contact100">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}"  enctype="multipart/form-data">
                         @csrf
                         <span class="contact100-form-title">Bienvenue Administrateur</span>
                         <div class="wrap-input100 validate-input">

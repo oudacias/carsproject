@@ -1,0 +1,24 @@
+table{
+    margin-left:200px;
+    width: 700px;
+    margin-top:50px;
+
+    }
+    .width_column{
+        width:40%;
+        padding-right:40px;
+    }
+    .img-car{
+        margin-top: 50px;
+        width:30%;
+        height:auto;
+        margin-left:95px;
+    }
+    .logo-car{
+        width:20%;
+    }
+    .brand-car{
+        color:#FAB107;
+        font-size:30px;
+        text-align:center;
+    }

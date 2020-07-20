@@ -40,7 +40,7 @@
             </div>
         </form>
         @else
-        <span><p>Veuillez vous connecter pour participer avec nous</p></span>
+        <span><p>Veuillez vous <a href="/login"><i><u>connecter</u></i></a> pour participer avec nous</p></span>
         @endif
     </div>
 </div></div></div>
@@ -53,8 +53,7 @@
             <div class="card user-card">
                 <div class="card-block">
                     <div class="card-introduction">
-                    <img src="/project_images/user-2.png" width="30px">&nbsp&nbsp<strong>{{$f->user->nom}}</strong><br>
-                        
+                    <img src="/project_images/user-2.png" width="30px">&nbsp&nbsp<strong>{{$f->user->prenom}}</strong><br>
                         {{$f->pivot->commentaire}}
                     </div>
                 </div>

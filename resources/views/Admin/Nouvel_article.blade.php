@@ -9,6 +9,9 @@
 <body>
 @include('Components.dashboard')
 @yield('dashboard')
+@if(session('success'))
+		<div class="animated fadeOut success">{{session('success')}}</div>
+	@endif
 <div class="container-contact100">
     <div class="wrap-contact100">
         <form class="contact100-form validate-form" method="post" action="{{ action('AdminController@insererArticle') }}" enctype="multipart/form-data">

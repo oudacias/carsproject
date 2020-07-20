@@ -5,7 +5,7 @@
 	@if(session('success'))
 		<div class="animated fadeOut success">{{session('success')}}</div>
 	@endif
-	<div class="text_header">Liste des Sujets</div>
+	<div class="text_header">Liste des Utilisateurs</div>
     <table class="table">
   <thead>
     <tr>

@@ -8,7 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use App\Userimage;
 class RegisterController extends Controller
 {
     /*
@@ -53,7 +53,7 @@ class RegisterController extends Controller
             'nom' => ['required', 'string', 'max:255'],
             'prenom' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'telephone' => ['required', 'integer', 'max:255'],
+            //'telephone' => ['required', 'integer', 'max:255'],
             'role' => ['required','string','max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
 
@@ -68,13 +68,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+            $user = User::where('email','=',$data['email'])->exists();
+            if(!$user){
+            $user = User::create([
             'nom' => $data['nom'],
             'prenom' => $data['prenom'],
             'email' => $data['email'],
-            'telephone' => $data['telephone'],
             'role' => $data['role'],
+            'telephone' => $data['telephone'],
             'password' => Hash::make($data['password']),
         ]);
+        
+        $image = new Userimage();
+        $image->user_id = $user->id;
+        $image->image_path = "/project_images/hellocar.png";
+        $image->save();
+        return $user;
+            }
+            return view('Admin/Nouvel_article');
+
+            
+
     }
 }
