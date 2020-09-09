@@ -31,6 +31,14 @@
                 <input class="input100" type="text" name="lien_youtube" placeholder="Lien Youtube">
                 <span class="focus-input100"></span>
             </div>
+            <div class="wrap-input100 validate-input" data-validate="Please enter your name">
+            <label for="cars">Categorie de l'article : </label>
+                <select class="select-form" name="categorie">
+                    @foreach($categorie as $c)
+                        <option value="{{$c->categorie}}">{{$c->categorie}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="image-upload">
                 <label for="file-input">
                     <img src="/project_images/landscape.png"/>

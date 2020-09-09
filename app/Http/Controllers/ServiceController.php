@@ -75,7 +75,7 @@ class ServiceController extends Controller
         $suivi->ville = $r->ville ;
         $suivi->sexe = $r->sexe ;
         $suivi->age = $r->age ;
-        $suivi->telephone = $r->telephone ;
+        $suivi->telephone = '212'.$r->telephone ;
         $suivi->situation_familiale = $r->situation_familiale ;
         $suivi->km_parcouru = $r->km_parcouru ;
         $suivi->type_route = $r->type_route ;

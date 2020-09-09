@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nom','prenom', 'email','telephone','role', 'password',
+        'nom','prenom', 'email','telephone','role', 'password'
     ];
 
     /**
@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function forums()
     {
-        return $this->belongsToMany('App\Forum','user_forum')->withPivot('commentaire');
+        return $this->belongsToMany('App\Forum','user_forum')->withPivot('id','commentaire');
     }
     public function boutique()
     {
@@ -51,5 +51,15 @@ class User extends Authenticatable
     public function achatvoiture(){
         return $this->hasMany('App\Achatvoiture','user_id');
     }
+    public function forum()
+    {
+        return $this->hasMany('App\Forum','user_id');
+    }
+    public function articles()
+    {
+        return $this->belongsToMany('App\Article','user_article')->withPivot('id');
+    }
+    
+
 
 }

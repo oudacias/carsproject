@@ -1,15 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Articles</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/card.css">
-    <link rel="stylesheet" type="text/css" href="/css/mainstyle.css">
-</head>
-<body>
+<link rel="stylesheet" href="/css/mainstyle.css">
+<link rel="stylesheet" href="/css/card.css">
+<link rel="stylesheet" href="/css/popup.css">
+<link rel="stylesheet" href="/css/articles.css">
 @include('Components.menu')
 @yield('menu')
+<div style="float:left; margin-left:100px">
+@if(Session::get('categorie'))
+    @foreach(Session::get('categorie') as $s)
+        <span class="filter-element">{{$s}}<a style="margin-left:5px" href="/Article/Articles/{{$s}}">x</a></span>
+    @endforeach
+@endif
+<hr/>
+</div>
+<form method="post" action="{{ action('ArticleController@TrouverCategorie') }}">
+@csrf
+<div style="float:right;margin-right:100px">
+<select class="filter-select" name="categorie">
+@foreach($categories as $c)
+  <option value="{{$c->categorie}}">{{$c->categorie}}</option>
+@endforeach
+</select>
+<input width="35px" style="position:absolute;margin-top:8px" type="image" src="/project_images/filter.png" alt="submit" />
+</form>
+</div>
+<br>
+<br>
+<br>
+<br>
 <h4>Nos Articles</h4>
 <div class="container">
     @foreach($artc as $a)

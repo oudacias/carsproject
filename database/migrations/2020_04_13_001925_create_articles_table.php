@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('titre');
             $table->longText('texte');
+            $table->Text('categorie');
             $table->string('lien_image');
             $table->string('lien_youtube')->nullable();
             $table->timestamps();

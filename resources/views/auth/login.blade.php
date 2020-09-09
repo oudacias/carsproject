@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Articles</title>
+    <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/articles.css">
@@ -39,7 +39,7 @@
         <a class="btn btn-link" style="margin-left:350px" href="{{ route('password.request') }}">
             Mot de passe oublié ?
         </a>
-    </div>
+        </div>
 </div>
 
 <script>

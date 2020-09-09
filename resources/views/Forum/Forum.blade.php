@@ -12,7 +12,9 @@
             <div class="card user-card">
                 <div class="card-block">
                     <div class="card-introduction">
-                        <strong>{{$forum->sujet}}</strong><br>
+                    <img class="forum-img" src="{{$forum->user->Userimage->image_path}}">
+
+                        <strong>{{$forum->sujet}}</strong><br><br>
                         {{$forum->texte}} 
                     </div>
                 </div>
@@ -53,7 +55,7 @@
             <div class="card user-card">
                 <div class="card-block">
                     <div class="card-introduction">
-                    <img src="/project_images/user-2.png" width="30px">&nbsp&nbsp<strong>{{$f->user->prenom}}</strong><br>
+                    <img src="{{$f->user->Userimage->image_path}}" class="forum-img">&nbsp&nbsp<strong>{{$f->user->prenom}}</strong><br>
                         {{$f->pivot->commentaire}}
                     </div>
                 </div>

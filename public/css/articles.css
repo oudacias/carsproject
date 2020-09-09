@@ -420,6 +420,11 @@ textarea.input100_forum {
     textarea.input100_forum {
         width: 160px;
       }
+    .vendeur{
+        margin-top: 0px;
+        margin-left: -70px;
+    }
+    
 }
 
 
@@ -459,3 +464,83 @@ button[disabled]:hover{
     font-size: smaller;
     color: #FAB107;
 }
+.select-form{
+    width:100%;
+    height:50px;
+    border-radius:20px;
+    padding:10px
+}
+
+.filter-select{
+    width:150px;
+    height:40px;
+    border:0px;
+    outline:0px;
+    background:transparent;
+    border-bottom: 2px solid black;
+    margin-right:20px
+}
+.filter-element{
+    color:white;
+    background-color: #CFAC84;
+    padding : 10px;
+    border-radius: 20px;
+    
+}
+.table-details{
+    width: 80%;
+    margin-left: 70px;
+    background-color:#f7eee5e0;
+    border-radius:20px;
+
+}
+
+.table-details td{
+    text-align: left;
+    padding-left: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: rgb(168, 168, 168);
+    
+}
+.vendeur{
+    margin-top: 50px;
+    margin-left: 20%;
+}
+
+.input-hidden {
+    position: absolute;
+    opacity: 0;
+    color:black;
+}
+  
+input[type="radio"]:checked + label > img {
+    background-color: rgb(158, 157, 157);
+    border-radius: 100%;
+}
+.recherche-select{
+    height: 50px;
+    width:80%;
+    margin-top: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+    margin-left: 10%;
+    background-color: transparent
+}
+.up_select{
+    width : 80%;
+    margin-left: 35%;
+    margin-top: 5%
+}
+.recherche-cars{
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    margin-left: 30%;
+    margin-top: 10px;
+    background-color:#FF9901;
+}
+.recherche-cars:hover{color:white}
+  

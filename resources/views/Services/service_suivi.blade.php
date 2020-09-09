@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Register</title>
+    <title>Service Conseil</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/articles.css">
     <link rel='stylesheet' href="/css/confirmation.css">
+    <link rel='stylesheet' href="/css/card.css">
+    <link rel='stylesheet' href="/css/mainstyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     </head>
 <body>
 @include('Components.menu')
 @yield('menu')
+<div class="container">
+  <div class="row justify-content-around">
+         <div class="col-md-12">
+            <div class="card user-card">
+                 <div class="user-image img-home">
+                    <img src="/project_images/advice.png"></div>
+                <div class="card-block">
+                <div style="text-align:center">Service de Conseil</div>                   
+
+                    <div class="card-introduction">
+                        <p class="m-t-24 text-muted">ELAMDASSI ON CARS est une entreprise dédiée à l’accompagnement des acheteurs des vendeurs et des revendeurs de voitures à travers ses différents services présentés sur nos plateformes aussi bien que le suivis  terrain de nos clients pour leurs assurer toutes les conditions d’une bonne opération achat revente cette entreprise à été à l’instar d’une chaine YouTube en pleine évolutions crée en 2016 par l’équipe de EOCARS</p>
+                        
+                        <a href="/Services/service_suivi"><button type="button" class="btn-original">Continuer</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
 <div class="container-contact100">
     <div id="form1" class="wrap-contact100">
     @if(session('success'))
@@ -39,7 +60,7 @@
             <br>
             <span class="alert" id="alert3">Veuillez Remplire ce Champ</span>    
             <div class="wrap-input100 validate-input">
-                <input id="tel" class="input100" type="number" name="telephone">
+                <label style="position:absolute;top:18px">+212</label><input style="padding-left:45px" id="tel" class="input100" type="number" name="telephone">
                 <span class="focus-input100"></span>
             </div>
             <label>Votre Ville</label> 
@@ -126,7 +147,7 @@
                 </div>
             </div>
             <div id="form3" class="wrap-contact100">
-                <span class="contact100-form-title">Étape 1: Informations Finances</span>
+                <span class="contact100-form-title">Étape 3: Informations Finances</span>
                 <label>Quel est votre budget total, assurance auto comprise ? </label>
                 <br>
                 <span class="alert" id="alert11">Veuillez Remplire ce Champ</span> 
@@ -185,218 +206,114 @@
         
 <script>
     $(document).ready(function(){
+        
         $("#form1").fadeIn();
         $("#form2").fadeOut();
         $("#form3").fadeOut();
-        $("#nextform2").prop("disabled", true);
-
         
-        $("#nextform2").click(function(){
-            $("#form1").fadeOut();
-            $("#form2").fadeIn();
-            $("#nextform3").prop("disabled", true)
-        });
+        
          $("#previousform1").click(function(){
             $("#form2").fadeOut();
             $("#form1").fadeIn();
-            $("#nextform2").prop("disabled", true)
         });
-        $("#nextform3").click(function(){
-            $("#form2").fadeOut();
-            $("#form3").fadeIn();
-            $("#submit").prop("disabled", true)
-
-        });
+        
         $("#previousform2").click(function(){
             $("#form3").fadeOut();
             $("#form2").fadeIn();
-            $("#nextform3").prop("disabled", true)
-
         });
-
-    });
-    (function() {
-        var fieldsChecker = {
-            init: function() {
-            this.cacheDom();
-            this.bindEvents();
-            },
-            cacheDom: function() {
-            this.$form = $("form");
-            this.$inputNom = $("#nom");
-            this.$inputPrenom = $("#prenom");
-            this.$inputTel = $("#tel");
-            this.$inputVille = $("#ville");
-            this.$inputSituation = $("#situation");
-            this.$inputKm = $("#km");
-            this.$inputRoute = $("#route");
-            this.$inputPlaces = $("#places");
-            this.$inputBagages = $("#bagages");
-            this.$inputUsage = $("#usage");
-            this.$inputBudget = $("#budget");
-            this.$inputFinancement = $("#financement");
-
-
-
-            this.$spanNom = $("#alert1");
-            this.$spanPrenom = $("#alert2");
-            this.$spanTel = $("#alert3");
-            this.$spanVille = $("#alert4");
-            this.$spanSituation = $("#alert5");
-            this.$spanKm = $("#alert6");
-            this.$spanRoute = $("#alert7");
-            this.$spanPlaces = $("#alert8");
-            this.$spanBagages = $("#alert9");
-            this.$spanUsage = $("#alert10");
-            this.$spanBudget = $("#alert11");
-            this.$spanFinancement = $("#alert12");
-            
-
-            this.$submitButton1 = $("#nextform2");
-            this.$submitButton3 = $("#nextform3");
-            this.$submitButton5 = $("#submit");
-
-            
-
-            },
-            bindEvents: function() {
-            this.$inputNom.on("keyup", this.nomLongEnough.bind(this));
-            this.$inputPrenom.on("keyup", this.prenomLongEnough.bind(this));
-            this.$inputTel.on("keyup", this.telLongEnough.bind(this));
-            this.$inputVille.on("keyup", this.villeLongEnough.bind(this));
-            this.$inputSituation.on("keyup", this.situationLongEnough.bind(this));
-            this.$inputKm.on("keyup", this.kmLongEnough.bind(this));
-            this.$inputRoute.on("keyup", this.routeLongEnough.bind(this));
-            this.$inputPlaces.on("keyup", this.placesLongEnough.bind(this));
-            this.$inputBagages.on("keyup", this.bagagesLongEnough.bind(this));
-            this.$inputUsage.on("keyup", this.usageLongEnough.bind(this));
-            this.$inputBudget.on("keyup", this.budgetLongEnough.bind(this));
-            this.$inputFinancement.on("keyup", this.financementLongEnough.bind(this));
-            },
-            nomLongEnough: function() {
-            if (this.$inputNom.val().length == 0) {
-
-                this.$spanNom.show();
-            } else {
-                this.$spanNom.hide();
-            }
-            this.submitButton1Disabled();
-            },
-            prenomLongEnough: function() {
-            if (this.$inputPrenom.val().length == 0) {
-                this.$spanPrenom.show();
-            } else {
-                this.$spanPrenom.hide();
-            }
-            this.submitButton1Disabled();
-            },
-            telLongEnough: function() {
-            if (this.$inputTel.val().length == 0) {
-                this.$spanTel.show();
-            } else {
-                this.$spanTel.hide();
-            }
-            this.submitButton1Disabled();
-            },
-            villeLongEnough: function() {
-            if (this.$inputVille.val().length == 0) {
-                this.$spanVille.show();
-            } else {
-                this.$spanVille.hide();
-            }
-            this.submitButton1Disabled();
-            },
-            situationLongEnough: function() {
-            if (this.$inputSituation.val().length == 0) {
-                this.$spanSituation.show();
-            } else {
-                this.$spanSituation.hide();
-            }
-            this.submitButton1Disabled();
-            },
-            kmLongEnough: function() {
-            if (this.$inputKm.val().length == 0) {
-                this.$spanKm.show();
-            } else {
-                this.$spanKm.hide();
-            }
-            this.submitButton2Disabled();
-            },
-            routeLongEnough: function() {
-            if (this.$inputRoute.val().length == 0) {
-                this.$spanRoute.show();
-            } else {
-                this.$spanRoute.hide();
-            }
-            this.submitButton2Disabled();
-            },
-            placesLongEnough: function() {
-            if (this.$inputPlaces.val().length == 0) {
-                this.$spanPlaces.show();
-            } else {
-                this.$spanPlaces.hide();
-            }
-            this.submitButton2Disabled();
-            },
-            bagagesLongEnough: function() {
-            if (this.$inputBagages.val().length == 0) {
-                this.$spanBagages.show();
-            } else {
-                this.$spanBagages.hide();
-            }
-            this.submitButton2Disabled();
-            },
-            usageLongEnough: function() {
-            if (this.$inputUsage.val().length == 0) {
-                this.$spanUsage.show();
-            } else {
-                this.$spanUsage.hide();
-            }
-            this.submitButton2Disabled();
-            },
-            budgetLongEnough: function() {
-            if (this.$inputBudget.val().length == 0) {
-                this.$spanBudget.show();
-            } else {
-                this.$spanBudget.hide();
-
-            }
-            this.submitButton3Disabled();
-            },
-            financementLongEnough: function() {
-            if (this.$inputFinancement.val().length == 0) {
-                this.$spanFinancement.show();
-            } else {
-                this.$spanFinancement.hide();
-            }
-            this.submitButton3Disabled();
-            },
-            submitButton1Disabled: function() {
-            if (this.$spanNom.is(":visible") || this.$spanPrenom.is(":visible") || this.$spanTel.is(":visible") || this.$spanVille.is(":visible") || this.$spanSituation.is(":visible")) {
-                this.$submitButton1.prop("disabled", true);
-            } else {
-                this.$submitButton1.prop("disabled", false);
-            }
-            },
-            submitButton2Disabled: function() {
-            if (this.$spanKm.is(":visible") || this.$spanRoute.is(":visible") || this.$spanPlaces.is(":visible") || this.$spanBagages.is(":visible") || this.$spanUsage.is(":visible")) {
-                this.$submitButton3.prop("disabled", true);
-            } else {
-                this.$submitButton3.prop("disabled", false);
-            }
-            },
-            submitButton3Disabled: function() {
-            if (this.$spanBudget.is(":visible") || this.$spanFinancement.is(":visible") ) {
-                this.$submitButton5.prop("disabled", true);
-            } else {
-                this.$submitButton5.prop("disabled", false);
-            }
-            }
-
+        $("#nextform2").click(function(){
+        if($("#nom").val().length == 0){
+            $("#alert1").show();
+            document.getElementById("alert1").style.color = "red";
+        }else{
+            $("#alert1").hide();
         }
+        if($("#prenom").val().length == 0){
+            $("#alert2").show();
+            document.getElementById("alert2").style.color = "red";
+        }else{
+            $("#alert2").hide();
+        }
+        if($("#tel").val().length != 10 ){
+            $("#alert3").show();
+            document.getElementById("alert3").style.color = "red";
+        }else{
+            $("#alert3").hide();
+        }
+        if($("#ville").val().length == 0){
+            $("#alert4").show();
+            document.getElementById("alert4").style.color = "red";
+        }else{
+            $("#alert4").hide();
+        }
+        if($("#situation").val().length == 0){
+            $("#alert5").show();
+            document.getElementById("alert5").style.color = "red";
+        }else{
+            $("#alert5").hide();
+        }
+        if($("#nom").val().length > 0 && $("#prenom").val().length > 0 && $("#ville").val().length >0 && $("#tel").val().length ==10 && $("#situation").val().length > 0){
+            $("#form1").hide();
+            $("#form2").show();
+        }
+    });
+    
 
-        fieldsChecker.init();
-    })();
+        $("#nextform3").click(function(){
+        if($("#km").val().length == 0){
+            $("#alert6").show();
+            document.getElementById("alert6").style.color = "red";
+        }else{
+            $("#alert6").hide();
+        }
+        if($("#route").val().length == 0){
+            $("#alert7").show();
+            document.getElementById("alert7").style.color = "red";
+        }else{
+            $("#alert7").hide();
+        }
+        if($("#places").val().length == 0){
+            $("#alert8").show();
+            document.getElementById("alert8").style.color = "red";
+        }else{
+            $("#alert8").hide();
+        }
+        if($("#bagages").val().length == 0){
+            $("#alert9").show();
+            document.getElementById("alert9").style.color = "red";
+        }else{
+            $("#alert9").hide();
+        }
+        if($("#usage").val().length == 0){
+            $("#alert10").show();
+            document.getElementById("alert10").style.color = "red";
+        }else{
+            $("#alert10").hide();
+        }
+        if($("#km").val().length > 0 && $("#route").val().length > 0 && $("#places").val().length >0 && $("#bagages").val().length > 0 && $("#usage").val().length > 0){
+            $("#form2").hide();
+            $("#form3").show();
+        }
+    });
+    $("form").submit(function(e){
+        if($("#budget").val().length == 0){
+            $("#alert11").show();
+            document.getElementById("alert11").style.color = "red";
+            e.preventDefault();
+        }else{
+            $("#alert11").hide();
+        }
+        if($("#finacement").val().length == 0){
+            $("#alert12").show();
+            document.getElementById("alert12").style.color = "red";
+            e.preventDefault();
+        }else{
+            $("#alert12").hide();
+        } 
+    });
+        
+        
+    });
 </script>
 
 

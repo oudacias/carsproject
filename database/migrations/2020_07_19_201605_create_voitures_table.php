@@ -34,6 +34,9 @@ class CreateVoituresTable extends Migration
             $table->string('description');
             $table->float('prix');
             $table->string('options');
+            $table->string('ville');
+            $table->string('type')->default('neuve');
+            $table->boolean('vendu')->default(false);
             $table->string('photo');
             $table->boolean('confirme')->default(false);
             $table->timestamps();

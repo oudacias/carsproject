@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Article;
+use App\Boutique;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('Admin/ModifierArticle/{id}','AdminController@Article');
 Route::post('Admin/ModifierArticle/','AdminController@ModifierArticle');
 Route::get('Admin/Admin_forum','AdminController@Forum');
 Route::get('Admin/Admin_forum/{id}','AdminController@SupprimerForum');
-Route::get('Admin/Admin_forum_confirm/{id}','AdminController@ConfirmerForums');
+Route::get('Admin/Admin_forum_confirm/{id}','AdminController@Confirmerforums');
 Route::get('Admin/Admin_users/{id}','AdminController@SupprimerUser');
 Route::get('Admin/Admin_users','AdminController@listusers');
 Route::get('auth/login_admin','AdminController@login');
@@ -45,6 +46,11 @@ Route::get('Admin/confirmer_voiture/{id}', 'AdminController@confirmerVoiture');
 Route::get('Admin/supprimer_voiture/{id}', 'AdminController@supprimerVoiture');
 Route::get('Admin/Admin_contact', 'AdminController@contacts');
 Route::get('Admin/Admin_contacts/{id}', 'AdminController@supprimercontacts');
+Route::post('Admin/Admin_categorie', 'ArticleController@AjouterCategorie');
+Route::get('Services/diagnosticpdf/{id}', 'ServiceController@diagnostiquetoPDF');
+Route::get('Services/suivipdf/{id}', 'ServiceController@suivitoPDF');
+Route::get('Services/voiturepdf/{id}', 'AdminController@voiturePDF');
+Route::post('Admin/Admin_forum/', 'ForumController@AjouterTheme');
 
 });
 Route::get('Services/service_diagnostic', 'ServiceController@indexdiagnostic');
@@ -55,24 +61,42 @@ Route::get('Forum/Forums', 'ForumController@index');
 Route::post('Forum/Forums', 'ForumController@ajouterSujet');
 Route::get('Forum/Forums/{id}', 'ForumController@Forum');
 Route::post('Forum/Forum/', 'ForumController@Sujet');
-Route::post('Forum/Forums/', 'ForumController@insertComment');
+Route::post('Forum/Forums/Comment', 'ForumController@insertComment');
 
 Route::post('Services/service_diagnostic', 'ServiceController@ajouterdiagnostic');
 Route::post('Services/service_suivi', 'ServiceController@ajoutersuivi');
 Route::get('Services/service_suivi', 'ServiceController@indexsuivi');
 Route::get('Boutique/boutique', 'BoutiqueController@indexboutique');
+Route::get('Boutique/boutique/{id}', 'BoutiqueController@indexboutique');
 Route::post('Boutique/boutique', 'BoutiqueController@ajouterBoutique');
+Route::get('Boutique/voitureDetails/{id}', 'VoitureController@VoitureDetails');
 Route::get('Contact/contact', 'UserController@contactme');
 Route::post('Contact/contact', 'UserController@AddContact');
+Route::post('Forum/Forums/', 'ForumController@TrouverTheme');
+Route::get('Forum/Forum/{themes}', 'ForumController@DeleteTheme');
+Route::get('Boutique/boutique_voiture/{id}', 'VoitureController@TrouverBoutique');
+
+Route::post('Article/Articles/', 'ArticleController@TrouverCategorie');
+Route::get('Article/Articles/{categorie}', 'ArticleController@DeleteCategorie');
+Route::post('Boutique/boutique', 'UserController@ChercherVoiture');
+
+
 
 
 Route::group(['middleware' => ['auth','can:utilisateur']], function () {
 Route::get('profile', 'UserController@index');
 Route::post('profile/profile', 'UserController@modifierProfile');
 Route::post('profile', 'UserController@ajouterVoiture');
-Route::get('/Voiture/remove/{id}', 'UserController@removeCar');
-
-
+Route::get('boutique/voiture', 'VoitureController@FormVoiture');
+Route::get('boutique/nouvelle_boutique', 'BoutiqueController@NewBoutique');
+Route::get('Voiture/remove/{id}', 'UserController@removeCar');
+Route::get('User/myForums', 'UserController@AfficherForum');
+Route::get('User/myComments', 'UserController@AfficherComments');
+Route::get('User/myArticles', 'UserController@AfficherArticles');
+Route::get('User/SupprimerForum/{id}', 'UserController@SupprimerForum');
+Route::get('User/SupprimerCommentaire/{id}', 'UserController@SupprimerCommentaire');
+Route::get('User/AjouterArticle/{id}', 'UserController@AjouterArticle');
+Route::get('User/SupprimerFavoris/{id}', 'UserController@SupprimerFavoris');
 });
 
 
@@ -81,12 +105,12 @@ Auth::routes();
 
 Route::get('/', function(){
         $articles = Article::orderBy('created_at','desc')->limit(4)->get();
-        return view('home',['artc'=>$articles]);
+        $boutique = Boutique::all()->sortByDesc('created_at');
+        return view('home',['artc'=>$articles,'boutique'=>$boutique]);
 }
 );
 
 
 
-Route::get('Services/diagnosticpdf/{id}', 'ServiceController@diagnostiquetoPDF');
-Route::get('Services/suivipdf/{id}', 'ServiceController@suivitoPDF');
-Route::get('Services/voiturepdf/{id}', 'AdminController@voiturePDF');
+
+

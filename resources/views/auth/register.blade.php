@@ -33,7 +33,7 @@
                 @endif
             </div>
             <div class="wrap-input100 validate-input">
-                <input id='telephone' class="input100" type="number" name="telephone" placeholder="Téléphone" required>
+            <label style="position:absolute;top:22px">+212</label><input style="padding-left:45px" id='telephone' class="input100" type="number" name="telephone" placeholder="Téléphone" required>
                 <span id="spantel" style="color:#FAB107">Veuillez entrer un numéro valide</span>
 
             </div>

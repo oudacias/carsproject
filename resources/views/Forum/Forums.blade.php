@@ -7,6 +7,29 @@
 
 @include('Components.menu')
 @yield('menu')
+<div style="float:left; margin-left:100px">
+@if(Session::get('theme'))
+    @foreach(Session::get('theme') as $s)
+        <span class="filter-element">{{$s}}<a style="margin-left:5px" href="/Forum/Forum/{{$s}}">x</a></span>
+    @endforeach
+@endif
+<hr/>
+</div>
+<form method="post" action="{{ action('ForumController@TrouverTheme') }}">
+@csrf
+<div style="float:right;margin-right:100px">
+<select class="filter-select" name="theme">
+@foreach($theme as $t)
+  <option value="{{$t->theme}}">{{$t->theme}}</option>
+@endforeach
+</select>
+<input width="35px" style="position:absolute;margin-top:8px" type="image" src="/project_images/filter.png" alt="submit" />
+</form>
+</div>
+<br>
+<br>
+<br>
+<br>
 <div class="container">
     <div class="row">
         <div class="col-12" ><label>Partagez vos questions et idées avec nous </label>

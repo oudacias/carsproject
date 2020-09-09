@@ -1,11 +1,19 @@
 <link rel='stylesheet' href="/css/popup.css">
 <link rel='stylesheet' href="/css/confirmation.css">
+<link rel='stylesheet' href="/css/articles.css">
 @include('Components.dashboard')
 @yield('dashboard')
 	@if(session('success'))
 		<div class="animated fadeOut success">{{session('success')}}</div>
 	@endif
 	<div class="text_header">Liste des Forums</div>
+	<form class="contact100-form validate-form" method="post" action="{{ action('ForumController@AjouterTheme') }}" enctype="multipart/form-data">
+			@csrf
+			<table>
+		<tr><td style="width:200px"><input class="input100" type="text" name="theme" placeholder="Ajouter Thème"></td>
+		<td ><input type="image" src="/project_images/add.png" alt="Submit" width="30"></td></tr>
+		<table>
+	</form>
     <table class="table">
   <thead>
     <tr>

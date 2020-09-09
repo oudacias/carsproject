@@ -1,11 +1,19 @@
 <link rel='stylesheet' href="/css/popup.css">
 <link rel='stylesheet' href="/css/confirmation.css">
+<link rel='stylesheet' href="/css/articles.css">
 @include('Components.dashboard')
 @yield('dashboard')
 	@if(session('success'))
 		<div class="animated fadeOut success">{{session('success')}}</div>
 	@endif
 	<div class="text_header">Liste des Articles</div>
+	<form class="contact100-form validate-form" method="post" action="{{ action('ArticleController@AjouterCategorie') }}" enctype="multipart/form-data">
+			@csrf
+			<table>
+		<tr><td style="width:200px"><input class="input100" type="text" name="categorie" placeholder="Ajouter Categorie"></td>
+		<td ><input type="image" src="/project_images/add.png" alt="Submit" width="30"></td></tr>
+		<table>
+	</form>
     <table class="table">
   <thead>
     <tr>

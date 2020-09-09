@@ -18,6 +18,7 @@ class CreateForumsTable extends Migration
             $table->integer('user_id');
             $table->string('sujet');
             $table->longText('texte');
+            $table->string('theme');
             $table->integer('approuve')->nullable();
             $table->timestamps();
         });

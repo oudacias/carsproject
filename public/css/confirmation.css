@@ -1,9 +1,10 @@
 .animated {
-    width: 60%;
-    height: 40px;
+    width: 50%;
+    height: 80px;
    background-position: left top;
    animation-duration: 4s;
    animation-fill-mode: both;
+   text-align: center;
 }
 @keyframes fadeOut {
    0% {opacity: 1;}

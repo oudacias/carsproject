@@ -192,7 +192,8 @@
 
 /*---------------*/
 .gap{
-    padding-top: 80px
+    padding-top: 80px;
+    margin-left:70px
 }
 .card.user-card {
     border-top: none;
@@ -389,7 +390,8 @@ td{
 
 }
 .info-border{
-  padding-left: 35%;
+  margin-top:-30px;
+  padding-left:10%;
 }
 .car-image{
   width: 110%;
@@ -408,26 +410,35 @@ td{
   background-color:#fa7c30;
 }
 .other-side{
-  position: absolute;
-  top:170px;
-  width: 20%;
-  left: 80%;
+  position: relative;
+  min-height: 50px;
+  width: 50%;
+}
+.second-side{
+  background-color: rgb(216, 214, 214);
+  padding:15px;
+  border-radius: 10px;
+  margin-top:2%
+}
+.side-form{
+  background-color: rgba(236, 235, 235, 0.589);
 }
 @media (max-width: 64em) {
   .other-side{
-    visibility: hidden;
+    
+    width: 90%;
   }
 
 .boutique-border{
   width: 90%;
-}
+  background: linear-gradient(-160deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%);}
 }
 .img-profile{
   border-radius: 50%;
   border-style: solid;
   border-width: 1px;
   border-color: gray;
-  height: 80px;
+  height: 110px;
 }
 .change-profile{
   background-color: #FAB107;
@@ -470,4 +481,8 @@ td{
 .card-width{
   min-width: 195px;
   margin-right: 100px;
+}
+.forum-img{
+  border-radius: 100%;
+  width: 30px;
 }

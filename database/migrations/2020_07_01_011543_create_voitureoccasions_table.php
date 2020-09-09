@@ -16,7 +16,6 @@ class CreateVoitureoccasionsTable extends Migration
         Schema::create('voitureoccasions', function (Blueprint $table) {
             $table->id();
             $table->integer('voiture_id');
-            $table->string('ville');
             $table->string('etat');
             $table->timestamps();
         });

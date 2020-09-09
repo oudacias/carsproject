@@ -23,7 +23,7 @@ class AdminController extends Controller
         return view('Admin/Admin_articles',['artc'=>$articles]);
     }
     public function insererArticle(Request $r){
-        Article::insererArticle($r->titre,$r->texte,$r->file('lien_image'),$r->lien_youtube);
+        Article::insererArticle($r->titre,$r->texte,$r->categorie,$r->file('lien_image'),$r->lien_youtube);
         return redirect()->back()->withSuccess('Article Ajouté');
 
     }
@@ -52,7 +52,10 @@ class AdminController extends Controller
         return redirect()->back()->withSuccess('Forum Supprimé');
     }
     public function Confirmerforums($id){
-        $forum = Forum::Confirmerforum($id);
+        $forum = Forum::find($id);
+        $forum->approuve = 1;
+        $forum->save();
+
         return redirect()->back()->withSuccess('Forum Confirmé');
     }
     public function listusers(){
@@ -86,7 +89,9 @@ class AdminController extends Controller
     }
     public function afficherBoutique()
     {   
-        $boutique = Boutique::where('type_boutique','=','Professionnelle')->get();
+        $boutique = Boutique::where('type_boutique','=','Professionnelle')
+                                ->where('confirmer','=',false)
+                                ->get();
         return view('Admin/Admin_boutique',['boutique'=>$boutique]);
     }
     public function supprimerBoutique($id){
@@ -95,13 +100,23 @@ class AdminController extends Controller
     }
     public function confirmerBoutique($id){
         $boutique = Boutique::find($id);
-        $boutique->confirme = true;
+        $boutique->confirmer = true;
         $boutique->save();
+        if($boutique->type = 'Professionnelle'){
+            $voiture = Voiture::where('boutique_id','=', $boutique->id)->get();
+            if($voiture->count()){
+                foreach($voiture as $v){
+                    $v->confirme = true;
+                    $v->save();
+                }
+
+            }
+        }
         return redirect()->back()->withSuccess('Boutique Confirmée');
     }
     public function afficherVoiture()
     {
-        $voiture = Voiture::where("confirme","=",true)->get();
+        $voiture = Voiture::where("confirme","=",false)->get();
         return view('Admin/Admin_voiture',['voiture'=>$voiture]);
     }
     public function supprimerVoiture($id){
