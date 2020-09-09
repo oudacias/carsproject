@@ -1,7 +1,11 @@
 a {
   color: #000;
 }
+.gap{
+  padding-top: 80px;
+  margin-left: 0px;
 
+}
 /* header */
 
 .logo-menu{
@@ -133,6 +137,14 @@ a {
 /* 48em = 768px */
 
 @media (min-width: 74em) {
+  .gap{
+    margin-left: 50px;
+  
+  }
+  
+
+
+
   .header li {
     float: left;
   }
@@ -161,7 +173,7 @@ a {
     width: 5%;
   }
   .divider{
-    background: -webkit-linear-gradient(left,#323232, #323232 5%, #F9F9F6 5%, #F9F9F6);
+    background: -webkit-linear-gradient(left,#8D8D8D, #8D8D8D 5%, #F9F9F6 5%, #F9F9F6);
     min-height: 100%;
   }
   .inverted-border-radius {
@@ -194,10 +206,7 @@ a {
 
 }
 
-  .gap{
-    padding-top: 80px;
 
-}
   
   .pic_login {
     position: absolute;
