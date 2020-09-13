@@ -29,8 +29,8 @@
 		<td>{{$u->email}}</td>
 		<td>{{$u->telephone}}</td>
 		<td>{{$u->objectif}}</td>
-		<td>@if($u->objectif !='standard')<a href="/Admin/Admin_users/{{$u->id}}"><img src="/project_images/confirm.png" width="20%"></a>@endif</td>
-		<td><a href="/Admin/confirmer_users/{{$u->id}}"><img src="/project_images/bin.png" width="20%"></a></td>
+		<td>@if($u->objectif !='standard')<a href="/Admin/confirmer_users/{{$u->id}}"><img src="/project_images/confirm.png" width="20%"></a>@endif</td>
+		<td><a href="/Admin/supprimer_users/{{$u->id}}"><img src="/project_images/bin.png" width="20%"></a></td>
 	</tr>
 	@endforeach
   </tbody>

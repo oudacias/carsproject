@@ -28,7 +28,7 @@ Route::post('Admin/ModifierArticle/','AdminController@ModifierArticle');
 Route::get('Admin/Admin_forum','AdminController@Forum');
 Route::get('Admin/Admin_forum/{id}','AdminController@SupprimerForum');
 Route::get('Admin/Admin_forum_confirm/{id}','AdminController@Confirmerforums');
-Route::get('Admin/Admin_users/{id}','AdminController@SupprimerUser');
+Route::get('Admin/supprimer_users/{id}','AdminController@SupprimerUser');
 Route::get('Admin/confirmer_users/{id}','AdminController@ConfirmerUser');
 Route::get('Admin/Admin_users','AdminController@listusers');
 Route::get('auth/login_admin','AdminController@login');
