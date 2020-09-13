@@ -1,5 +1,7 @@
 @section('menu')
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
 <link rel="stylesheet" type="text/css" href="/css/menu.css">
+<link rel="stylesheet" type="text/css" href="/css/article.css">
 <div class="divider">
 <img class="logo-menu" src="/project_images/logoCars.png">
 
@@ -28,8 +30,9 @@
   @if(!Auth::check())
     <li><a href='/login'>Se connecter</a></li>
     <li><a href='/register'>S'enregistrer</a></li>
-  @else    
-    <li><a href='/profile'>Mon Profil</a></li>
+  @else  
+  
+    <li>@if(Auth::user()->role == 'administrateur')<a href='/Admin/Admin_articles'>@else<a href='/profile'>@endif Mon Profil </a></li>
   <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
   Se Déconnecter</a></li>
   <form id="logout-form" action="{{ route('logout') }}" method="POST">

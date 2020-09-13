@@ -22,11 +22,8 @@
                     <img src="/project_images/advice.png"></div>
                 <div class="card-block">
                 <div style="text-align:center">Service de Conseil</div>                   
-
                     <div class="card-introduction">
-                        <p class="m-t-24 text-muted">ELAMDASSI ON CARS est une entreprise dédiée à l’accompagnement des acheteurs des vendeurs et des revendeurs de voitures à travers ses différents services présentés sur nos plateformes aussi bien que le suivis  terrain de nos clients pour leurs assurer toutes les conditions d’une bonne opération achat revente cette entreprise à été à l’instar d’une chaine YouTube en pleine évolutions crée en 2016 par l’équipe de EOCARS</p>
-                        
-                        <a href="/Services/service_suivi"><button type="button" class="btn-original">Continuer</button></a>
+                        <p class="m-t-24 text-muted">ELAMDASSI ON CARS est une entreprise dédiée à l’accompagnement des acheteurs des vendeurs et des revendeurs de voitures à travers ses différents services présentés sur nos plateformes aussi bien que le suivis  terrain de nos clients pour leurs assurer toutes les conditions d’une bonne opération achat revente cette entreprise à été à l’instar d’une chaine YouTube en pleine évolutions crée en 2016 par l’équipe de EOCARS</p>                        
                     </div>
                 </div>
             </div>
@@ -206,6 +203,9 @@
         
 <script>
     $(document).ready(function(){
+        for(var i=0; i<13; i++){
+            $("#alert"+i).hide();
+        }
         
         $("#form1").fadeIn();
         $("#form2").fadeOut();

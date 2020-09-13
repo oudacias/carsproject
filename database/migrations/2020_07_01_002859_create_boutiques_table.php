@@ -18,7 +18,6 @@ class CreateBoutiquesTable extends Migration
             $table->integer('user_id');
             $table->string('nom_boutique');
             $table->string('description_boutique');
-            $table->string('type_boutique');
             $table->Text('lien_image');
             $table->string('appreciation')->nullable();
             $table->boolean('confirmer')->default(false);

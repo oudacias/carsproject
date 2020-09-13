@@ -18,6 +18,7 @@
 <form method="post" action="{{ action('ForumController@TrouverTheme') }}">
 @csrf
 <div style="float:right;margin-right:100px">
+Rechercher par thème &nbsp;
 <select class="filter-select" name="theme">
 @foreach($theme as $t)
   <option value="{{$t->theme}}">{{$t->theme}}</option>
@@ -30,6 +31,9 @@
 <br>
 <br>
 <br>
+<br>
+<br>
+
 <div class="container">
     <div class="row">
         <div class="col-12" ><label>Partagez vos questions et idées avec nous </label>
@@ -45,6 +49,14 @@
                                     <div class="wrap-input100">
                                         <input class="input100" type="text" name="titre" placeholder="Titre">
                                         <span class="focus-input100"></span>
+                                    </div>
+                                    <div class="wrap-input100">
+                                        <div style="color:#999999">Theme</div>
+                                            <select class="input100" name="theme">
+                                                @foreach($theme as $t)
+                                                    <option value="{{$t->theme}}">{{$t->theme}}</option>
+                                                @endforeach
+                                            </select>
                                     </div>
                                     <div class="wrap-input100">
                                         <textarea class="input100_forum" name="sujet" placeholder="Sujet"></textarea>

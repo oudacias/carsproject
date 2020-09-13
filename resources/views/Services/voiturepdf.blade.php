@@ -80,15 +80,15 @@
     <td>:{{$voiture->options}}</td>
 </tr>
 <tr>
+    <td class="width_column">Ville Voiture</td>
+    <td>:{{$voiture->ville}}</td>
+</tr>
+<tr>
     <td class="width_column">Type Voiture</td>
     @if(!$voiture->voitureoccasion)
     <td>:Neuve</td>
     @else
     <td>:Occasion</td>
-</tr>
-<tr>
-    <td class="width_column">Ville Voiture</td>
-    <td>:{{$voiture->voitureoccasion->ville}}</td>
 </tr>
 <tr>
     <td class="width_column">Etat Voiture</td>

@@ -24,13 +24,6 @@
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100">
-                        <div style="color:#999999">Type de Boutique</div>
-                        <select class="input100" name="type_boutique" placeholder="Type Boutique">
-                            <option>Professionnelle</option>
-                            <option>Standard</option>
-                        </select>
-                    </div>
-                    <div class="wrap-input100">
                         <div style="color:#999999">Ville</div>
                         <select class="input100" name="ville">
                             <option title="agadir" value="agadir">AGADIR</option>
@@ -276,13 +269,14 @@
 </div>
 
 <script>
-$(document).ready(function(){
-    $("#boutique_button").click(function(){
-        if($("#file-input1").val().length == 0){
-            $( "#alert_boutique" ).text( "Veuillez ajouter une image" );            
-        }
-    });
+
+$("#boutique_button").click(function(e){
+    if($("#file-input1").val().length == 0){
+        e.preventDefault();
+        $( "#alert_boutique" ).text( "Veuillez ajouter une image" );            
+    }
 });
+
 
 
 

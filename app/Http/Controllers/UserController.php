@@ -159,208 +159,54 @@ class UserController extends Controller
     }
     public function ChercherVoiture(Request $r)
     {
-        if($r->input('action')=='detail_voiture'){
-        
-            if($r->type != "0" && $r->ville != "0" && $r->prix && $r->date){
-                echo("1");
-                if($r->prix = "prix_up" && $r->date = "date_up")
-                    $voiture = Voiture::where('type','=',$r->type)
-                                        ->where('ville',$r->ville)
-                                        ->orderBy('prix')
-                                        ->orderBy('created_at')
-                                        ->get();
-                elseif($r->prix = "prix_down" && $r->date = "date_down")
-                    $voiture = Voiture::where('type','=',$r->type)
-                                            ->where('ville',$r->ville)
-                                            ->orderBy('prix','desc')
-                                            ->orderBy('created_at','desc')
-                                            ->get();
-                elseif($r->prix = "prix_up" && $r->date = "date_down")
-                    $voiture = Voiture::where('type','=',$r->type)
-                                            ->where('ville',$r->ville)
-                                            ->orderBy('prix')
-                                            ->orderBy('created_at','desc')
-                                            ->get();
-                elseif($r->prix = "prix_down" && $r->date = "date_up")
-                    $voiture = Voiture::where('type','=',$r->type)
-                                            ->where('ville',$r->ville)
-                                            ->orderBy('prix','desc')
-                                            ->orderBy('created_at')
-                                            ->get();
-            }elseif($r->type != "0" && $r->ville != "0" && $r->prix && !$r->date){
-                echo("2");
-                if($r->prix = "prix_up")
-                    $voiture = Voiture::where('type','=',$r->type)
-                                        ->where('ville',$r->ville)
-                                        ->orderBy('prix')
-                                        ->get();
-                elseif($r->prix = "prix_down")
-                    $voiture = Voiture::where('type','=',$r->type)
-                                            ->where('ville',$r->ville)
-                                            ->orderBy('prix','desc')
-                                            ->get();
-            }elseif($r->type != "0" && $r->ville != "0" && !$r->prix && $r->date){
-                echo("3");
-                if($r->date = "date_up")
-                    $voiture = Voiture::where('type','=',$r->type)
-                                        ->where('ville',$r->ville)
-                                        ->orderBy('created_at')
-                                        ->get();
-                elseif($r->date = "date_down")
-                    $voiture = Voiture::where('type','=',$r->type)
-                                            ->where('ville',$r->ville)
-                                            ->orderBy('created_at','desc')
-                                            ->get();
-            }elseif($r->type != "0" && $r->ville != "0" && !$r->prix && !$r->date){
-                    $voiture = Voiture::where('type','=',$r->type)
-                    ->where('ville',$r->ville)
-                    ->get();
-            }elseif($r->type != "0" && $r->ville == "0" && $r->prix && !$r->date){
-                if($r->prix = "prix_up")
-                    $voiture = Voiture::where('type','=',$r->type)
-                    ->orderBy('created_at')
-                    ->get();
-                elseif($r->prix = "prix_down")
-                    $voiture = Voiture::where('type','=',$r->type)
-                        ->orderBy('created_at','desc')
-                        ->get();
-            }elseif($r->type != "0" && $r->ville == "0" && !$r->prix && !$r->date){
+        if($r->input('action')=='detail_voiture'){        
+            if($r->type != "0" && $r->ville != "0" && $r->prix){
                 $voiture = Voiture::where('type','=',$r->type)
+                                    ->where('ville',$r->ville)
+                                    ->where('prix','<',$r->prix)
+                                    ->orderBy('created_at','desc')
                                     ->get();
-            }elseif($r->type != "0" && $r->ville == "0" && $r->prix && $r->date){
-                if($r->prix = "prix_up" && $r->date = "date_up")
-                    $voiture = Voiture::where('ville','=',$r->ville)
-                                        ->orderBy('prix')
-                                        ->orderBy('created_at')
-                                        ->get();
-                elseif($r->prix = "prix_down" && $r->date = "date_down")
-                    $voiture = Voiture::where('ville','=',$r->ville)
-                                            ->orderBy('prix','desc')
-                                            ->orderBy('created_at','desc')
-                                            ->get();
-                elseif($r->prix = "prix_up" && $r->date = "date_down")
-                    $voiture = Voiture::where('ville','=',$r->ville)
-                                            ->orderBy('prix')
-                                            ->orderBy('created_at','desc')
-                                            ->get();
-                elseif($r->prix = "prix_down" && $r->date = "date_up")
-                    $voiture = Voiture::where('ville','=',$r->ville)
-                                            ->orderBy('prix','desc')
-                                            ->orderBy('created_at')
-                                            ->get();
-            }elseif($r->type != "0" && $r->ville == "0" && !$r->prix && $r->date){
-                if($r->date = "date_up")
+            }elseif($r->type != "0" && $r->ville != "0" && !$r->prix){
+                $voiture = Voiture::where('type','=',$r->type)
+                                    ->where('ville',$r->ville)
+                                    ->orderBy('created_at','desc')
+                                    ->get();     
+            }elseif($r->type != "0" && $r->ville == "0" && $r->prix){
                     $voiture = Voiture::where('type','=',$r->type)
-                                        ->orderBy('created_at')
-                                        ->get();
-                elseif($r->date = "date_down")
-                    $voiture = Voiture::where('type','=',$r->type)
-                                            ->orderBy('created_at','desc')
-                                            ->get();
-            }elseif($r->type != "0" && $r->ville == "0" && $r->prix && !$r->date){
-                if($r->prix = "prix_down")
-                    $voiture = Voiture::where('type','=',$r->type)
-                                            ->orderBy('prix','desc')
-                                            ->get();
-                elseif($r->prix = "prix_up")
-                    $voiture = Voiture::where('type','=',$r->ville)
-                                            ->orderBy('prix')
-                                            ->get(); 
-            }elseif($r->type == "0" && $r->ville != "0" && !$r->prix && $r->date){
-                if($r->date = "date_up")
-                    $voiture = Voiture::where('ville','=',$r->ville)
-                                        ->orderBy('created_at')
-                                        ->get();
-                elseif($r->date = "date_down")
-                    $voiture = Voiture::where('ville','=',$r->ville)
-                                            ->orderBy('created_at','desc')
-                                            ->get();
-            }elseif($r->type == "0" && $r->ville != "0" && $r->prix && !$r->date){
-                if($r->prix = "prix_down")
-                    $voiture = Voiture::where('ville','=',$r->ville)
-                                            ->orderBy('prix','desc')
-                                            ->get();
-                elseif($r->prix = "prix_up")
-                    $voiture = Voiture::where('ville','=',$r->ville)
-                                            ->orderBy('prix')
-                                            ->get();
-            }elseif($r->type == "0" && $r->ville != "0" && $r->prix && $r->date){
-                if($r->prix = "prix_up" && $r->date = "date_up")
-                    $voiture = Voiture::where('ville',$r->ville)
-                                        ->orderBy('prix')
-                                        ->orderBy('created_at')
-                                        ->get();
-                elseif($r->prix = "prix_down" && $r->date = "date_down")
-                    $voiture = Voiture::where('ville','=',$r->ville)
-                                            ->orderBy('prix','desc')
-                                            ->orderBy('created_at','desc')
-                                            ->get();
-                elseif($r->prix = "prix_up" && $r->date = "date_down")
-                    $voiture = Voiture::where('ville','=',$r->ville)
-                                            ->orderBy('prix')
-                                            ->orderBy('created_at','desc')
-                                            ->get();
-                elseif($r->prix = "prix_down" && $r->date = "date_up")
-                    $voiture = Voiture::where('ville','=',$r->ville)
-                                            ->orderBy('prix','desc')
-                                            ->orderBy('created_at')
-                                            ->get();
-            
-            }elseif($r->type == "0" && $r->ville != "0" && !$r->prix && !$r->date){
-                    $voiture = Voiture::where('ville',$r->ville)->get();
+                    ->where('prix','<',$r->prix)
+                    ->orderBy('created_at','desc')
+                    ->get();
                 
-            }elseif($r->type = "0" && $r->ville = "0" && $r->prix && $r->date){
-                if($r->prix = "prix_up" && $r->date = "date_up")
-                    $voiture = Voiture::orderBy('prix')
-                                        ->orderBy('created_at')
-                                        ->get();
-                elseif($r->prix = "prix_down" && $r->date = "date_down")
-                    $voiture = Voiture::orderBy('prix','desc')
-                                            ->orderBy('created_at','desc')
-                                            ->get();
-                elseif($r->prix = "prix_up" && $r->date = "date_down")
-                    $voiture = Voiture::orderBy('prix')
-                                            ->orderBy('created_at','desc')
-                                            ->get();
-                elseif($r->prix = "prix_down" && $r->date = "date_up")
-                    $voiture = Voiture::orderBy('prix','desc')
-                                            ->orderBy('created_at')
-                                            ->get();
-            }elseif($r->type == "0" && $r->ville == "0" && $r->prix && !$r->date){
-                if($r->prix = "prix_up")
-                    $voiture = Voiture::orderBy('prix')
-                                        ->get();
-                elseif($r->prix = "prix_down")
-                    $voiture = Voiture::orderBy('prix','desc')
-                                            ->get();
-            }elseif($r->type == "0" && $r->ville == "0" && !$r->prix && $r->date){
-                if($r->date = "date_up")
-                $voiture = Voiture::orderBy('created_at')
+            }elseif($r->type != "0" && $r->ville == "0" && !$r->prix){
+                $voiture = Voiture::where('type','=',$r->type)
+                                    ->orderBy('created_at','desc')
                                     ->get();
-                elseif($r->date = "date_down")
-                    $voiture = Voiture::orderBy('created_at','desc')
+            }elseif($r->type == "0" && $r->ville != "0" && !$r->prix){
+                    $voiture = Voiture::where('ville','=',$r->ville)
+                                        ->orderBy('created_at','desc')
+                                        ->get();
+                
+            }elseif($r->type == "0" && $r->ville != "0" && $r->prix){
+                    $voiture = Voiture::where('ville','=',$r->ville)
+                                            ->where('prix','<',$r->prix)
+                                            ->orderBy('created_at','desc')
                                             ->get();
+           }elseif($r->type == "0" && $r->ville == "0" && $r->prix){
+                $voiture = Voiture::where('prix','<',$r->prix)
+                                    ->orderBy('created_at','desc')
+                                    ->get();
             }
         }elseif($r->input('action') == "nom_boutique"){
                 $voiture = Voiture::where('boutique_id','=',$r->id_boutique)->get();
             }elseif($r->input('action')=='autres_boutique'){
-                if($r->ville_boutique != "0" && $r->type_boutique !="0"){
-                    $b = Boutique::where('type_boutique','=',$r->type_boutique)
-                                    ->where('ville_boutique','=',$r->ville_boutique)
+                if($r->ville_boutique != "0"){
+                    $b = Boutique::where('ville_boutique','=',$r->ville_boutique)
                                     ->get('id');
                     $voiture = Voiture::whereIn('boutique_id',$b)->get();
-                }elseif(($r->ville_boutique == "0" && $r->type_boutique !=0)){
-                    $b = Boutique::where('type_boutique','=',$r->type_boutique)->get('id');
-                    $voiture = Voiture::whereIn('boutique_id',$b)->get();
-                }elseif(($r->ville_boutique != "0" && $r->type_boutique ==0)){
-                    $b = Boutique::where('ville_boutique','=',$r->ville_boutique)->get('id');
-                    $voiture = Voiture::whereIn('boutique_id',$b)->get();
                 }
-
             }
-
             $nom_boutique = Boutique::all();
-            if($voiture->count()){
+           if($voiture->count()){
                 return view('boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique]);
             }else{
                 return redirect()->back()->withSuccess('Pas de voiture trouvée');

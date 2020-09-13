@@ -7,6 +7,7 @@ use App\User;
 use Auth;
 use App\Voiture;
 use App\Boutique;
+use App\Voitureclick;
 
 
 class VoitureController extends Controller
@@ -27,5 +28,24 @@ class VoitureController extends Controller
     {
         $boutique = Boutique::find($id);
         return view('boutique/boutique_voiture',['boutique'=>$boutique]);
+    }
+    public function NumberClick(Request $r)
+    {
+        $click = Voitureclick::where('voiture_id','=',$r->voiture_id)->first();
+        if($click){
+            $click->click_nbr += 1;
+        }else{
+            $click = new Voitureclick();
+            $click->voiture_id = $r->voiture_id;
+            $click->click_nbr = 1;
+        }
+        $click->save();
+
+        if($r->click_nbr == 'mobile'){
+            return redirect()->away("whatsapp://send?phone=".$r->tel);
+        }else{
+            return redirect()->away("https://web.whatsapp.com/send?phone=".$r->t);
+        }
+        
     }
 }

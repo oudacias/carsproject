@@ -30,7 +30,12 @@
                     </tr>
                     <tr>
                         <td>Vendeur Telephone :</td>
-                        <td><strong><a onclick="redirectTel()">{{$voiture->user->telephone}} <img src="/project_images/phone.png" width="25px"></a></strong></td>
+                        <form method="POST" action="{{ action('VoitureController@NumberClick') }}">
+                            @csrf
+                            <input type="hidden" value="{{$voiture->id}}" name="voiture_id"/>
+                            <input type="hidden" value="{{$voiture->tel}}" name="voiture_tel"/>
+                            <td><strong>{{$voiture->user->telephone}}</strong> <input type="image" alt="submit" src="/project_images/phone.png" width="25px"></td>
+                        </form>
                     </tr>
                     <tr>
                         <td style="border: none;">Boutique :</td>
@@ -144,13 +149,12 @@
 
 <script>
 
-function redirectTel(){
+$(document).ready(function(){
     if (/Mobi/.test(navigator.userAgent)) {
-        window.location = "whatsapp://send?phone="+{{$voiture->user->telephone}}
-}else{
-        window.location = "https://web.whatsapp.com/send?phone="+{{$voiture->user->telephone}}
-}
-}
+        $("form").prepend('<input type="hidden" name="click_nbr" value="mobile" />');
+    }else{
+        $("form").prepend('<input type="hidden" name="click_nbr" value="other" />');
+    }
 
-
+});
 </script>

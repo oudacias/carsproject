@@ -21,4 +21,8 @@ class Voiture extends Model
     public function voitureoccasion(){
         return $this->hasOne('App\Voitureoccasion','voiture_id');
     }
+    public function voitureclick()
+    {
+        return $this->hasOne('App\Voitureclick','voiture_id');
+    }
 }

@@ -102,7 +102,9 @@
   border-style: solid;
   border-color: #FAB107;
   border-width: thin;
-
+}
+.img-index{
+  z-index: 0;
 }
 
 .admin{

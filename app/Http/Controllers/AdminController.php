@@ -30,6 +30,16 @@ class AdminController extends Controller
     public function index(){
          return view('Admin/Admin_articles');
     }
+
+    public function ConfirmerUser($id)
+    {
+        $user = User::find($id);
+        $user->confirmer = true;
+        $user->save();
+        return redirect()->back()->withSuccess('Utilisateur Confirmé');
+    }
+
+
     public function SupprimerArticle($id){
         Article::destroy($id);
         return redirect()->back()->withSuccess('Article Supprimé');
@@ -59,7 +69,9 @@ class AdminController extends Controller
         return redirect()->back()->withSuccess('Forum Confirmé');
     }
     public function listusers(){
-        $users = User::all()->sortByDesc('created_at');
+        $users = User::where('confirmer','=',false)
+                        ->where('role','=','utilisateur')
+                        ->orderBy('created_at','desc')->get();
         return view('Admin/Admin_users',['user'=>$users]);
     }
     public function SupprimerUser($id){
@@ -89,13 +101,16 @@ class AdminController extends Controller
     }
     public function afficherBoutique()
     {   
-        $boutique = Boutique::where('type_boutique','=','Professionnelle')
-                                ->where('confirmer','=',false)
+        $boutique = Boutique::where('confirmer','=',false)
                                 ->get();
         return view('Admin/Admin_boutique',['boutique'=>$boutique]);
     }
     public function supprimerBoutique($id){
         $boutique = Boutique::destroy($id);
+        $voiture = Voiture::where('boutique_id','=',$id)->get();
+        foreach($voiture as $v){
+            $v->destroy($v->id);
+        }
         return redirect()->back()->withSuccess('Boutique Supprimée');
     }
     public function confirmerBoutique($id){
@@ -151,6 +166,11 @@ class AdminController extends Controller
         $contact = Contact::destroy($id);
         return redirect()->back()->withSuccess('Message Supprimé');
 
+    }
+    public function afficherVoitureClick()
+    {
+        $voiture = Voiture::with('voitureclick')->get();
+        return view('Admin/Admin_click',['voiture'=>$voiture]);
     }
     
 }

@@ -36,7 +36,7 @@
                 </button>
             </div>
         </form>
-        <a class="btn btn-link" style="margin-left:350px" href="{{ route('password.request') }}">
+        <a class="btn btn-link" style="float:right" href="{{ route('password.request') }}">
             Mot de passe oublié ?
         </a>
         </div>

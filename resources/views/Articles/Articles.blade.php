@@ -14,7 +14,7 @@
 </div>
 <form method="post" action="{{ action('ArticleController@TrouverCategorie') }}">
 @csrf
-<div style="float:right;margin-right:100px">
+<div style="float:right;margin-right:100px">Categorie :
 <select class="filter-select" name="categorie">
 @foreach($categories as $c)
   <option value="{{$c->categorie}}">{{$c->categorie}}</option>

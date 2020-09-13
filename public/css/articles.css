@@ -538,9 +538,15 @@ input[type="radio"]:checked + label > img {
     border-radius: 20px;
     padding: 20px;
     text-align: center;
-    margin-left: 30%;
+    margin-left: 60px;
     margin-top: 10px;
     background-color:#FF9901;
 }
 .recherche-cars:hover{color:white}
+
+.input-prix{
+    height:40px;
+    border-radius: 10px;
+    width:100px
+}
   

@@ -139,6 +139,7 @@ a {
 @media (min-width: 74em) {
   .gap{
     margin-left: 50px;
+    padding-top: 80px
   
   }
   
@@ -173,7 +174,7 @@ a {
     width: 5%;
   }
   .divider{
-    background: -webkit-linear-gradient(left,#8D8D8D, #8D8D8D 5%, #F9F9F6 5%, #F9F9F6);
+    background: -webkit-linear-gradient(left,#323232, #323232 5%, #F9F9F6 5%, #F9F9F6);
     min-height: 100%;
   }
   .inverted-border-radius {

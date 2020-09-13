@@ -16,10 +16,11 @@ class Forum extends Model
         return $this->belongsToMany('App\Forum','user_forum')->withPivot('user_id','commentaire');
     }
 
-    public static function insererForum($titre,$texte){
+    public static function insererForum($titre,$theme,$texte){
         $forum = new Forum();
         $forum->user_id = Auth::id();
         $forum->sujet = $titre;
+        $forum->theme = $theme;
         $forum->texte = $texte;
         $forum->save();
     }

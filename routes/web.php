@@ -29,6 +29,7 @@ Route::get('Admin/Admin_forum','AdminController@Forum');
 Route::get('Admin/Admin_forum/{id}','AdminController@SupprimerForum');
 Route::get('Admin/Admin_forum_confirm/{id}','AdminController@Confirmerforums');
 Route::get('Admin/Admin_users/{id}','AdminController@SupprimerUser');
+Route::get('Admin/confirmer_users/{id}','AdminController@ConfirmerUser');
 Route::get('Admin/Admin_users','AdminController@listusers');
 Route::get('auth/login_admin','AdminController@login');
 Route::get('Admin/Admin_diagnostic','ServiceController@afficherDiagnostic');
@@ -42,6 +43,7 @@ Route::get('Admin/Admin_boutique', 'AdminController@afficherBoutique');
 Route::get('Admin/confirmer_boutique/{id}', 'AdminController@confirmerBoutique');
 Route::get('Admin/supprimer_boutique/{id}', 'AdminController@supprimerBoutique');
 Route::get('Admin/Admin_voiture', 'AdminController@afficherVoiture');
+Route::get('Admin/Admin_click', 'AdminController@afficherVoitureClick');
 Route::get('Admin/confirmer_voiture/{id}', 'AdminController@confirmerVoiture');
 Route::get('Admin/supprimer_voiture/{id}', 'AdminController@supprimerVoiture');
 Route::get('Admin/Admin_contact', 'AdminController@contacts');
@@ -68,7 +70,7 @@ Route::post('Services/service_suivi', 'ServiceController@ajoutersuivi');
 Route::get('Services/service_suivi', 'ServiceController@indexsuivi');
 Route::get('Boutique/boutique', 'BoutiqueController@indexboutique');
 Route::get('Boutique/boutique/{id}', 'BoutiqueController@indexboutique');
-Route::post('Boutique/boutique', 'BoutiqueController@ajouterBoutique');
+Route::post('Boutique/nouvelle_boutique', 'BoutiqueController@ajouterBoutique');
 Route::get('Boutique/voitureDetails/{id}', 'VoitureController@VoitureDetails');
 Route::get('Contact/contact', 'UserController@contactme');
 Route::post('Contact/contact', 'UserController@AddContact');
@@ -79,6 +81,7 @@ Route::get('Boutique/boutique_voiture/{id}', 'VoitureController@TrouverBoutique'
 Route::post('Article/Articles/', 'ArticleController@TrouverCategorie');
 Route::get('Article/Articles/{categorie}', 'ArticleController@DeleteCategorie');
 Route::post('Boutique/boutique', 'UserController@ChercherVoiture');
+Route::post('Boutique/voitureDetails', 'VoitureController@NumberClick');
 
 
 

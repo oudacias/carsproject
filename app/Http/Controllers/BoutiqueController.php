@@ -17,7 +17,7 @@ class BoutiqueController extends Controller
     }
     public function ajouterBoutique(Request $r)
     {
-        Boutique::ajouterBoutique($r->nom_boutique,$r->file('boutique_image'),$r->description_boutique,$r->type_boutique,$r->ville);
+        Boutique::ajouterBoutique($r->nom_boutique,$r->file('boutique_image'),$r->description_boutique,$r->ville);
         return redirect()->back()->withSuccess('Boutique créée avec succès');
 
     }

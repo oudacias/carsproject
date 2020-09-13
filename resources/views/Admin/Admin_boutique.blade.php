@@ -19,7 +19,6 @@
                 <th scope="col">Email</th>
                 <th scope="col">Telephone</th>
                 <th scope="col">Ville</th>
-                <th scope="col">Confirmer</th>
                 <th scope="col">Supprimer</th>
                 </tr>
             </thead>
@@ -33,8 +32,7 @@
                 <td style="text-align:left">{{$b->user->email}}</td>
                 <td style="text-align:left">{{$b->user->telephone}} </td>
                 <td style="text-align:left">{{$b->ville_boutique}} </td>
-                <td style="text-align:left"><a href="/Admin/confirmer_boutique/{{$b->id}}"><img src="/project_images/confirm.png" width="20%"></td>
-                <td style="text-align:left"><a href="/Admin/supprimer_supprimer/{{$b->id}}"><img src="/project_images/bin.png" width="20%"></td>
+                <td style="text-align:left"><a href="/Admin/supprimer_boutique/{{$b->id}}"><img src="/project_images/bin.png" width="20%"></td>
                 </tr>
                 @endforeach
 

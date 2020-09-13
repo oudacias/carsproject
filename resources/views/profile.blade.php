@@ -11,10 +11,11 @@
 @if(session('success'))
 		<div class="animated fadeOut success">{{session('success')}}</div>
 @endif
+
 <div class="container">
     <div class="row justify-content-around">
         <div class="col-md-4">        
-            <div class="card user-card"  style="background-color:#FFF4DA">
+            <div class="card user-card"  style="min-height:355px">
                 <div  class="user-image img-home">
                     <img class="img-profile" src="{{$user->Userimage->image_path}}"></div>
                     <form id="profile_form" method="post" action="{{ action('UserController@modifierProfile') }}" enctype="multipart/form-data">
@@ -29,6 +30,7 @@
                         <div class="card-block">
                             <div class="container">
                                 <div class="row justify-content-around">
+                                @if(Auth::user()->objectif != 'standard' && Auth::user()->confirmer)
                                     <div class="col-md-12">        
                                         <div style="background-color:white" class="card user-card">
                                             <div class="card-block">
@@ -46,6 +48,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-md-12">
                                         <div style="background-color:white" class="card user-card">
                                             <div class="card-block">
@@ -76,6 +79,22 @@
                     </div>
                 </div>
                 <div class="col-md-8">
+                <div class="container">
+                        <div class="row">
+                            <div class="col-md-6"><a href="/boutique/nouvelle_boutique">
+                                <div class="card profile-card">
+                                    Ajouter Boutique<br><br>
+                                    <img class="cars_profile" src="/project_images/garage_profile.png"> 
+                                </div>               
+                            </div></a>
+                            <div class="col-md-6"><a href="/boutique/voiture">
+                                    <div class="card profile-card">
+                                        Ajouter Voiture<br><br>
+                                        <img class="cars_profile" src="/project_images/cars_profile.png" >
+                                    </div>
+                                </div>
+                            </div></a>
+                        </div>
                     <div class="card user-card">
                         <div class="card-block">
                             <div style="text-align:center">Vos Boutiques</div>   
@@ -138,41 +157,44 @@
                             @endforeach                
                         </div>
                     </div>
+                    @elseif((Auth::user()->objectif != 'standard' && !Auth::user()->confirmer))
+                        <i><center>Votre demande pour commencer à vendre est en cours</center></i>
+                    @endif
+                    @if(Auth::user()->objectif == 'standard' || !Auth::user()->confirmer)
+                                </div>
+                            </div>                    
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6"><a href="/User/myArticles">
+                                <div class="card profile-card">
+                                    Article Farvoris ({{$user->articles->count()}})<br><br>
+                                    <img class="cars_profile" src="/project_images/favorite.png"> 
+                                </div>               
+                            </div></a>
+                            <div class="col-md-6"><a href="/User/myForums">
+                                <div class="card profile-card">
+                                    Forum Ajouté ({{$user->forum->count()}})<br><br>
+                                    <img class="cars_profile" src="/project_images/forum.png" >
+                                </div>
+                            </div>
+                        </div></a>
+                        <div class="row">
+                            <div class="col-md-6"><a href="/User/myComments">
+                                <div class="card profile-card">
+                                    Commentaire Ajouté ({{$user->forums->count()}})<br><br>
+                                    <img class="cars_profile" src="/project_images/comment.png" >
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div> 
-    
-    <br>
-    <br>
-    <div class="container">
-    <div class="row">
-        <div class="col-12"><label>Créer votre nouvelle boutique</label>
-            <a href="/boutique/nouvelle_boutique" id="nouvelle_voiture"><img src="/project_images/plus.png" width="40px" /></a>
-        </div>
-    </div>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <label>Commencez à vendre des voitures </label>
-                @if($user->boutique->count())
-                <a href="/boutique/voiture" id="nouvelle_voiture"><img src="/project_images/plus.png" width="40px" /></a>
-                @else
-                    <a  href="#new" id="nouvelle_voiture"><img src="/project_images/plus.png" width="40px" /></a>
-                    <div id="new" class="overlay">
-                        <div class="popup" style="margin-top:300px">
-                            <a class="close_forum" href="#">&times;</a> 
-                            <div class="container-contact100 container_connect">
-                                <div class="wrap-forum">
-                                    Veuillez ajouter une nouvelle Boutique d'abord 
-                                </div>
-                            </div>
-                        </div>
-                    </div>      
-                @endif
-            </div>
-        </div>
-    </div>
 </div>
 <script>
     $('#file-inputs').bind('change', function() {

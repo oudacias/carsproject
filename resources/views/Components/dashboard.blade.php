@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="/css/menu.css">
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 img-index">
 	<img class="logo-menu" src="/project_images/logoCars.png">
 		<nav>
 			<ul class="mcd-menu" style="padding-top: 100px">
@@ -47,6 +47,11 @@
 				<li>
 					<a href="/Admin/Admin_voiture">
 						Voitures
+					</a>
+				</li>
+				<li>
+					<a href="/Admin/Admin_click">
+						Voitures click
 					</a>
 				</li>
 				<li>

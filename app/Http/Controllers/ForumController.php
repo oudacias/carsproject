@@ -29,7 +29,7 @@ class ForumController extends Controller
         return view ('Forum/Forums',['forums'=>$forum,'theme'=>$theme]);
     }
     public function Sujet(Request $r){
-        Forum::insererForum($r->titre,$r->sujet);
+        Forum::insererForum($r->titre,$r->theme,$r->sujet);
         return redirect()->back()->withSuccess('Votre sujet est en cours');
     }
     public function Forum($id){
