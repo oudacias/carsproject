@@ -2,23 +2,28 @@
 <link rel="stylesheet" href="/css/card.css">
 <link rel="stylesheet" href="/css/popup.css">
 <link rel="stylesheet" href="/css/articles.css">
+<link rel="stylesheet" href="/css/article.css">
+<link rel='stylesheet' href="/css/confirmation.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>Boutique</title>
 
 @include('Components.menu')
 @yield('menu')
+@if(session('success'))
+		<div class="animated fadeOut success">{{session('success')}}</div>
+    @endif
 
-<h1>{{$boutique->nom_boutique}}</h1>
-<div class="container">
-
-@foreach($boutique->voiture as $b)
-<div class="row boutique-border">
+    <h2>&nbsp;&nbsp;&nbsp;&nbsp;{{$boutique->nom_boutique}}</h2>
+<div class="container other-sides">
+    @foreach($boutique->voiture as $v)
+    <div class="boutique-border">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4">
                     <div class="card-block">
                         <div class="user-image car-image">
-                            <img src="{{$b->photo}}">
+                            <img src="{{$v->photo}}">
                         </div>
                     </div>
                 </div>
@@ -26,14 +31,13 @@
                 <div class="card-block">
                     <div class="card-introduction card_gap">
                         <p class="m-t-13 text-muted">
-                        Marque : <strong>{{$b->marque}}</strong><br>
-                        Model : <strong>{{$b->model}}</strong><br>
-                        Description : <strong>{{$b->description}}</strong><br>
-                        Prix : <strong>{{$b->prix}}</strong><br>
-                        Vendeur : <strong>{{$b->user->email}}</strong>
+                        Marque : <strong>{{$v->marque}}</strong><br>
+                        Model : <strong>{{$v->model}}</strong><br>
+                        Description : <strong>{{$v->description}}</strong><br>
+                        Prix : <strong>{{$v->prix}}</strong><br>
+                        Vendeur : <strong>{{$v->user->email}}</strong>
                         </p>
-                        <a href="/Boutique/voitureDetails/{{$b->id}}"><button class="btn-boutique" type="button">Savoir Plus</button></a>
-
+                        <a href="/Boutique/voitureDetails/{{$v->id}}"><button class="btn-boutique" type="button">Savoir Plus</button></a>
                     </div>
 
                     </div>
@@ -42,5 +46,10 @@
             </div>
         </div>
     </div>
+    
+    @endforeach 
+       
+</div>
+</body>
 
-@endforeach
+</html>

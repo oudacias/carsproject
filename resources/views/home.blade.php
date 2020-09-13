@@ -14,7 +14,6 @@
 @include('Components.menu')
 @yield('menu')
 <title>ELAMDASSI ON CARS</title>
-
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -43,10 +42,10 @@
 <h4 class="tile-carousel">Nos Derniers Boutiques</h4>
     <section class="customer-logos slider">               
         @foreach($boutique as $b)
-            <div style="text-align:center" class="slide"><a href="/Boutique/boutique/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
-            <div style="text-align:center" class="slide"><a href="/Boutique/boutique/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
-            <div style="text-align:center" class="slide"><a href="/Boutique/boutique/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
-            <div style="text-align:center" class="slide"><a href="/Boutique/boutique/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
+            <div style="text-align:center" class="slide"><a href="/Boutique/boutique_voiture/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
+            <div style="text-align:center" class="slide"><a href="/Boutique/boutique_voiture/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
+            <div style="text-align:center" class="slide"><a href="/Boutique/boutique_voiture/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
+            <div style="text-align:center" class="slide"><a href="/Boutique/boutique_voiture/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
             @endforeach  
     </section>
 </div>

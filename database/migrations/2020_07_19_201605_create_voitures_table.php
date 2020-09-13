@@ -38,7 +38,6 @@ class CreateVoituresTable extends Migration
             $table->string('type')->default('neuve');
             $table->boolean('vendu')->default(false);
             $table->string('photo');
-            $table->boolean('confirme')->default(false);
             $table->timestamps();
         });
     }

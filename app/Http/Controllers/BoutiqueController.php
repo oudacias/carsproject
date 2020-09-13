@@ -11,7 +11,7 @@ class BoutiqueController extends Controller
 {
     public function indexBoutique()
     {
-        $voiture = Voiture::where("confirme","=",true)->get();
+        $voiture = Voiture::where('vendu',false)->get();
         $nom_boutique = Boutique::all();
         return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique]);
     }
@@ -25,4 +25,5 @@ class BoutiqueController extends Controller
     {
         return view('Boutique/nouvelle_boutique');
     }
+
 }
