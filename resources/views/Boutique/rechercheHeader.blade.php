@@ -1,604 +1,587 @@
-<link rel="stylesheet" href="/css/mainstyle.css">
-<link rel="stylesheet" href="/css/articles.css">
-<link rel="stylesheet" href="/css/confirmation.css">
-<link rel="stylesheet" href="/css/card.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>Nouvelle Voiture</title>
-
-@include('Components.menu')
-@yield('menu')
-
-<div class="container-contact100">
-<div class="wrap-contact100">
+@section('recherche')
 @if(session('success'))
 		<div class="animated fadeOut success">{{session('success')}}</div>
-@endif
-    <form method="POST" action="{{ action('UserController@ajouterVoiture') }}" enctype="multipart/form-data">
-        <div id="form1">
-            @csrf
-            <span class="contact100-form-title">Commencez à vendre des voitures </span>
-            
-            <label>Marque de la voiture</label>
-            <br>
-            <span class="alert" id="alert1">Veuillez Remplire ce Champ</span>  
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select id="marque" class="input100" name="marque">
-                <option value="0" selected="selected">ℨ Choisire Marque</option>
-                    <option value="Renault">Renault</option>
-                    <option value="Peugeot">Peugeot</option>
-                    <option value="Opel">Opel</option>
-                    <option value="Citroen">Citroen</option>
-                    <option value="Volkswagen">Volkswagen</option>
-                    <option value="Mercedes">Mercedes</option>
-                    <option value="BMW">BMW</option>
-                    <option value="Nissan">Nissan</option>
-                    <option value="Toyota">Toyota</option>
-                    <option value="Ford">Ford</option>
-                    <option value="Audi">Audi</option>
-                    <option value="Fiat">Fiat</option>
-                    <option value="Abarth">Abarth</option>
-                    <option value="AC">AC</option>
-                    <option value="Aixam">Aixam</option>
-                    <option value="Alfa Romeo">Alfa Romeo</option>
-                    <option value="Alpine">Alpine</option>
-                    <option value="AMC">AMC</option>
-                    <option value="Aston Martin">Aston Martin</option>
-                    <option value="Austin Healey">Austin Healey</option>
-                    <option value="Autobianchi">Autobianchi</option>
-                    <option value="Auverland">Auverland</option>
-                    <option value="Bellier">Bellier</option>
-                    <option value="Bentley">Bentley</option>
-                    <option value="Bellier">Bellier</option>
-                    <option value="Bluecar">Bluecar</option>
-                    <option value="Buick">Buick</option>
-                    <option value="Cadillac">Cadillac</option>
-                    <option value="Bellier">Casalini</option>
-                    <option value="Bellier">Chatenet</option>
-                    <option value="Bellier">Chevrolet</option>
-                    <option value="Bellier">Chrysler</option>
-                    <option value="Bellier">Cord</option>
-                    <option value="Bellier">Corvette</option>
-                    <option value="Dacia">Dacia</option>
-                    <option value="Daihatsu">Daihatsu</option>
-                    <option value="Dodge">Dodge</option>
-                    <option value="Honda">Honda</option>
-                    <option value="Hyundai">Hyundai</option>
-                    <option value="Land rover">Land rover</option>
-                    <option value="Jaguar">Jaguar</option>
-                    <option value="Volvo">Volvo</option>
-                    <option value="Kia">Kia</option>                                
-                </select>
-            </div>
-            <label>Model de la voiture</label>
-            <div class="wrap-input100 validate-input">
-                <select id="model" class="input100" name="model">  
-                    <option value="0">Choisire modèle</option>
-                </select>
-            </div>
-            <label>Version de la voiture</label>
-            <br>
-            <span class="alert" id="alert2">Veuillez Remplire ce Champ</span>  
-            <div class="wrap-input100 validate-input">
-                <input id="version" class="input100" type="text" name="version"/>
-                <span class="focus-input100"></span>
-            </div>
-            <label>Carburant de la voiture</label>
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select class="input100" name="carburant">
-                    <option value="Essence">Essence</option>
-                    <option value="Diesel">Diesel</option>
-                    <option value="Electrique">Electrique</option>
-                    <option value="Hybride">Hybride</option>                                  
-                </select>
-            </div>
-            <label>Boite à vitesse</label>
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select class="input100" name="boite_vitesse">
-                    <option>Manuelle</option>
-                    <option>Automatique</option>                                  
-                </select>
-            </div>
-            <label>Année de la voiture</label>
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select id="annee" class="input100" name="annee">                                 
-                </select>
-            </div>
-            <div class="container-contact100-form-btn">
-                <button type="button" id="nextform2" class="contact100-form-btn">
-                    Suivant
-                </button>
-            </div>
-        </div>
-        <div id="form2">
-            <span class="contact100-form-title">Étape 2</span>
-            <label>Origine</label>
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select class="input100" name="origine" >
-                    <option>Dédouanée</option>
-                    <option>Importée neuve</option>
-                    <option>Pas encore dédouanée</option>
-                    <option>WW (achetée au Maroc)</option>
-                </select>
-            </div>
-            <label>Kilométrage de la voiture</label>
-            <br>
-            <span class="alert" id="alert3">Veuillez Remplire ce Champ</span>  
-            <div class="wrap-input100 validate-input">
-                <input id="km" class="input100" type="text" name="kilometrage" />
-                <span class="focus-input100"></span>
-            </div>
-            <label>Couleur de la voiture</label>
-            <br>
-            <span class="alert" id="alert4">Veuillez Remplire ce Champ</span>  
-            <div class="wrap-input100 validate-input">
-                <input id="couleur" class="input100" type="text" name="couleur" />
-                <span class="focus-input100"></span>
-            </div>
-            <label>Carrosserie</label>
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select class="input100" name="carrosserie">
-                    <option>Break</option>
-                    <option>Monospace </option>
-                    <option>Ludospace </option>
-                    <option>Crossover </option>
-                    <option>SUV</option>
-                    <option>4x4</option>
-                    <option>Berline </option>
-                    <option>Grande routière</option>
-                    <option>Coupés</option>
-                    <option>Cabriolet</option>
-                    <option>Citadine</option>                                    
-                </select>
-            </div>
-            <label>Nombre de porte</label>
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select class="input100" name="nbt_porte">
-                    <option>3</option>
-                    <option>5 </option>
-                                                    
-                </select>
-            </div>
-            <label>Puissance Fiscale</label>
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select id="fiscale" class="input100" name="puissance_fiscale">                               
-                </select>
-            </div>
-            <div class="container-contact100-form-btn">
-            <button type="button" id="previousform1" class="contact100-form-btn">
-                Précédent
-            </button> &nbsp&nbsp&nbsp&nbsp
-            <button type="button" id="nextform3" class="contact100-form-btn">
-                Suivant
-            </button>
-        </div>
-        </div>
+    @endif
+<div class="other-side">
+    <div class="container shift-side">
         
-
-
-
-
-        <div id="form3">
-            <span class="contact100-form-title">Étape 3</span>
-            <label>Première main </label>
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select class="input100" name="premiere_main">
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>                                  
-                </select>
+        <div class="col-md-12">
+            <div class="second-side">
+                    Rechercher boutiques <a onclick="showGarage()"><img width="20px" style="float:right" src="/project_images/hamburger.png"></a>
             </div>
-            <label>Préparé</label>
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select class="input100" name="prepare">
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>                                  
-                </select>
-            </div>
-            <label>Description Véhicule</label>
-            <br>
-            <span class="alert" id="alert5">Veuillez Remplire ce Champ</span>    
-            <div class="wrap-input100 validate-input">
-                <input id="description" class="input100" type="text" name="description"/>
-                <span class="focus-input100"></span>
-            </div>
-            <label>Options Véhicule</label>
-            <br>
-            <span class="alert" id="alert6">Veuillez Remplire ce Champ</span>    
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card user-card">
-                            <div class="card-block">
-                                <div class="card-introduction">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input type="checkbox" name="option[]" value="Jantes aluminium">
-                                            <label for="Jantes aluminium">Jantes aluminium</label><br>
-                                            <input type="checkbox" name="option[]" value="Airbags">
-                                            <label for="Airbags">Airbags</label><br>
-                                            <input type="checkbox" name="option[]" value="ESP">
-                                            <label for="ESP">ESP</label>
-                                            <br>
-                                            <input type="checkbox" name="option[]" value="Limiteur de vitesse">
-                                            <label for="Limiteur de vitesse">Limiteur vitesse</label><br>
-                                            <input type="checkbox" name="option[]" value="Régulateur de vitesse">
-                                            <label for="Régulateur de vitesse">Régulateur vitesse</label><br>
-                                            <input type="checkbox" name="option[]" value="Toit ouvrant">
-                                            <label for="Toit ouvrant">Toit ouvrant</label>
-                                            <br>
-                                            <input type="checkbox" name="option[]" value="ABS">
-                                            <label for="ABS">ABS</label><br>
-                                            <input type="checkbox" name="option[]" value="Vitres électriques">
-                                            <label for="Vitres électriques">Vitres électriques</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="checkbox" name="option[]" value="Dvd/cd/mp3">
-                                            <label for="Dvd/cd/mp3">Dvd/cd/mp3</label><br>
-                                            <input type="checkbox" name="option[]" value="Aide parking">
-                                            <label for="Aide parking">Aide parking</label><br>
-                                            <input type="checkbox" name="option[]" value="Sièges sport">
-                                            <label for="Sièges sport">Sièges sport</label>
-                                            <br>
-                                            <input type="checkbox" name="option[]" value="Sièges cuir">
-                                            <label for="Sièges cuir">Sièges cuir</label><br>
-                                            <input type="checkbox" name="option[]" value="Système de navigation/gps">
-                                            <label style="font-size:15px" for="Système de navigation/gps">Système navigation/gps</label><br>
-                                            <input type="checkbox" name="option[]" value="Caméra de recul">
-                                            <label for="Caméra de recul">Caméra de recul</label>
-                                            <br>
-                                            <input type="checkbox" name="option[]" value="Climatisation">
-                                            <label for="Climatisation">Climatisation</label><br>
-                                            <input type="checkbox" name="option[]" value="Verrouillage centralisé">
-                                            <label for="Verrouillage centralisé">Verrouillage centralisé</label>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div id="garage" class="second-side side-form">
+                <button onclick="showBoutique()">Nom Boutique ⬇</button>
+                <div id="nom_boutique">
+                    <form method="POST" action="{{ action('UserController@ChercherVoiture') }}" enctype="multipart/form-data">
+                        @csrf   
+                        <select class="recherche-select" name="id_boutique">  
+                                <option value="0">Choisire la boutique</option>
+                                @foreach($nom_boutique as $n)
+                                    <option value="{{$n->id}}">{{$n->nom_boutique}}</option>
+                                @endforeach
+                        </select>
+                        <button name="action" value="nom_boutique" type="submit" class="recherche-cars">Lancer la recherche</button>
+                </div>
+                <br>
+                <br>
+                <button type="button" onclick="showAutres()">Ville Boutique ⬇</button>
+                <br>
+                <div id="autres">
+                        <select class="recherche-select" name="ville_boutique">  
+                            <option value="0">Choisire ville de boutique</option>  
+                                <option title="agadir" value="agadir">AGADIR</option>
+                                                    
+                                <option title="ait benhaddou" value="ait benhaddou">AIT BENHADDOU</option>
+                                                    
+                                <option title="ait daoud" value="ait daoud">AIT DAOUD</option>
+                                                    
+                                <option title="ait ourir" value="ait ourir">AIT OURIR</option>
+                                                    
+                                <option title="al hoceima" value="al hoceima">AL HOCEIMA</option>
+                                                    
+                                <option title="amizmiz" value="amizmiz">AMIZMIZ</option>
+                                                    
+                                <option title="arfoud" value="arfoud">ARFOUD</option>
+                                                    
+                                <option title="asilah" value="asilah">ASILAH</option>
+                                                    
+                                <option title="azemmour" value="azemmour">AZEMMOUR</option>
+                                                    
+                                <option title="azrou" value="azrou">AZROU</option>
+                                                    
+                                <option title="ben ahmed" value="ben ahmed">BEN AHMED</option>
+                                                    
+                                <option title="ben slimane" value="ben slimane">BEN SLIMANE</option>
+                                                    
+                                <option title="benguerir" value="benguerir">BENGUERIR</option>
+                                                    
+                                <option title="beni mellal" value="beni mellal">BENI MELLAL</option>
+                                                    
+                                <option title="berkane" value="berkane">BERKANE</option>
+                                                    
+                                <option title="berrechid" value="berrechid">BERRECHID</option>
+                                                    
+                                <option title="bouskoura" value="bouskoura">BOUSKOURA</option>
+                                                    
+                                <option title="bouznika" value="bouznika">BOUZNIKA</option>
+                                                    
+                                <option title="casablanca" value="casablanca">CASABLANCA</option>
+                                                    
+                                <option title="chefchaouen" value="chefchaouen">CHEFCHAOUEN</option>
+                                                    
+                                <option title="chemaia" value="chemaia">CHEMAIA</option>
+                                                    
+                                <option title="chichaoua" value="chichaoua">CHICHAOUA</option>
+                                                    
+                                <option title="dakhla" value="dakhla">DAKHLA</option>
+                                                    
+                                <option title="dar bouazza" value="dar bouazza">DAR BOUAZZA</option>
+                                                    
+                                <option title="demnate" value="demnate">DEMNATE</option>
+                                                    
+                                <option title="el hajeb" value="el hajeb">EL HAJEB</option>
+                                                    
+                                <option title="el jadida" value="el jadida">EL JADIDA</option>
+                                                    
+                                <option title="errachidia" value="errachidia">ERRACHIDIA</option>
+                                                    
+                                <option title="essaouira" value="essaouira">ESSAOUIRA</option>
+                                                    
+                                <option title="fes" value="fes">FES</option>
+                                                    
+                                <option title="figuig" value="figuig">FIGUIG</option>
+                                                    
+                                <option title="fnideq" value="fnideq">FNIDEQ</option>
+                                                    
+                                <option title="fquih ben salah" value="fquih ben salah">FQUIH BEN SALAH</option>
+                                                    
+                                <option title="guelmim" value="guelmim">GUELMIM</option>
+                                                    
+                                <option title="guelta zemmour" value="guelta zemmour">GUELTA ZEMMOUR</option>
+                                                    
+                                <option title="guercif" value="guercif">GUERCIF</option>
+                                                    
+                                <option title="had soualem" value="had soualem">HAD SOUALEM</option>
+                                                    
+                                <option title="harhoura" value="harhoura">HARHOURA</option>
+                                                    
+                                <option title="ifrane" value="ifrane">IFRANE</option>
+                                                    
+                                <option title="imilchil" value="imilchil">IMILCHIL</option>
+                                                    
+                                <option title="imintanoute" value="imintanoute">IMINTANOUTE</option>
+                                                    
+                                <option title="inezgane" value="inezgane">INEZGANE</option>
+                                                    
+                                <option title="jerada" value="jerada">JERADA</option>
+                                                    
+                                <option title="kelaa sraghna" value="kelaa sraghna">KELAA SRAGHNA</option>
+                                                    
+                                <option title="kenitra" value="kenitra">KENITRA</option>
+                                                    
+                                <option title="khemis zemamra" value="khemis zemamra">KHEMIS ZEMAMRA</option>
+                                                    
+                                <option title="khemisset" value="khemisset">KHEMISSET</option>
+                                                    
+                                <option title="khenifra" value="khenifra">KHENIFRA</option>
+                                                    
+                                <option title="khouribga" value="khouribga">KHOURIBGA</option>
+                                                    
+                                <option title="ksar el kebir" value="ksar el kebir">KSAR EL KEBIR</option>
+                                                    
+                                <option title="laayoune" value="laayoune">LAAYOUNE</option>
+                                                    
+                                <option title="lagouira" value="lagouira">LAGOUIRA</option>
+                                                    
+                                <option title="larache" value="larache">LARACHE</option>
+                                                    
+                                <option title="marrakech" value="marrakech">MARRAKECH</option>
+                                                    
+                                <option title="martil" value="martil">MARTIL</option>
+                                                    
+                                <option title="mechra bel ksiri" value="mechra bel ksiri">MECHRA BEL KSIRI</option>
+                                                    
+                                <option title="mediek ou mdiq" value="mediek ou mdiq">MEDIEK OU MDIQ</option>
+                                                    
+                                <option title="mediouna" value="mediouna">MEDIOUNA</option>
+                                                    
+                                <option title="mehdia" value="mehdia">MEHDIA</option>
+                                                    
+                                <option title="meknes" value="meknes">MEKNES</option>
+                                                    
+                                <option title="midelt" value="midelt">MIDELT</option>
+                                                    
+                                <option title="mirleft" value="mirleft">MIRLEFT</option>
+                                                    
+                                <option title="missour" value="missour">MISSOUR</option>
+                                                    
+                                <option title="mohammedia" value="mohammedia">MOHAMMEDIA</option>
+                                                    
+                                <option title="moulay bousselham" value="moulay bousselham">MOULAY BOUSSELHAM</option>
+                                                    
+                                <option title="mrirt" value="mrirt">MRIRT</option>
+                                                    
+                                <option title="nador" value="nador">NADOR</option>
+                                                    
+                                <option title="oualidia" value="oualidia">OUALIDIA</option>
+                                                    
+                                <option title="ouarzazate" value="ouarzazate">OUARZAZATE</option>
+                                                    
+                                <option title="ouezzane" value="ouezzane">OUEZZANE</option>
+                                                    
+                                <option title="oujda" value="oujda">OUJDA</option>
+                                                    
+                                <option title="oulad berhil" value="oulad berhil">OULAD BERHIL</option>
+                                                    
+                                <option title="oulad teÔma" value="oulad teÔma">OULAD TEÔMA</option>
+                                                    
+                                <option title="rabat" value="rabat">RABAT</option>
+                                                    
+                                <option title="ras el ma" value="ras el ma">RAS EL MA</option>
+                                                    
+                                <option title="rissani" value="rissani">RISSANI</option>
+                                                    
+                                <option title="safi" value="safi">SAFI</option>
+                                                    
+                                <option title="saidia" value="saidia">SAIDIA</option>
+                                                    
+                                <option title="sale" value="sale">SALE</option>
+                                                    
+                                <option title="sefrou" value="sefrou">SEFROU</option>
+                                                    
+                                <option title="settat" value="settat">SETTAT</option>
+                                                    
+                                <option title="sidi bou othmane" value="sidi bou othmane">SIDI BOU OTHMANE</option>
+                                                    
+                                <option title="sidi kacem" value="sidi kacem">SIDI KACEM</option>
+                                                    
+                                <option title="sidi rahal" value="sidi rahal">SIDI RAHAL</option>
+                                                    
+                                <option title="sidi slimane" value="sidi slimane">SIDI SLIMANE</option>
+                                                    
+                                <option title="skhirat" value="skhirat">SKHIRAT</option>
+                                                    
+                                <option title="smara" value="smara">SMARA</option>
+                                                    
+                                <option title="taddert" value="taddert">TADDERT</option>
+                                                    
+                                <option title="tahannaout" value="tahannaout">TAHANNAOUT</option>
+                                                    
+                                <option title="taliouine" value="taliouine">TALIOUINE</option>
+                                                    
+                                <option title="talmest" value="talmest">TALMEST</option>
+                                                    
+                                <option title="tamanar" value="tamanar">TAMANAR</option>
+                                                    
+                                <option title="tamaris" value="tamaris">TAMARIS</option>
+                                                    
+                                <option title="tameslouht" value="tameslouht">TAMESLOUHT</option>
+                                                    
+                                <option title="tan-tan" value="tan-tan">TAN-TAN</option>
+                                                    
+                                <option title="tanger" value="tanger">TANGER</option>
+                                                    
+                                <option title="taounate" value="taounate">TAOUNATE</option>
+                                                    
+                                <option title="taourirte" value="taourirte">TAOURIRTE</option>
+                                                    
+                                <option title="tarfaya" value="tarfaya">TARFAYA</option>
+                                                    
+                                <option title="taroudannt" value="taroudannt">TAROUDANNT</option>
+                                                    
+                                <option title="tata" value="tata">TATA</option>
+                                                    
+                                <option title="taza" value="taza">TAZA</option>
+                                                    
+                                <option title="taznakht" value="taznakht">TAZNAKHT</option>
+                                                    
+                                <option title="temara" value="temara">TEMARA</option>
+                                                    
+                                <option title="tetouan" value="tetouan">TETOUAN</option>
+                                                    
+                                <option title="tiflet" value="tiflet">TIFLET</option>
+                                                    
+                                <option title="tinghir" value="tinghir">TINGHIR</option>
+                                                    
+                                <option title="tiznit" value="tiznit">TIZNIT</option>
+                                                    
+                                <option title="youssoufia" value="youssoufia">YOUSSOUFIA</option>
+                                                    
+                                <option title="zagora" value="zagora">ZAGORA</option>
+                                                    
+                                <option title="autre" value="autre">AUTRE</option>
+                        </select>
+                        <button name="action" value="autres_boutique" type="submit" class="recherche-cars">Lancer la recherche</button>
                 </div>
             </div>
-            <br>
-            <label>Prix de la voiture</label> 
-            <br>
-            <span class="alert" id="alert7">Veuillez Remplire ce Champ</span>   
-            <div class="wrap-input100 validate-input">
-                <input id="prix" class="input100" type="number" name="prix"/>
-                <span class="focus-input100"></span>
+            <div class="second-side">   
+                Rechercher voitures <a onclick="showCars()"><img width="20px" style="float:right" src="/project_images/hamburger.png"></a>   
             </div>
-            @if(Auth::user()->objectif == 'fournisseur')
-            <div class="wrap-input100">
-                <div style="color:#999999">Mes Boutiques</div>
-                <select class="input100" name="boutique" placeholder="Boutique">
-                @foreach($user->boutique as $u)
-                    <option value="{{$u->id}}">{{$u->nom_boutique}}</option>
-                @endforeach
-                </select>
+            <div id="cars" class="second-side side-form">
+                    <select class="recherche-select" name="ville">  
+                        <option value="0">Choisire ville de voiture</option>  
+                            <option title="agadir" value="agadir">AGADIR</option>
+                                                
+                            <option title="ait benhaddou" value="ait benhaddou">AIT BENHADDOU</option>
+                                                
+                            <option title="ait daoud" value="ait daoud">AIT DAOUD</option>
+                                                
+                            <option title="ait ourir" value="ait ourir">AIT OURIR</option>
+                                                
+                            <option title="al hoceima" value="al hoceima">AL HOCEIMA</option>
+                                                
+                            <option title="amizmiz" value="amizmiz">AMIZMIZ</option>
+                                                
+                            <option title="arfoud" value="arfoud">ARFOUD</option>
+                                                
+                            <option title="asilah" value="asilah">ASILAH</option>
+                                                
+                            <option title="azemmour" value="azemmour">AZEMMOUR</option>
+                                                
+                            <option title="azrou" value="azrou">AZROU</option>
+                                                
+                            <option title="ben ahmed" value="ben ahmed">BEN AHMED</option>
+                                                
+                            <option title="ben slimane" value="ben slimane">BEN SLIMANE</option>
+                                                
+                            <option title="benguerir" value="benguerir">BENGUERIR</option>
+                                                
+                            <option title="beni mellal" value="beni mellal">BENI MELLAL</option>
+                                                
+                            <option title="berkane" value="berkane">BERKANE</option>
+                                                
+                            <option title="berrechid" value="berrechid">BERRECHID</option>
+                                                
+                            <option title="bouskoura" value="bouskoura">BOUSKOURA</option>
+                                                
+                            <option title="bouznika" value="bouznika">BOUZNIKA</option>
+                                                
+                            <option title="casablanca" value="casablanca">CASABLANCA</option>
+                                                
+                            <option title="chefchaouen" value="chefchaouen">CHEFCHAOUEN</option>
+                                                
+                            <option title="chemaia" value="chemaia">CHEMAIA</option>
+                                                
+                            <option title="chichaoua" value="chichaoua">CHICHAOUA</option>
+                                                
+                            <option title="dakhla" value="dakhla">DAKHLA</option>
+                                                
+                            <option title="dar bouazza" value="dar bouazza">DAR BOUAZZA</option>
+                                                
+                            <option title="demnate" value="demnate">DEMNATE</option>
+                                                
+                            <option title="el hajeb" value="el hajeb">EL HAJEB</option>
+                                                
+                            <option title="el jadida" value="el jadida">EL JADIDA</option>
+                                                
+                            <option title="errachidia" value="errachidia">ERRACHIDIA</option>
+                                                
+                            <option title="essaouira" value="essaouira">ESSAOUIRA</option>
+                                                
+                            <option title="fes" value="fes">FES</option>
+                                                
+                            <option title="figuig" value="figuig">FIGUIG</option>
+                                                
+                            <option title="fnideq" value="fnideq">FNIDEQ</option>
+                                                
+                            <option title="fquih ben salah" value="fquih ben salah">FQUIH BEN SALAH</option>
+                                                
+                            <option title="guelmim" value="guelmim">GUELMIM</option>
+                                                
+                            <option title="guelta zemmour" value="guelta zemmour">GUELTA ZEMMOUR</option>
+                                                
+                            <option title="guercif" value="guercif">GUERCIF</option>
+                                                
+                            <option title="had soualem" value="had soualem">HAD SOUALEM</option>
+                                                
+                            <option title="harhoura" value="harhoura">HARHOURA</option>
+                                                
+                            <option title="ifrane" value="ifrane">IFRANE</option>
+                                                
+                            <option title="imilchil" value="imilchil">IMILCHIL</option>
+                                                
+                            <option title="imintanoute" value="imintanoute">IMINTANOUTE</option>
+                                                
+                            <option title="inezgane" value="inezgane">INEZGANE</option>
+                                                
+                            <option title="jerada" value="jerada">JERADA</option>
+                                                
+                            <option title="kelaa sraghna" value="kelaa sraghna">KELAA SRAGHNA</option>
+                                                
+                            <option title="kenitra" value="kenitra">KENITRA</option>
+                                                
+                            <option title="khemis zemamra" value="khemis zemamra">KHEMIS ZEMAMRA</option>
+                                                
+                            <option title="khemisset" value="khemisset">KHEMISSET</option>
+                                                
+                            <option title="khenifra" value="khenifra">KHENIFRA</option>
+                                                
+                            <option title="khouribga" value="khouribga">KHOURIBGA</option>
+                                                
+                            <option title="ksar el kebir" value="ksar el kebir">KSAR EL KEBIR</option>
+                                                
+                            <option title="laayoune" value="laayoune">LAAYOUNE</option>
+                                                
+                            <option title="lagouira" value="lagouira">LAGOUIRA</option>
+                                                
+                            <option title="larache" value="larache">LARACHE</option>
+                                                
+                            <option title="marrakech" value="marrakech">MARRAKECH</option>
+                                                
+                            <option title="martil" value="martil">MARTIL</option>
+                                                
+                            <option title="mechra bel ksiri" value="mechra bel ksiri">MECHRA BEL KSIRI</option>
+                                                
+                            <option title="mediek ou mdiq" value="mediek ou mdiq">MEDIEK OU MDIQ</option>
+                                                
+                            <option title="mediouna" value="mediouna">MEDIOUNA</option>
+                                                
+                            <option title="mehdia" value="mehdia">MEHDIA</option>
+                                                
+                            <option title="meknes" value="meknes">MEKNES</option>
+                                                
+                            <option title="midelt" value="midelt">MIDELT</option>
+                                                
+                            <option title="mirleft" value="mirleft">MIRLEFT</option>
+                                                
+                            <option title="missour" value="missour">MISSOUR</option>
+                                                
+                            <option title="mohammedia" value="mohammedia">MOHAMMEDIA</option>
+                                                
+                            <option title="moulay bousselham" value="moulay bousselham">MOULAY BOUSSELHAM</option>
+                                                
+                            <option title="mrirt" value="mrirt">MRIRT</option>
+                                                
+                            <option title="nador" value="nador">NADOR</option>
+                                                
+                            <option title="oualidia" value="oualidia">OUALIDIA</option>
+                                                
+                            <option title="ouarzazate" value="ouarzazate">OUARZAZATE</option>
+                                                
+                            <option title="ouezzane" value="ouezzane">OUEZZANE</option>
+                                                
+                            <option title="oujda" value="oujda">OUJDA</option>
+                                                
+                            <option title="oulad berhil" value="oulad berhil">OULAD BERHIL</option>
+                                                
+                            <option title="oulad teÔma" value="oulad teÔma">OULAD TEÔMA</option>
+                                                
+                            <option title="rabat" value="rabat">RABAT</option>
+                                                
+                            <option title="ras el ma" value="ras el ma">RAS EL MA</option>
+                                                
+                            <option title="rissani" value="rissani">RISSANI</option>
+                                                
+                            <option title="safi" value="safi">SAFI</option>
+                                                
+                            <option title="saidia" value="saidia">SAIDIA</option>
+                                                
+                            <option title="sale" value="sale">SALE</option>
+                                                
+                            <option title="sefrou" value="sefrou">SEFROU</option>
+                                                
+                            <option title="settat" value="settat">SETTAT</option>
+                                                
+                            <option title="sidi bou othmane" value="sidi bou othmane">SIDI BOU OTHMANE</option>
+                                                
+                            <option title="sidi kacem" value="sidi kacem">SIDI KACEM</option>
+                                                
+                            <option title="sidi rahal" value="sidi rahal">SIDI RAHAL</option>
+                                                
+                            <option title="sidi slimane" value="sidi slimane">SIDI SLIMANE</option>
+                                                
+                            <option title="skhirat" value="skhirat">SKHIRAT</option>
+                                                
+                            <option title="smara" value="smara">SMARA</option>
+                                                
+                            <option title="taddert" value="taddert">TADDERT</option>
+                                                
+                            <option title="tahannaout" value="tahannaout">TAHANNAOUT</option>
+                                                
+                            <option title="taliouine" value="taliouine">TALIOUINE</option>
+                                                
+                            <option title="talmest" value="talmest">TALMEST</option>
+                                                
+                            <option title="tamanar" value="tamanar">TAMANAR</option>
+                                                
+                            <option title="tamaris" value="tamaris">TAMARIS</option>
+                                                
+                            <option title="tameslouht" value="tameslouht">TAMESLOUHT</option>
+                                                
+                            <option title="tan-tan" value="tan-tan">TAN-TAN</option>
+                                                
+                            <option title="tanger" value="tanger">TANGER</option>
+                                                
+                            <option title="taounate" value="taounate">TAOUNATE</option>
+                                                
+                            <option title="taourirte" value="taourirte">TAOURIRTE</option>
+                                                
+                            <option title="tarfaya" value="tarfaya">TARFAYA</option>
+                                                
+                            <option title="taroudannt" value="taroudannt">TAROUDANNT</option>
+                                                
+                            <option title="tata" value="tata">TATA</option>
+                                                
+                            <option title="taza" value="taza">TAZA</option>
+                                                
+                            <option title="taznakht" value="taznakht">TAZNAKHT</option>
+                                                
+                            <option title="temara" value="temara">TEMARA</option>
+                                                
+                            <option title="tetouan" value="tetouan">TETOUAN</option>
+                                                
+                            <option title="tiflet" value="tiflet">TIFLET</option>
+                                                
+                            <option title="tinghir" value="tinghir">TINGHIR</option>
+                                                
+                            <option title="tiznit" value="tiznit">TIZNIT</option>
+                                                
+                            <option title="youssoufia" value="youssoufia">YOUSSOUFIA</option>
+                                                
+                            <option title="zagora" value="zagora">ZAGORA</option>
+                                                
+                            <option title="autre" value="autre">AUTRE</option>
+                    </select>
+                    <br>
+                    <br>
+                        <label style="margin-left:40px">Prix  Max: </label>
+                        <input type="number" name="prix" class="input-prix"/>
+                        <br>
+                    <button name="action" value="detail_voiture" type="submit" class="recherche-cars">Lancer la recherche</button>
+                </form>
             </div>
-            @endif
-            <div class="wrap-input100">
-                <div style="color:#999999">Ville</div>
-                <select class="input100" name="ville">
-                <option title="agadir" value="agadir">AGADIR</option>
-											
-						<option title="ait benhaddou" value="ait benhaddou">AIT BENHADDOU</option>
-											
-						<option title="ait daoud" value="ait daoud">AIT DAOUD</option>
-											
-						<option title="ait ourir" value="ait ourir">AIT OURIR</option>
-											
-						<option title="al hoceima" value="al hoceima">AL HOCEIMA</option>
-											
-						<option title="amizmiz" value="amizmiz">AMIZMIZ</option>
-											
-						<option title="arfoud" value="arfoud">ARFOUD</option>
-											
-						<option title="asilah" value="asilah">ASILAH</option>
-											
-						<option title="azemmour" value="azemmour">AZEMMOUR</option>
-											
-						<option title="azrou" value="azrou">AZROU</option>
-											
-						<option title="ben ahmed" value="ben ahmed">BEN AHMED</option>
-											
-						<option title="ben slimane" value="ben slimane">BEN SLIMANE</option>
-											
-						<option title="benguerir" value="benguerir">BENGUERIR</option>
-											
-						<option title="beni mellal" value="beni mellal">BENI MELLAL</option>
-											
-						<option title="berkane" value="berkane">BERKANE</option>
-											
-						<option title="berrechid" value="berrechid">BERRECHID</option>
-											
-						<option title="bouskoura" value="bouskoura">BOUSKOURA</option>
-											
-						<option title="bouznika" value="bouznika">BOUZNIKA</option>
-											
-						<option title="casablanca" value="casablanca">CASABLANCA</option>
-											
-						<option title="chefchaouen" value="chefchaouen">CHEFCHAOUEN</option>
-											
-						<option title="chemaia" value="chemaia">CHEMAIA</option>
-											
-						<option title="chichaoua" value="chichaoua">CHICHAOUA</option>
-											
-						<option title="dakhla" value="dakhla">DAKHLA</option>
-											
-						<option title="dar bouazza" value="dar bouazza">DAR BOUAZZA</option>
-											
-						<option title="demnate" value="demnate">DEMNATE</option>
-											
-						<option title="el hajeb" value="el hajeb">EL HAJEB</option>
-											
-						<option title="el jadida" value="el jadida">EL JADIDA</option>
-											
-						<option title="errachidia" value="errachidia">ERRACHIDIA</option>
-											
-						<option title="essaouira" value="essaouira">ESSAOUIRA</option>
-											
-						<option title="fes" value="fes">FES</option>
-											
-						<option title="figuig" value="figuig">FIGUIG</option>
-											
-						<option title="fnideq" value="fnideq">FNIDEQ</option>
-											
-						<option title="fquih ben salah" value="fquih ben salah">FQUIH BEN SALAH</option>
-											
-						<option title="guelmim" value="guelmim">GUELMIM</option>
-											
-						<option title="guelta zemmour" value="guelta zemmour">GUELTA ZEMMOUR</option>
-											
-						<option title="guercif" value="guercif">GUERCIF</option>
-											
-						<option title="had soualem" value="had soualem">HAD SOUALEM</option>
-											
-						<option title="harhoura" value="harhoura">HARHOURA</option>
-											
-						<option title="ifrane" value="ifrane">IFRANE</option>
-											
-						<option title="imilchil" value="imilchil">IMILCHIL</option>
-											
-						<option title="imintanoute" value="imintanoute">IMINTANOUTE</option>
-											
-						<option title="inezgane" value="inezgane">INEZGANE</option>
-											
-						<option title="jerada" value="jerada">JERADA</option>
-											
-						<option title="kelaa sraghna" value="kelaa sraghna">KELAA SRAGHNA</option>
-											
-						<option title="kenitra" value="kenitra">KENITRA</option>
-											
-						<option title="khemis zemamra" value="khemis zemamra">KHEMIS ZEMAMRA</option>
-											
-						<option title="khemisset" value="khemisset">KHEMISSET</option>
-											
-						<option title="khenifra" value="khenifra">KHENIFRA</option>
-											
-						<option title="khouribga" value="khouribga">KHOURIBGA</option>
-											
-						<option title="ksar el kebir" value="ksar el kebir">KSAR EL KEBIR</option>
-											
-						<option title="laayoune" value="laayoune">LAAYOUNE</option>
-											
-						<option title="lagouira" value="lagouira">LAGOUIRA</option>
-											
-						<option title="larache" value="larache">LARACHE</option>
-											
-						<option title="marrakech" value="marrakech">MARRAKECH</option>
-											
-						<option title="martil" value="martil">MARTIL</option>
-											
-						<option title="mechra bel ksiri" value="mechra bel ksiri">MECHRA BEL KSIRI</option>
-											
-						<option title="mediek ou mdiq" value="mediek ou mdiq">MEDIEK OU MDIQ</option>
-											
-						<option title="mediouna" value="mediouna">MEDIOUNA</option>
-											
-						<option title="mehdia" value="mehdia">MEHDIA</option>
-											
-						<option title="meknes" value="meknes">MEKNES</option>
-											
-						<option title="midelt" value="midelt">MIDELT</option>
-											
-						<option title="mirleft" value="mirleft">MIRLEFT</option>
-											
-						<option title="missour" value="missour">MISSOUR</option>
-											
-						<option title="mohammedia" value="mohammedia">MOHAMMEDIA</option>
-											
-						<option title="moulay bousselham" value="moulay bousselham">MOULAY BOUSSELHAM</option>
-											
-						<option title="mrirt" value="mrirt">MRIRT</option>
-											
-						<option title="nador" value="nador">NADOR</option>
-											
-						<option title="oualidia" value="oualidia">OUALIDIA</option>
-											
-						<option title="ouarzazate" value="ouarzazate">OUARZAZATE</option>
-											
-						<option title="ouezzane" value="ouezzane">OUEZZANE</option>
-											
-						<option title="oujda" value="oujda">OUJDA</option>
-											
-						<option title="oulad berhil" value="oulad berhil">OULAD BERHIL</option>
-											
-						<option title="oulad teÔma" value="oulad teÔma">OULAD TEÔMA</option>
-											
-						<option title="rabat" value="rabat">RABAT</option>
-											
-						<option title="ras el ma" value="ras el ma">RAS EL MA</option>
-											
-						<option title="rissani" value="rissani">RISSANI</option>
-											
-						<option title="safi" value="safi">SAFI</option>
-											
-						<option title="saidia" value="saidia">SAIDIA</option>
-											
-						<option title="sale" value="sale">SALE</option>
-											
-						<option title="sefrou" value="sefrou">SEFROU</option>
-											
-						<option title="settat" value="settat">SETTAT</option>
-											
-						<option title="sidi bou othmane" value="sidi bou othmane">SIDI BOU OTHMANE</option>
-											
-						<option title="sidi kacem" value="sidi kacem">SIDI KACEM</option>
-											
-						<option title="sidi rahal" value="sidi rahal">SIDI RAHAL</option>
-											
-						<option title="sidi slimane" value="sidi slimane">SIDI SLIMANE</option>
-											
-						<option title="skhirat" value="skhirat">SKHIRAT</option>
-											
-						<option title="smara" value="smara">SMARA</option>
-											
-						<option title="taddert" value="taddert">TADDERT</option>
-											
-						<option title="tahannaout" value="tahannaout">TAHANNAOUT</option>
-											
-						<option title="taliouine" value="taliouine">TALIOUINE</option>
-											
-						<option title="talmest" value="talmest">TALMEST</option>
-											
-						<option title="tamanar" value="tamanar">TAMANAR</option>
-											
-						<option title="tamaris" value="tamaris">TAMARIS</option>
-											
-						<option title="tameslouht" value="tameslouht">TAMESLOUHT</option>
-											
-						<option title="tan-tan" value="tan-tan">TAN-TAN</option>
-											
-						<option title="tanger" value="tanger">TANGER</option>
-											
-						<option title="taounate" value="taounate">TAOUNATE</option>
-											
-						<option title="taourirte" value="taourirte">TAOURIRTE</option>
-											
-						<option title="tarfaya" value="tarfaya">TARFAYA</option>
-											
-						<option title="taroudannt" value="taroudannt">TAROUDANNT</option>
-											
-						<option title="tata" value="tata">TATA</option>
-											
-						<option title="taza" value="taza">TAZA</option>
-											
-						<option title="taznakht" value="taznakht">TAZNAKHT</option>
-											
-						<option title="temara" value="temara">TEMARA</option>
-											
-						<option title="tetouan" value="tetouan">TETOUAN</option>
-											
-						<option title="tiflet" value="tiflet">TIFLET</option>
-											
-						<option title="tinghir" value="tinghir">TINGHIR</option>
-											
-						<option title="tiznit" value="tiznit">TIZNIT</option>
-											
-						<option title="youssoufia" value="youssoufia">YOUSSOUFIA</option>
-											
-						<option title="zagora" value="zagora">ZAGORA</option>
-											
-						<option title="autre" value="autre">AUTRE</option>
-                </select>
+            <div class="second-side">
+                Recherche détaillée<a onclick="showGarage()"><img width="20px" style="float:right" src="/project_images/hamburger.png"></a>
             </div>
-            
-            <div class="wrap-input100 validate-input">
-                <label>Image Voiture</label><br />
-                <br>
-                <span class="alert" id="alert8">Veuillez Remplire ce Champ</span>  
-                <br />
-                <input id="image" class="input100" type="file" name="voiture_image" accept="image/x-png,image/jpeg"/>
-                <span class="focus-input100"></span>
-            </div>
-            <div class="image-upload">
-                <label for="image1">Autres Images<br>
-                    <img src="/project_images/addCar.png"/>
-                </label>
-                <input id="image1" type="file" name="image1" accept="image/x-png,image/jpeg"/>
-            </div>
-            <div id="images2" class="image-upload">
-                <label id="label2" for="image2"><br>
-                    <img src="/project_images/addCar.png"/>
-                </label>
-                <input id="image2" type="file" name="image2" accept="image/x-png,image/jpeg"/>
-            </div>
-            <div id="images3" class="image-upload">
-                <label id="label3" for="image3"><br>
-                    <img src="/project_images/addCar.png"/>
-                </label>
-                <input id="image3" type="file" name="image3" accept="image/x-png,image/jpeg"/>
-            </div>
-            <label>Voiture Occasion ?</label>
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select id="occasion" class="input100" name="occasion">
-                    <option value="1">Oui</option>
-                    <option value="0" selected>Non</option>                                  
-                </select>
-            </div>
-            <div id="occasion_container">
-                <label>Etat de la voiture</label>
-                <br>
-                <span class="alert" id="alert9">Veuillez Remplire ce Champ</span>   
-                <div class="wrap-input100 validate-input">
-                    <input id ="etat" class="input100" type="text" name="etat"/>
-                    <span class="focus-input100"></span>
-                </div>
-
-            </div>
-            <div class="container-contact100-form-btn">
-                <button class="contact100-form-btn">
-                    Ajouter
-                </button>
-            </div>
+            <div id="details" class="second-side side-form">
+                <div id="Rdetail">
+                    <form method="POST" action="{{ action('UserController@ChercherVoiture') }}" enctype="multipart/form-data">
+                        @csrf   
+                        <select id="marque" class="recherche-select" name="marque">  
+                                <option value="0" selected="selected">ℨ Choisire Marque</option>
+                                <option value="Renault">Renault</option>
+                                <option value="Peugeot">Peugeot</option>
+                                <option value="Opel">Opel</option>
+                                <option value="Citroen">Citroen</option>
+                                <option value="Volkswagen">Volkswagen</option>
+                                <option value="Mercedes">Mercedes</option>
+                                <option value="BMW">BMW</option>
+                                <option value="Nissan">Nissan</option>
+                                <option value="Toyota">Toyota</option>
+                                <option value="Ford">Ford</option>
+                                <option value="Audi">Audi</option>
+                                <option value="Fiat">Fiat</option>
+                                <option value="Abarth">Abarth</option>
+                                <option value="AC">AC</option>
+                                <option value="Aixam">Aixam</option>
+                                <option value="Alfa Romeo">Alfa Romeo</option>
+                                <option value="Alpine">Alpine</option>
+                                <option value="AMC">AMC</option>
+                                <option value="Aston Martin">Aston Martin</option>
+                                <option value="Austin Healey">Austin Healey</option>
+                                <option value="Autobianchi">Autobianchi</option>
+                                <option value="Auverland">Auverland</option>
+                                <option value="Bellier">Bellier</option>
+                                <option value="Bentley">Bentley</option>
+                                <option value="Bellier">Bellier</option>
+                                <option value="Bluecar">Bluecar</option>
+                                <option value="Buick">Buick</option>
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Bellier">Casalini</option>
+                                <option value="Bellier">Chatenet</option>
+                                <option value="Bellier">Chevrolet</option>
+                                <option value="Bellier">Chrysler</option>
+                                <option value="Bellier">Cord</option>
+                                <option value="Bellier">Corvette</option>
+                                <option value="Dacia">Dacia</option>
+                                <option value="Daihatsu">Daihatsu</option>
+                                <option value="Dodge">Dodge</option>
+                                <option value="Honda">Honda</option>
+                                <option value="Hyundai">Hyundai</option>
+                                <option value="Land rover">Land rover</option>
+                                <option value="Jaguar">Jaguar</option>
+                                <option value="Volvo">Volvo</option>
+                                <option value="Kia">Kia</option>
+                        </select>
+                        <select id="model" class="recherche-select" name="model">  
+                                <option value="0">Choisire modèle</option>
+                        </select>
+                        <select class="recherche-select" name="carburant">  
+                            <option value="0" selected="selected">Choisire Carburant</option>
+                            <option value="Essence">Essence</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Electrique">Electrique</option>
+                            <option value="Hybride">Hybride</option>
+                        </select>
+                        <select class="recherche-select" name="vitesse">  
+                            <option selected="selected" value="0">Boite à vitesse</option>
+                            <option value="Manuelle ">Manuelle </option>
+                            <option value="Automatique">Automatique</option>
+                        </select>
+                        <button name="action" value="plusdetails" type="submit" class="recherche-cars">Lancer la recherche</button>
+                
+                </div>    </div>
         </div>
-    </form>
+    </div>
 </div>
+<div>
 <script>
     $(document).ready(function(){
-        var current_year = new Date().getFullYear();
-        for(var i = 1960; i <= current_year;i++){
-            $('#annee').append(`<option value="`+i+`">`+i+`</option>`);
-        }
-
-        for(var i = 2 ; i< 52 ; i++){
-            $('#fiscale').append(`<option>`+i+` CV</option>`);
-        }
-
-        for(var i=0; i<10; i++){
-            $("#alert"+i).hide();
-        }
-
-        $("#form1").show();
-        $("#form2").hide();
-        $("#form3").hide();
-        $("#occasion_container").hide();
-
-
-        $("#voiture").hide();
-        $("#images2").hide();
-        $("#images3").hide();
-        var options = $("#marque option"); 
+            var options = $("#marque option"); 
             options.detach().sort(function(a, b) { 
                 var at = $(a).text(); 
                 var bt = $(b).text(); 
                 return (at > bt) ? 1 : ((at < bt) ? -1 : 0); 
             }); 
             options.appendTo("#marque"); 
-        $("#marque" ).change(function() {
+
+
+
+
+        $( "#marque" ).change(function() {
             if($("#marque").val() == "Renault"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Clio">Clio</option>`);
                 $('#model').append(`<option value="Alaskan">Alaskan</option>`);
                 $('#model').append(`<option value="Avantime">Avantime</option>`);
@@ -630,6 +613,7 @@
             }
             if($("#marque").val() == "Peugeot"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="206+">206+</option>`);
                 $('#model').append(`<option value="Bipper Tepee">Bipper Tepee</option>`);
                 $('#model').append(`<option value="Boxer">Boxer</option>`);
@@ -668,6 +652,7 @@
             }
             if($("#marque").val() == "Opel"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Adam">Adam</option>`);
                 $('#model').append(`<option value="Agila">Agila</option>`);
                 $('#model').append(`<option value="Antara">Antara</option>`);
@@ -692,6 +677,7 @@
             }
             if($("#marque").val() == "Citroen"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="2 CV">2 CV</option>`);
                 $('#model').append(`<option value="Berlingo">Berlingo</option>`);
                 $('#model').append(`<option value="C elysee">C elysee</option>`);
@@ -723,6 +709,7 @@
             }
             if($("#marque").val() == "Volkswagen"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Amarok">Amarok</option>`);
                 $('#model').append(`<option value="Arteon">Arteon</option>`);
                 $('#model').append(`<option value="CC">CC</option>`);
@@ -752,6 +739,7 @@
             }
             if($("#marque").val() == "Mercedes"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="450 SEL">450 SEL</option>`);
                 $('#model').append(`<option value="AMG GT">AMG GT</option>`);
                 $('#model').append(`<option value="CL">CL</option>`);
@@ -787,6 +775,7 @@
             }
             if($("#marque").val() == "BMW"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="I3">I3</option>`);
                 $('#model').append(`<option value="I8">I8</option>`);
                 $('#model').append(`<option value="M2">M2</option>`);
@@ -817,6 +806,7 @@
             }
             if($("#marque").val() == "Nissan"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="370 Z">370 Z</option>`);
                 $('#model').append(`<option value="EVALIA">EVALIA</option>`);
                 $('#model').append(`<option value="GT R">GT R</option>`);
@@ -838,6 +828,7 @@
             }
             if($("#marque").val() == "Toyota"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Auris">Auris</option>`);
                 $('#model').append(`<option value="Auris Sports">Auris Sports</option>`);
                 $('#model').append(`<option value="Avensis">Avensis</option>`);
@@ -860,6 +851,7 @@
             }
             if($("#marque").val() == "Ford"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Bmax">Bmax</option>`);
                 $('#model').append(`<option value="Bronco">Bronco</option>`);
                 $('#model').append(`<option value="Cmax">Cmax</option>`);
@@ -893,6 +885,7 @@
             }
             if($("#marque").val() == "Audi"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="A1">A1</option>`);
                 $('#model').append(`<option value="A3">A3</option>`);
                 $('#model').append(`<option value="A4">A4</option>`);
@@ -927,6 +920,7 @@
             }
             if($("#marque").val() == "Fiat"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="124 Spider">124 Spider</option>`);
                 $('#model').append(`<option value="500 C">500 C</option>`);
                 $('#model').append(`<option value="500 L">500 L</option>`);
@@ -949,6 +943,7 @@
             }
             if($("#marque").val() == "Abarth"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="124 Spider">124 Spider</option>`);
                 $('#model').append(`<option value="500 C">500 C</option>`);
                 $('#model').append(`<option value="500">500</option>`);
@@ -958,11 +953,13 @@
             }
             if($("#marque").val() == "AC"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Cobra">Cobra</option>`);
 
             }
             if($("#marque").val() == "Aixam"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="City">City</option>`);
                 $('#model').append(`<option value="Coupe">Coupe</option>`);
                 $('#model').append(`<option value="Crossline">Crossline</option>`);
@@ -975,6 +972,7 @@
             }
             if($("#marque").val() == "Alfa Romeo"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="GT">GT</option>`);
                 $('#model').append(`<option value="GTV">GTV</option>`);
                 $('#model').append(`<option value="Giulia">Giulia</option>`);
@@ -989,17 +987,20 @@
             }
             if($("#marque").val() == "Alpine"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="A110">A110</option>`);
 
             }
             if($("#marque").val() == "AMC"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Javelin">Javelin</option>`);
                 $('#model').append(`<option value="Rambler Martin">Rambler Martin</option>`);
 
             }
             if($("#marque").val() == "Aston Martin"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Cygnet">Cygnet</option>`);
                 $('#model').append(`<option value="DB11">DB11</option>`);
                 $('#model').append(`<option value="DB 9 GT">DB 9 GT</option>`);
@@ -1011,6 +1012,7 @@
             }
             if($("#marque").val() == "Austin Healey"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Healey Spirit">Healey Spirit</option>`);
                 $('#model').append(`<option value="7">7</option>`);
                 $('#model').append(`<option value="100">100</option>`);
@@ -1019,21 +1021,25 @@
             }
             if($("#marque").val() == "Autobianchi"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value=""></option>`);
 
             }
             if($("#marque").val() == "Auverland"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value=""></option>`);
 
             }
             if($("#marque").val() == "Bellier"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Docker">Docker</option>`);
 
             }
             if($("#marque").val() == "Bentley"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Arnage">Arnage</option>`);
                 $('#model').append(`<option value="Bentayga">Bentayga</option>`);
                 $('#model').append(`<option value="Continenetal">Continenetal</option>`);
@@ -1046,10 +1052,12 @@
             }
             if($("#marque").val() == "Bluecar"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Bluesummer">Bluesummer</option>`);
             }
             if($("#marque").val() == "Buick"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Electra">Electra</option>`);
                 $('#model').append(`<option value="Gransport">Gransport</option>`);
                 $('#model').append(`<option value="lesabre">lesabre</option>`);
@@ -1062,6 +1070,7 @@
             }
             if($("#marque").val() == "Cadillac"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="60S">60S</option>`);
                 $('#model').append(`<option value="CTS">CTS</option>`);
                 $('#model').append(`<option value="Deville">Deville</option>`);
@@ -1076,17 +1085,20 @@
             }
             if($("#marque").val() == "Casalini"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="M14">M14</option>`);
                 $('#model').append(`<option value="M20">M20</option>`);
             }
             if($("#marque").val() == "Chatenet"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="CH 26">CH 26</option>`);
                 $('#model').append(`<option value="CH 40">CH 40</option>`);
                 $('#model').append(`<option value="CH 46">CH 46</option>`);
             }
             if($("#marque").val() == "Chevrolet"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Aveo">Aveo</option>`);
                 $('#model').append(`<option value="Bel Air">Bel Air</option>`);
                 $('#model').append(`<option value="Blazer">Blazer</option>`);
@@ -1116,6 +1128,7 @@
             }
             if($("#marque").val() == "Chrysler"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="300C">300C</option>`);
                 $('#model').append(`<option value="Grand Voyager">Grand Voyager</option>`);
                 $('#model').append(`<option value="Le baron">Le baron</option>`);
@@ -1125,10 +1138,12 @@
             }
             if($("#marque").val() == "Cord"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="810">810</option>`);
             }
             if($("#marque").val() == "Corvette"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="C3">C3</option>`);
                 $('#model').append(`<option value="C6">C6</option>`);
                 $('#model').append(`<option value="C7">C7</option>`);
@@ -1137,6 +1152,7 @@
             }
             if($("#marque").val() == "Dacia"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Dokker">Dokker</option>`);
                 $('#model').append(`<option value="Duster">Duster</option>`);
                 $('#model').append(`<option value="Logan">Logan</option>`);
@@ -1148,12 +1164,14 @@
             }
             if($("#marque").val() == "Daihatsu"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Cuore">Cuore</option>`);
                 $('#model').append(`<option value="Sirion">Sirion</option>`);
                 $('#model').append(`<option value="Trevis">Trevis</option>`);
             }
             if($("#marque").val() == "Dodge"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Caliber">Caliber</option>`);
                 $('#model').append(`<option value="Challenger">Challenger</option>`);
                 $('#model').append(`<option value="Charger">Charger</option>`);
@@ -1164,6 +1182,7 @@
             }
             if($("#marque").val() == "Honda"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Accord">Accord</option>`);
                 $('#model').append(`<option value="Civic">Civic</option>`);
                 $('#model').append(`<option value="Cr-V">Cr-V</option>`);
@@ -1179,6 +1198,7 @@
             }
             if($("#marque").val() == "Hyundai"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="i10">i10</option>`);
                 $('#model').append(`<option value="i20">i20</option>`);
                 $('#model').append(`<option value="I30">I30</option>`);
@@ -1198,6 +1218,7 @@
             }
             if($("#marque").val() == "Land rover"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Defender">Defender</option>`);
                 $('#model').append(`<option value="Discovery">Discovery</option>`);
                 $('#model').append(`<option value="Discovery sport">Discovery sport</option>`);
@@ -1213,6 +1234,7 @@
             }
             if($("#marque").val() == "Jaguar"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="E-Pace">E-Pace</option>`);
                 $('#model').append(`<option value="F-Pace">F-Pace</option>`);
                 $('#model').append(`<option value="F-type">F-type</option>`);
@@ -1227,6 +1249,7 @@
             }
             if($("#marque").val() == "Volvo"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Fm9">Fm9</option>`);
                 $('#model').append(`<option value="S60">S60</option>`);
                 $('#model').append(`<option value="S90">S90</option>`);
@@ -1249,6 +1272,7 @@
             }
             if($("#marque").val() == "Kia"){
                 $('#model').empty();
+                $('#model').append(`<option value="0">Choisire modèle</option>`);
                 $('#model').append(`<option value="Ceed">Ceed</option>`);
                 $('#model').append(`<option value="E-Niro">E-Niro</option>`);
                 $('#model').append(`<option value="E-Soul">E-Soul</option>`);
@@ -1271,108 +1295,20 @@
                 $('#model').append(`<option value="KCV">KCV</option>`);
             }
         });
-        $("#occasion").change(function() {
-            if($("#occasion").val() =="1"){
-                $("#occasion_container").show();
-
-            }else{
-                $("#occasion_container").hide();
-            }
-        });
-
-
-        
-
-
-
-        $("#previousform1").click(function(){
-            $("#form2").hide();
-            $("#form1").show();
-        });
-        
-        $("#previousform2").click(function(){
-            $("#form3").fadeOut();
-            $("#form2").fadeIn();
-        });
-        $('#image1').bind('change', function() {
-		    if(image1.size > 0){
-                $("#images2").show();
-                $('#image2').bind('change', function() {
-                    if(image2.size > 0){
-                        $("#images3").show();
-                    }
-                });
-            }
-        });
-
-        $("#nextform2").click(function(){
-        if($("#marque").val() == "0"){
-            $("#alert1").show();
-            document.getElementById("alert1").style.color = "red";
-        }else{
-            $("#alert1").hide();
-        }
-        if($("#version").val().length == 0){
-            $("#alert2").show();
-            document.getElementById("alert2").style.color = "red";
-        }else{
-            $("#alert2").hide();
-        }
-        if($("#model").val() != "0" && $("#version").val().length >0){
-            $("#form1").hide();
-            $("#form2").show();
-        }
+        $("#autres").hide();
+        $("#nom_boutique").hide();
     });
-        $("#nextform3").click(function(){
-        $("#occasion_container").hide();
-        if($("#km").val().length == 0){
-            $("#alert3").show();
-            document.getElementById("alert3").style.color = "red";
-        }else{
-            $("#alert3").hide();
-        }
-        if($("#couleur").val().length == 0){
-            $("#alert4").show();
-            document.getElementById("alert4").style.color = "red";
-        }else{
-            $("#alert4").hide();
-        }
-        if($("#km").val().length > 0 && $("#couleur").val().length > 0){
-            $("#form2").hide();
-            $("#form3").show();
-        }
-    });
-    $("form").submit(function(e){  
-        if($("#description").val().length == 0){
-            $("#alert5").show();
-            document.getElementById("alert5").style.color = "red";
-            e.preventDefault();
-        }else{
-            $("#alert5").hide();
-        }
-        if(!$('[type="checkbox"]').is(":checked")){
-            $("#alert6").show();
-            document.getElementById("alert6").style.color = "red";
-            e.preventDefault();
-        }else{
-            $("#alert6").hide();
-        } 
-        if($("#prix").val().length == 0){
-            $("#alert7").show();
-            document.getElementById("alert7").style.color = "red";
-            e.preventDefault();
-        }else{
-            $("#alert7").hide();
-        } 
-        if($("#image").val().length == 0){
-            $("#alert8").show();
-            document.getElementById("alert8").style.color = "red";
-            e.preventDefault();
-        }else{
-            $("#alert8").hide();
-        } 
-        
-    }); 
+    
+    function showBoutique(){
+        $("#autres").hide();
+        $("#nom_boutique").toggle();
+    }
+    function showAutres(){
+        $("#nom_boutique").hide();
+        $("#autres").toggle();
 
-    });
+    }
+
+
 </script>
+@endsection

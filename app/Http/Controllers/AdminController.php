@@ -133,18 +133,7 @@ class AdminController extends Controller
         $pdf = \PDF::loadView('Services.voiturepdf', compact('voiture'));
         return $pdf->download('voiturepdf'.$id.'.pdf');
     }
-    public function contacts()
-    {
-        $contact = Contact::orderBy('created_at','desc')->get();
-        return view('Admin/Admin_contact',['contact'=>$contact]);
-
-    }
-    public function supprimercontacts($id)
-    {
-        $contact = Contact::destroy($id);
-        return redirect()->back()->withSuccess('Message Supprimé');
-
-    }
+    
     public function afficherVoitureClick()
     {
         $voiture = Voiture::with('voitureclick')->get();

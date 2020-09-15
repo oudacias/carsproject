@@ -11,7 +11,7 @@ class BoutiqueController extends Controller
 {
     public function indexBoutique()
     {
-        $voiture = Voiture::where('vendu',false)->get();
+        $voiture = Voiture::where('vendu',false)->orderBy('created_at','desc')->get();
         $nom_boutique = Boutique::all();
         return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique]);
     }

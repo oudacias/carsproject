@@ -54,11 +54,6 @@
 						Voitures click
 					</a>
 				</li>
-				<li>
-					<a href="/Admin/Admin_contact">
-						Messages
-					</a>
-				</li>
 			</ul>
 		</nav>
     </div>

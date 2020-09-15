@@ -16,7 +16,7 @@ class CreateVoituresTable extends Migration
         Schema::create('voitures', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('boutique_id');
+            $table->integer('boutique_id')->nullable();
             $table->string('marque');
             $table->string('model');
             $table->string('version');

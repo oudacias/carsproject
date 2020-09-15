@@ -12,15 +12,11 @@
 <div class="container-contact100">
     <div class="wrap-contact100">
         <form method="POST" action="{{ route('login') }}">
-        @csrf
-        
+        @csrf 
             <span class="contact100-form-title">Bienvenue dans notre Plateforme</span>
-            
-            
             @if ($errors->has('password') or $errors->has('email'))
                 <h7 style="color:#FAB107">Email ou mot de passe incorrect</h7>                    
-            @endif
-            
+            @endif       
             <div class="wrap-input100 validate-input">
                 <input id='email' class="input100" type="text" name="email" placeholder="Votre Email" required>
                 <span class="focus-input100"></span>
@@ -41,11 +37,3 @@
         </a>
         </div>
 </div>
-
-<script>
-
-
-    
-</script>
-
-  

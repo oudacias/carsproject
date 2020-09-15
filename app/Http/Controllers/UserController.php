@@ -47,13 +47,17 @@ class UserController extends Controller
         $r->file('voiture_image')->move(public_path('/image_uploads'), $image_path);
         $voiture->photo = '/image_uploads/'.$image_path;
         $voiture->prix = $r->prix;
-        $voiture->options = $r->option;
+
+        $options ="";
+        for($i =0; $i < count($r->option) ;$i++){
+            $options .= $r->option[$i];
+            $options .= " ";
+        }
+        
+        $voiture->options = $options;
         $voiture->ville = $r->ville;
         $voiture->description = $r->description;
-        $boutique = Boutique::find($r->boutique);
-        if($boutique->type_boutique == 'Professionnel' && $boutique->confirmer == true) {
-            $voiture->confirme = true;
-        }
+        
         
         $voiture->save();
         if($r->etat){
@@ -84,15 +88,6 @@ class UserController extends Controller
 
         return redirect()->back()->withSuccess('Voiture Ajoutée');
     
-    }
-    public function contactme()
-    {
-        return view('Contact/contact');
-    }
-    public function AddContact(Request $r)
-    {
-        Contact::AddContact($r->email,$r->sujet,$r->texte);
-        return redirect()->back()->withSuccess('Votre Message Envoyé');
     }
     public function removeCar($id)
     {
@@ -160,38 +155,17 @@ class UserController extends Controller
     public function ChercherVoiture(Request $r)
     {
         if($r->input('action')=='detail_voiture'){        
-            if($r->type != "0" && $r->ville != "0" && $r->prix){
-                $voiture = Voiture::where('type','=',$r->type)
-                                    ->where('ville',$r->ville)
-                                    ->where('prix','<',$r->prix)
-                                    ->orderBy('created_at','desc')
-                                    ->get();
-            }elseif($r->type != "0" && $r->ville != "0" && !$r->prix){
-                $voiture = Voiture::where('type','=',$r->type)
-                                    ->where('ville',$r->ville)
-                                    ->orderBy('created_at','desc')
-                                    ->get();     
-            }elseif($r->type != "0" && $r->ville == "0" && $r->prix){
-                    $voiture = Voiture::where('type','=',$r->type)
-                    ->where('prix','<',$r->prix)
-                    ->orderBy('created_at','desc')
-                    ->get();
-                
-            }elseif($r->type != "0" && $r->ville == "0" && !$r->prix){
-                $voiture = Voiture::where('type','=',$r->type)
-                                    ->orderBy('created_at','desc')
-                                    ->get();
-            }elseif($r->type == "0" && $r->ville != "0" && !$r->prix){
+            if($r->ville != "0" && !$r->prix){
                     $voiture = Voiture::where('ville','=',$r->ville)
                                         ->orderBy('created_at','desc')
                                         ->get();
                 
-            }elseif($r->type == "0" && $r->ville != "0" && $r->prix){
+            }elseif($r->ville != "0" && $r->prix){
                     $voiture = Voiture::where('ville','=',$r->ville)
                                             ->where('prix','<',$r->prix)
                                             ->orderBy('created_at','desc')
                                             ->get();
-           }elseif($r->type == "0" && $r->ville == "0" && $r->prix){
+           }elseif($r->ville == "0" && $r->prix){
                 $voiture = Voiture::where('prix','<',$r->prix)
                                     ->orderBy('created_at','desc')
                                     ->get();
@@ -204,6 +178,63 @@ class UserController extends Controller
                                     ->get('id');
                     $voiture = Voiture::whereIn('boutique_id',$b)->get();
                 }
+            }if($r->input('action')=='plusdetails'){
+                if($r->marque !="0" && $r->model !="0" && $r->carburant !="0" && $r->vitesse !="0"){
+                    $voiture = Voiture::where('marque','=',$r->marque)
+                                        ->where('model','=',$r->model)
+                                        ->where('carburant','=',$r->carburant)
+                                        ->where('boite_vitesse','=',$r->vitesse)
+                                        ->orderBy('created_at','desc')
+                                        ->get();
+
+                }elseif($r->marque !="0" && $r->model !="0" && $r->carburant !="0" && $r->vitesse =="0"){
+                    $voiture = Voiture::where('marque','=',$r->marque)
+                                        ->where('model','=',$r->model)
+                                        ->where('carburant','=',$r->carburant)
+                                        ->orderBy('created_at','desc')
+                                        ->get();
+                }elseif($r->marque !="0" && $r->model !="0" && $r->carburant =="0" && $r->vitesse =="0"){
+                    $voiture = Voiture::where('marque','=',$r->marque)
+                                        ->where('model','=',$r->model)
+                                        ->orderBy('created_at','desc')
+                                        ->get();
+
+                }elseif($r->marque !="0" && $r->model =="0" && $r->carburant !="0" && $r->vitesse !="0"){
+                    $voiture = Voiture::where('marque','=',$r->marque)
+                                        ->where('carburant','=',$r->carburant)
+                                        ->where('boite_vitesse','=',$r->vitesse)
+                                        ->orderBy('created_at','desc')
+                                        ->get();
+
+                }elseif($r->marque !="0" && $r->model =="0" && $r->carburant =="0" && $r->vitesse !="0"){
+                    $voiture = Voiture::where('marque','=',$r->marque)
+                                        ->where('boite_vitesse','=',$r->vitesse)
+                                        ->orderBy('created_at','desc')
+                                        ->get();
+
+                }elseif($r->marque !="0" && $r->model =="0" && $r->carburant =="0" && $r->vitesse =="0"){
+                    $voiture = Voiture::where('marque','=',$r->marque)
+                                        ->orderBy('created_at','desc')
+                                        ->get();
+
+                }elseif($r->marque =="0" && $r->model =="0" && $r->carburant !="0" && $r->vitesse !="0"){
+                    $voiture = Voiture::where('carburant','=',$r->carburant)
+                                        ->where('boite_vitesse','=',$r->vitesse)
+                                        ->orderBy('created_at','desc')
+                                        ->get();
+     
+                }elseif($r->marque =="0" && $r->model =="0" && $r->carburant !="0" && $r->vitesse =="0"){
+                    $voiture = Voiture::where('carburant','=',$r->carburant)
+                                        ->orderBy('created_at','desc')
+                                        ->get();  
+       
+                }elseif($r->marque =="0" && $r->model =="0" && $r->carburant =="0" && $r->vitesse !="0"){
+                    $voiture = Voiture::where('boite_vitesse','=',$r->vitesse)
+                                        ->orderBy('created_at','desc')
+                                        ->get();
+                }else{
+                    return redirect()->back()->withSuccess('');
+                }       
             }
             $nom_boutique = Boutique::all();
            if($voiture->count()){

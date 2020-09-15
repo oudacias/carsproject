@@ -1,54 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Articles</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/articles.css">
-    <link rel='stylesheet' href="/css/confirmation.css">
-
-</head>
-<body>
+<link rel="stylesheet" href="/css/mainstyle.css">
+<link rel="stylesheet" href="/css/card.css">
+<link rel="stylesheet" href="/css/popup.css">
+<link rel="stylesheet" href="/css/articles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @include('Components.menu')
 @yield('menu')
 <div class="container-contact100">
     <div class="wrap-contact100">
-        <form method="POST" action="{{ action('UserController@AddContact')}}">
-        @csrf
-        
-            <h3 style="color:#FAB107">Une question ? Une proposition ? Envoyez-nous un message :)</h3>
-            <br>
-            @if(session('success'))
-		        <div class="animated fadeOut success">{{session('success')}}</div>
-	        @endif
-            
-            <div class="wrap-input100 validate-input">
-                @if(Auth::check())
-                    <input class="input100" type="text" name="email" value="{{Auth::user()->email }}" readonly>
-                @else
-                    <input class="input100" type="text" name="email" placeholder="Votre Email" required>
-                @endif
-                <span class="focus-input100"></span>
-            </div>
-            <div class="wrap-input100 validate-input">
-                <input class="input100" type="text" name="sujet" placeholder="Votre Sujet" required>
-                <span class="focus-input100"></span>
-            </div>
-            <div class="wrap-input100 validate-input">
-                <textarea class="text-contact" name="texte" placeholder="Votre Texte" required></textarea>
-                <span class="focus-input100"></span>
-
-            </div>  
-            <div class="container-contact100-form-btn">
-                <button class="contact100-form-btn">
-                    Envoyer
-                </button>
-            </div>
-        </form>
+        <h3 style="color:#FAB107;text-align:center">Une question ? Une proposition ? Envoyez-nous un message :)</h3>
+        <p id="copied">Email copié</p>
+        <br>
+        <div class="social">
+            <a href="{{$social->facebook}}"><img src="/project_images/facebook.png"/></a>
+            <a href="{{$social->instagram}}"><img src="/project_images/instagram.png"/></a>
+            <a onclick="visitLink()"><img src="/project_images/whatsapp1.png"/></a>
+            <a onclick="copyLink()"><img src="/project_images/gmail.png"/></a>
+        </div>     
     </div>
 </div>
 
 <script>
+$(document).ready(function(){
+    $("#copied").hide();   
+});
+    function copyLink(){
+        var el = document.createElement('textarea');
+        el.value = "{{$social->gmail}}";
+        el.setAttribute('readonly', '');
+        el.style = {position: 'absolute', left: '-9999px'};
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        $("#copied").show();
+        $("#copied").delay(500).fadeOut();
+    }
+    function visitLink(){
+        if (/Mobi/.test(navigator.userAgent)) {
+    }else{
+        window.location.href = "whatsapp://send?phone="+{{$social->whatsapp}};
+    }
+        window.location.href = "https://web.whatsapp.com/send?phone="+{{$social->whatsapp}};
+    }
 
 
     

@@ -80,13 +80,13 @@
                 </div>
                 <div class="col-md-8">
                 <div class="container">
-                        <div class="row">
+                        <div class="row">@if(Auth::user()->objectif == 'Fourisseur')
                             <div class="col-md-6"><a href="/boutique/nouvelle_boutique">
                                 <div class="card profile-card">
                                     Ajouter Boutique<br><br>
                                     <img class="cars_profile" src="/project_images/garage_profile.png"> 
                                 </div>               
-                            </div></a>
+                            </div></a>@endif
                             <div class="col-md-6"><a href="/boutique/voiture">
                                     <div class="card profile-card">
                                         Ajouter Voiture<br><br>
@@ -95,6 +95,7 @@
                                 </div>
                             </div></a>
                         </div>
+                    @if(Auth::user()->objectif == 'fournisseur')
                     <div class="card user-card">
                         <div class="card-block">
                             <div style="text-align:center">Vos Boutiques</div>   
@@ -110,7 +111,6 @@
                                             <th scope="col">Model</th>
                                             <th scope="col">Version</th>
                                             <th scope="col">Année</th>
-                                            <th scope="col">Confirmé</th>
                                             <th scope="col">Acheté</th>
                                             <th scope="col">Annuler</th>
                                             </tr>
@@ -122,11 +122,6 @@
                                                 <td>{{$v->model}}</td>
                                                 <td>{{$v->version}}</td>
                                                 <td>{{$v->annee}}</td>
-                                                @if($v->confirme)
-                                                    <td>Oui</td>
-                                                @else
-                                                    <td>Non</td>
-                                                @endif
                                                 @if($v->achatvoiture)
                                                     <td>Oui</td>
                                                 @else
@@ -157,6 +152,72 @@
                             @endforeach                
                         </div>
                     </div>
+                    
+                        <table class="table" id="table{{$u->id}}">
+                            <thead>
+                                <tr>
+                                <th scope="col">Marque</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Version</th>
+                                <th scope="col">Année</th>
+                                <th scope="col">Acheté</th>
+                                <th scope="col">Annuler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($u->voiture as $v)
+                                <tr>
+                                    <td>{{$v->marque}}</td>
+                                    <td>{{$v->model}}</td>
+                                    <td>{{$v->version}}</td>
+                                    <td>{{$v->annee}}</td>
+                                    @if($v->achatvoiture)
+                                        <td>Oui</td>
+                                    @else
+                                        <td>Non</td>
+                                        <td><a href="/Voiture/remove/{{$v->id}}"><img src="/project_images/removeCar.png" width="20%"></a></td>
+
+                                    @endif
+                                </tr>
+                            @endforeach
+
+                        @else(Auth::user()->objectif == 'particulier')
+                        <div class="card user-card">
+                            <div class="card-block">
+                                <div style="text-align:center">Vos Voitures</div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Marque</th>
+                                            <th scope="col">Model</th>
+                                            <th scope="col">Version</th>
+                                            <th scope="col">Année</th>
+                                            <th scope="col">Acheté</th>
+                                            <th scope="col">Annuler</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach(Auth::user()->voiture as $v)
+                                            <tr>
+                                                <td>{{$v->marque}}</td>
+                                                <td>{{$v->model}}</td>
+                                                <td>{{$v->version}}</td>
+                                                <td>{{$v->annee}}</td>
+                                                @if($v->achatvoiture)
+                                                    <td>Oui</td>
+                                                @else
+                                                    <td>Non</td>
+                                                    <td><a href="/Voiture/remove/{{$v->id}}"><img src="/project_images/removeCar.png" width="20%"></a></td>
+
+                                                @endif
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                     @elseif((Auth::user()->objectif != 'standard' && !Auth::user()->confirmer))
                         <i><center>Votre demande pour commencer à vendre est en cours</center></i>
                     @endif
@@ -169,13 +230,13 @@
                 <div class="col-md-8">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6"><a href="/User/myArticles">
+                            <div class="col-md-6">@if($user->articles->count())<a href="/User/myArticles">@endif
                                 <div class="card profile-card">
                                     Article Farvoris ({{$user->articles->count()}})<br><br>
                                     <img class="cars_profile" src="/project_images/favorite.png"> 
                                 </div>               
                             </div></a>
-                            <div class="col-md-6"><a href="/User/myForums">
+                            <div class="col-md-6">@if($user->forum->count())<a href="/User/myForums">@endif
                                 <div class="card profile-card">
                                     Forum Ajouté ({{$user->forum->count()}})<br><br>
                                     <img class="cars_profile" src="/project_images/forum.png" >
@@ -183,7 +244,7 @@
                             </div>
                         </div></a>
                         <div class="row">
-                            <div class="col-md-6"><a href="/User/myComments">
+                            <div class="col-md-6">@if($user->forums->count())<a href="/User/myComments">@endif
                                 <div class="card profile-card">
                                     Commentaire Ajouté ({{$user->forums->count()}})<br><br>
                                     <img class="cars_profile" src="/project_images/comment.png" >

@@ -9,13 +9,13 @@
 <title>Boutique</title>
 
 @include('Components.menu')
+@include('Boutique.rechercheHeader')
 @yield('menu')
-@if(session('success'))
-		<div class="animated fadeOut success">{{session('success')}}</div>
-    @endif
+@yield('recherche')
 
     <h2>&nbsp;&nbsp;&nbsp;&nbsp;{{$boutique->nom_boutique}}</h2>
 <div class="container other-sides">
+@if($boutique->voiture->count())
     @foreach($boutique->voiture as $v)
     <div class="boutique-border">
         <div class="col-md-12">
@@ -48,6 +48,12 @@
     </div>
     
     @endforeach 
+@else
+<br>
+
+    <i>Cette boutique est encore vide</i>
+
+@endif
        
 </div>
 </body>

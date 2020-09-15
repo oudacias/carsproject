@@ -80,26 +80,25 @@ Rechercher par thème &nbsp;
         </div>
     </div>
     <div class="container">
-
-    @foreach($forums as $f)
-    <div class="row">
-        <div class="col-10">
-            <div class="card user-card">
-                <div class="card-block">
-                    <div class="card-introduction">
-                        <div class="row">
-                            <div class="col-1"><img src="/project_images/qa.png" width="80%"> </div>
-                            <div class="col-10">
-                                <a href="/Forum/Forums/{{$f->id}}"><strong>{{$f->sujet}}</strong></a><br>
-                                {{$f->texte}}
+        @foreach($forums as $f)
+        <div class="row">
+            <div class="col-10">
+                <div class="card user-card">
+                    <div class="card-block">
+                        <div class="card-introduction">
+                            <div class="row">
+                                <div class="col-1"><img src="/project_images/qa.png" width="80%"> </div>
+                                <div class="col-10">
+                                    <a href="/Forum/Forums/{{$f->id}}"><strong>{{$f->sujet}}</strong></a><br>
+                                    {{$f->texte}}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    @endforeach
+        @endforeach
 </div>
 </div>
     

@@ -20,7 +20,6 @@ class CreateBoutiquesTable extends Migration
             $table->string('description_boutique');
             $table->Text('lien_image');
             $table->string('appreciation')->nullable();
-            $table->boolean('confirmer')->default(false);
             $table->timestamps();
         });
     }

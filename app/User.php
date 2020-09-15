@@ -59,6 +59,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Article','user_article')->withPivot('id');
     }
+    public function voiture()
+    {
+        return $this->hasMany('App\Voiture','user_id');
+    }
     
 
 

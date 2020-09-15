@@ -30,9 +30,11 @@
                                 
                         </div>
                         @if($artc->lien_youtube)
+                        <div class="container">
                             <input type="hidden" id="youtube" value = "{{$artc->lien_youtube}}" />
-                            <iframe  id="video" width="420" height="315" frameborder="0" style="display: none"
+                            <iframe  id="video" class="video" frameborder="0" style="display: none"
                             allowfullscreen></iframe>
+                        </div>
                         @endif
                     </div>
                     
@@ -66,6 +68,25 @@
                     <span class="fa fa-twitter" data-social="tw"></span>
                 </div>
             </div>
+            @if($articles->count())
+            <div class="container">
+                <h4>Articles qui peuvent vous intéresser</h4>
+                <div class="row">
+                    @foreach($articles as $a)
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="row">
+                            <div class="col-md-3"><img class="cars_article" src="{{$a->lien_image}}"></div>
+                                <div class="col-md-8 article_card"><h8><strong>{{$a->titre}}</strong></h8>
+                                    <p class="m-t-13 text-muted">{!!html_entity_decode(Str::limit($a->texte, 150))!!}</p><a href="/Articles/Article/{{$a->id}}">Lire Plus</a>
+                                </div>
+                            </div>
+                        </div>               
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </body>

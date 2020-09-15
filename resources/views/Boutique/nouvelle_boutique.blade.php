@@ -7,7 +7,8 @@
 <title>Nouvelle Boutique</title>
 @include('Components.menu')
 @yield('menu')
-
+@if(Auth::check())
+@if(Auth::user()->objectif == 'fournisseur' && (Auth::user()->confirmer))
 <div class="container">
     <div class="row">
         <div class="container-contact100" >
@@ -267,7 +268,10 @@
         </div>
     </div>
 </div>
-
+@else
+<script>window.location = "/";</script>
+@endif
+@endif
 <script>
 
 $("#boutique_button").click(function(e){

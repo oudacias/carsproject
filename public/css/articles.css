@@ -492,7 +492,6 @@ button[disabled]:hover{
     margin-left: 70px;
     background-color:#f7eee5e0;
     border-radius:20px;
-
 }
 
 .table-details td{
@@ -549,4 +548,15 @@ input[type="radio"]:checked + label > img {
     border-radius: 10px;
     width:100px
 }
-  
+.social img{
+    width:15%;
+    margin-left: 25px;
+    filter: drop-shadow(5px 5px 5px rgba(83, 83, 83, 0.533));
+}
+.social{
+    padding:20px;
+
+}
+a img:hover{
+    filter: brightness(1.2);
+}

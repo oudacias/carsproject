@@ -5,6 +5,7 @@
    animation-duration: 4s;
    animation-fill-mode: both;
    text-align: center;
+   margin-left: 20px;
 }
 @keyframes fadeOut {
    0% {opacity: 1;}
@@ -16,7 +17,7 @@
 .success{
     background-color: #F9DF92;
     color: rgb(66, 62, 1);
-    padding-top: 10px;
+    padding-top: 20px;
     border-radius: 10px;
     text-align: center;
 }

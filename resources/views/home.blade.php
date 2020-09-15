@@ -55,7 +55,7 @@
 
 
 <!-- ********* -->
-<div class="container border-articles">
+<div class="container">
     <h4>Nos Dérniers Articles</h4>
     <div class="row">
     @foreach($artc as $a)

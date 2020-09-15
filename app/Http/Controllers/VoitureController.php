@@ -27,7 +27,8 @@ class VoitureController extends Controller
     public function TrouverBoutique($id)
     {
         $boutique = Boutique::find($id);
-        return view('boutique/boutique_voiture',['boutique'=>$boutique]);
+        $nom_boutique = Boutique::all();
+        return view('boutique/boutique_voiture',['boutique'=>$boutique,'nom_boutique'=>$nom_boutique]);
     }
     public function NumberClick(Request $r)
     {

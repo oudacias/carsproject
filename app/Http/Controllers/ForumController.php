@@ -34,7 +34,10 @@ class ForumController extends Controller
     }
     public function Forum($id){
         $forums = Forum::find($id);
-        return view ('Forum/Forum',['forum'=>$forums]);
+        $forum = Forum::where('theme','=',$forums->theme)
+                        ->where('id','!=',$id)
+                        ->orderBy('created_at','desc')->limit(3)->get();
+        return view ('Forum/Forum',['forum'=>$forums,'otherforums'=>$forum]);
     }
     public function insertComment(Request $r){
         $forum = Forum::find($r->id);

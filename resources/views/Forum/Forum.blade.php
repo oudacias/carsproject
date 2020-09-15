@@ -64,4 +64,33 @@
     </div>
 </div>
 @endforeach
+
+
+@if($otherforums->count())
+<div class="container">
+    <br>
+    <br>
+    <br>
+<h5>Forums qui peuvent vous intéresser</h5>
+    @foreach($otherforums as $f)
+    <div class="row">
+        <div class="col-8">
+            <div class="card user-card">
+                <div class="card-block">
+                    <div class="card-introduction">
+                        <div class="row">
+                            <div class="col-1"><img src="/project_images/qa.png" width="80%"> </div>
+                            <div class="col-8">
+                                <a href="/Forum/Forums/{{$f->id}}"><strong>{{$f->sujet}}</strong></a><br>
+                                {{$f->texte}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+@endif
+</div>
     

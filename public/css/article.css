@@ -9,9 +9,9 @@ body { margin:0px; padding:0px;    background-color:#F9F9F6 !important;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 70%;
-    height: 100%;
-    margin-left: 14%;
+    width: 60%;
+    height: 60%;
+    margin-left: 17%;
     
 }
 
@@ -55,5 +55,20 @@ p img {
         text-align: center;
         width: 100%;
     }
+    .video{
+
+        margin-left: 5%;
+    }
+}
+.cars_article{
+    width:150px;
+    padding: 20px 10px
+}
+.article_card{
+    padding: 10px 50px
 }
 
+.video{
+    width:360;
+    height:320;
+}

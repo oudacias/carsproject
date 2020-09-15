@@ -68,7 +68,10 @@ class ArticleController extends Controller
 
     public function article($id){
         $article = Article::find($id);
-        return view('Articles/Article',['artc'=>$article]);
+        $articles = Article::where('categorie','=',$article->categorie)
+                            ->where('id','!=',$id)
+                            ->orderBy('categorie','desc')->limit(2)->get();
+        return view('Articles/Article',['artc'=>$article,'articles'=>$articles]);
     }
     public function AjouterCategorie(Request $r)
     {

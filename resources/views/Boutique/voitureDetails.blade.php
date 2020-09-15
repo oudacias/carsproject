@@ -25,22 +25,30 @@
                         <td><strong>{{$voiture->user->nom}}</strong></td>
                     </tr>
                     <tr>
-                        <td>Vendeur Email :</td>
-                        <td><strong>{{$voiture->user->email}}</strong></td>
-                    </tr>
-                    <tr>
                         <td>Vendeur Telephone :</td>
                         <form method="POST" action="{{ action('VoitureController@NumberClick') }}">
                             @csrf
                             <input type="hidden" value="{{$voiture->id}}" name="voiture_id"/>
                             <input type="hidden" value="{{$voiture->tel}}" name="voiture_tel"/>
-                            <td><strong>{{$voiture->user->telephone}}</strong> <input type="image" alt="submit" src="/project_images/phone.png" width="25px"></td>
+                            <td><strong>{{$voiture->user->telephone}}</strong> <input type="image" alt="submit" src="/project_images/whatsapp.png" width="25px"></td>
                         </form>
                     </tr>
-                    <tr>
-                        <td style="border: none;">Boutique :</td>
-                        <td style="border: none;"><strong><u><a href="/Boutique/boutique_voiture/{{$voiture->boutique->id}}">{{$voiture->boutique->nom_boutique}} >></a></u></strong></td>
-                    </tr>
+                    
+                    @if($voiture->boutique)
+                        <tr>
+                            <td>Vendeur Email :</td>
+                            <td><strong>{{$voiture->user->email}}</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;">Boutique :</td>
+                            <td style="border: none;"><strong><u><a href="/Boutique/boutique_voiture/{{$voiture->boutique->id}}">{{$voiture->boutique->nom_boutique}} >></a></u></strong></td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td style="border: none;">Vendeur Email :</td>
+                            <td style="border: none;"><strong>{{$voiture->user->email}}</strong></td>
+                        </tr>
+                    @endif
                 </table>
             </div>
         </div>

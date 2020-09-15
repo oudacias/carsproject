@@ -175,7 +175,7 @@ a {
   }
   .divider{
     background: -webkit-linear-gradient(left,#323232, #323232 5%, #F9F9F6 5%, #F9F9F6);
-    min-height: 100%;
+    min-height: 200%;
   }
   .inverted-border-radius {
     position: absolute;
