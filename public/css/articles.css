@@ -278,6 +278,11 @@ textarea.input100 {
 
 /*------------------------------------------------------------------
 [ Responsive ]*/
+.img-form-change{
+    margin-right: 10%;
+    margin-left: 10%;
+
+}
 
 @media (max-width: 768px) {
     .wrap-contact100 {
@@ -288,6 +293,10 @@ textarea.input100 {
 @media (max-width: 576px) {
     .wrap-contact100 {
         padding: 72px 15px 25px 15px;
+    }
+    .mobile-form{
+        width: 3px;
+        font-size: 10px;
     }
 }
 
@@ -478,7 +487,7 @@ button[disabled]:hover{
     outline:0px;
     background:transparent;
     border-bottom: 2px solid black;
-    margin-right:20px
+    margin-right:20px;
 }
 .filter-element{
     color:white;
@@ -559,4 +568,21 @@ input[type="radio"]:checked + label > img {
 }
 a img:hover{
     filter: brightness(1.2);
+}
+.image-boutique-label{
+    font-size:16px;
+    background-color:#FF9901;
+    padding:10px 20px;
+    width:130px;
+    border-radius:20px;
+    text-align: center;
+}
+#pics img{
+    border-radius: 20%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    height: 40px;
+    width: 40;
+    margin-right: 5px;
 }

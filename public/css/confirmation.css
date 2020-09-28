@@ -25,3 +25,10 @@
     background-color: grey;
     color: red;
 }
+
+.notifications{
+    padding-top:30px;
+    background-color: #FC6F21;
+    color: white;
+    border-radius:10px;
+}

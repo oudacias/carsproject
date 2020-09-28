@@ -51,27 +51,4 @@
        
 </div>
 </body>
-
-<script>
-    $(document).ready(function(){
-        $("#autres").hide();
-        $("#nom_boutique").hide();
-    });
-    
-    function showBoutique(){
-        $("#autres").hide();
-        $("#nom_boutique").toggle();
-    }
-    function showAutres(){
-        $("#nom_boutique").hide();
-        $("#autres").toggle();
-
-    }
-
-
-</script>
-
-
-
-
 </html>

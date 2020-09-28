@@ -1,6 +1,9 @@
 <link rel='stylesheet' href="/css/popup.css">
 <link rel='stylesheet' href="/css/confirmation.css">
 <link rel='stylesheet' href="/css/articles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+
 @include('Components.dashboard')
 @yield('dashboard')
 	@if(session('success'))
@@ -10,7 +13,7 @@
 	<form class="contact100-form validate-form" method="post" action="{{ action('ArticleController@AjouterCategorie') }}" enctype="multipart/form-data">
 			@csrf
 			<table>
-		<tr><td style="width:200px"><input class="input100" type="text" name="categorie" placeholder="Ajouter Categorie"></td>
+		<tr><td style="width:200px"><input class="input100" id="categorie" type="text" name="categorie" placeholder="Ajouter Categorie"></td>
 		<td ><input type="image" src="/project_images/add.png" alt="Submit" width="30"></td></tr>
 		<table>
 	</form>
@@ -52,3 +55,13 @@
     </div></div>
   </div>
 
+<script>
+$(document).ready(function(){
+$("form").submit(function(e){
+    if($("#categorie").val().length == 0){
+	  e.preventDefault();
+	}
+});
+});
+
+</script>

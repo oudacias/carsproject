@@ -492,7 +492,7 @@ td{
   border-right: 12px solid transparent;
   border-top: 12px solid #FAB107;
   margin-left: 90%;
-  margin-top: -2%;
+  margin-top: -15px;
 }
 
 .card-width{
@@ -522,4 +522,8 @@ a:link{
 
 a:hover{
   color:#E77C00
+}
+.info-boutique-label{
+  color:#E77C00;
+  text-align: left;
 }

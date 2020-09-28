@@ -25,14 +25,13 @@ class CreateVoituresTable extends Migration
             $table->string('annee');
             $table->string('origine');
             $table->string('kilometrage');
-            $table->string('couleur');
             $table->string('carrosserie');
             $table->string('nbr_porte');
             $table->string('puissance_fiscale');
             $table->string('premiere_main');
             $table->boolean('prepare');
             $table->string('description');
-            $table->float('prix');
+            $table->float('prix')->nullable();
             $table->string('options');
             $table->string('ville');
             $table->string('type')->default('neuve');

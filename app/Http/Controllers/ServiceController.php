@@ -7,6 +7,9 @@ use Auth;
 use App\Servicediagnostic;
 use App\Servicesuivi;
 use DateTime;
+use App\Notificationadmin;
+use App\User;
+use Pusher\Pusher;
 
 
 class ServiceController extends Controller
@@ -52,6 +55,8 @@ class ServiceController extends Controller
     public function afficherSuivi()
     {
         $suivi = Servicesuivi::where('confirmer',false)->get();
+        Notificationadmin::where('type_notification','=','service')->update(['vu'=>true]);
+
         return view('Admin/Admin_suivi',['suivi'=>$suivi]);
     }
     
@@ -92,6 +97,24 @@ class ServiceController extends Controller
         $suivi->pourquoi_type_voiture = $r->pourquoi_type_voiture ;
         $suivi->save();
 
+
+        $notification_service = new Notificationadmin();
+        $admin_id = User::where('role','=','administrateur')->first();
+        $notification_service->admin_id = $admin_id->id;
+        $notification_service->type_notification = 'service';
+        $notification_service->save();
+
+        $options = array(
+            'cluster' => 'mt1',
+            'encrypted' => true
+        );
+        $pusher = new Pusher(
+            'e22834bea53871f1ab35',
+            'e76dc5f68506f1cfe69e',
+            '1075023',
+            $options
+        );
+        $pusher->trigger('notifyadmin', 'notify-event', $notification_service);
         return redirect()->back()->withSuccess('Demande Envoyée avec succès. Merci');
 
     }

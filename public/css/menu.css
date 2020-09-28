@@ -76,7 +76,6 @@ a {
   padding: 28px 20px;
   position: relative;
   user-select: none;      
-  margin-right: 20px;
 
 }
 
@@ -138,7 +137,6 @@ a {
 
 @media (min-width: 74em) {
   .gap{
-    margin-left: 50px;
     padding-top: 80px
   
   }
@@ -148,6 +146,7 @@ a {
 
   .header li {
     float: left;
+    
   }
   .header li a {
     padding: 15px;
@@ -173,29 +172,6 @@ a {
     position: fixed;
     width: 5%;
   }
-  .divider{
-    background: -webkit-linear-gradient(left,#323232, #323232 5%, #F9F9F6 5%, #F9F9F6);
-    min-height: 200%;
-  }
-  .inverted-border-radius {
-    position: absolute;
-    height: 50px;
-    width: 325px;
-    background-color: #ff9800;
-    border-radius: 25px 25px 25px 0;
-    z-index: -1;
-  }
-  .inverted-border-radius::before {
-    content: "";
-    position: absolute;
-    background-color: transparent;
-    bottom: -50px;
-    height: 50px;
-    width: 25px;
-    border-top-left-radius: 25px;
-    box-shadow: 0 -25px 0 0 #ff9800;
-    z-index: -1;
-  }
   .header .logo {
     float: left;
     font-size: 2em;
@@ -207,8 +183,6 @@ a {
 
 }
 
-
-  
   .pic_login {
     position: absolute;
      top:-1px;
@@ -268,8 +242,6 @@ a {
 
 
   }
-
-  
   .dd-menu li:hover {
       text-align: left;
       width: 100%;

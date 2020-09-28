@@ -13,7 +13,23 @@
         <div class="col-md-5">
             <div class="card-block">
                 <div class="user-image car-image">
-                    <img src="{{$voiture->photo}}">
+                    <img id="preview_image" src="{{$voiture->photo}}">
+                    @if($voiture->voitureimage)
+                        <input type="image" onclick="previewImageMain()" value="{{$voiture->photo}}" id="img{{$voiture->id}}" style="width:40px;text-align:center;border:1px solid gray;border-radius:10px" src="{{$voiture->photo}}">
+                        @foreach($voiture->voitureimage as $i)
+                            <input type="image" onclick="previewImage()" value="{{$i->image1}}" id="img{{$i->id}}" style="width:40px;text-align:center;border:1px solid gray;border-radius:10px" src="{{$i->image1}}">
+                            <script>
+                                function previewImage(){
+
+                                    $("#preview_image").attr("src",$("#img{{$i->id}}").val());
+                                }
+                                function previewImageMain(){
+
+                                    $("#preview_image").attr("src",$("#img{{$voiture->id}}").val());
+                                }
+                            </script>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -91,10 +107,6 @@
                             <td><strong>{{$voiture->kilometrage}}</strong></td>
                         </tr>
                         <tr>
-                            <td>Couleur :</td>
-                            <td><strong>{{$voiture->couleur}}</strong></td>
-                        </tr>
-                        <tr>
                             <td>Carrosserie :</td>
                             <td><strong>{{$voiture->carrosserie}}</strong></td>
                         </tr>
@@ -165,4 +177,8 @@ $(document).ready(function(){
     }
 
 });
+
+
+
+                
 </script>

@@ -12,8 +12,7 @@
             <div class="card user-card">
                 <div class="card-block">
                     <div class="card-introduction">
-                    <img class="forum-img" src="{{$forum->user->Userimage->image_path}}">
-
+                    <img class="forum-img" src="{{$user_pic}}">
                         <strong>{{$forum->sujet}}</strong><br><br>
                         {{$forum->texte}} 
                     </div>

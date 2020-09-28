@@ -17,18 +17,18 @@ class VoitureController extends Controller
     public function FormVoiture()
     {
         $user = User::find(Auth::id());
-        return view('boutique/voiture',['user'=>$user]);
+        return view('Boutique/voiture',['user'=>$user]);
     }
     public function VoitureDetails($id)
     {
         $voiture = Voiture::find($id);
-        return view('boutique/voitureDetails',['voiture'=>$voiture]);
+        return view('Boutique/voitureDetails',['voiture'=>$voiture]);
     }
     public function TrouverBoutique($id)
     {
         $boutique = Boutique::find($id);
         $nom_boutique = Boutique::all();
-        return view('boutique/boutique_voiture',['boutique'=>$boutique,'nom_boutique'=>$nom_boutique]);
+        return view('Boutique/boutique_voiture',['boutique'=>$boutique,'nom_boutique'=>$nom_boutique]);
     }
     public function NumberClick(Request $r)
     {

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
     <title>Service Conseil</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,9 +9,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     </head>
-<body>
+
 @include('Components.menu')
 @yield('menu')
+@if(session('success'))
+    <div class="animated fadeOut success">{{session('success')}}</div>
+@endif
 <div class="container">
   <div class="row justify-content-around">
          <div class="col-md-12">
@@ -32,9 +33,6 @@
 </div> 
 <div class="container-contact100">
     <div id="form1" class="wrap-contact100">
-    @if(session('success'))
-		        <div class="animated fadeOut success">{{session('success')}}</div>
-	        @endif
         <form method="POST" action="{{ action('ServiceController@ajoutersuivi') }}" enctype="multipart/form-data">
         @csrf
             <span class="contact100-form-title">Étape 1: Informations Personnelles</span>
@@ -69,7 +67,7 @@
             </div>
             <label>Votre Age</label>   
             <div class="wrap-input100 validate-input">
-                <input class="input100" type="number" name="age">
+                <input class="input100" type="number" id="age" name="age">
                 <span class="focus-input100"></span>
             </div>
             <div class="wrap-input100">
@@ -86,9 +84,7 @@
             <span class="focus-input100"></span>
             </div>
             <div class="container-contact100-form-btn">
-                <button type="button" id="nextform2" class="contact100-form-btn" >
-                    Suivant
-                </button>
+                <img src="/project_images/arrow_right.png" type="button" id="nextform2" width="10%" height="10%" class="img-form-change" />
             </div>
             </div>
             <div id="form2" class="wrap-contact100">
@@ -135,11 +131,8 @@
                 </div>
 
                 <div class="container-contact100-form-btn">
-                    <button type="button" id="previousform1" class="contact100-form-btn">
-                        Précédent
-                    </button> &nbsp&nbsp&nbsp&nbsp
-                    <button type="button" id="nextform3" class="contact100-form-btn">
-                        Suivant
+                    <img src="/project_images/arrow_left.png" type="button" id="previousform1" width="10%" height="10%" class="img-form-change"/>
+                    <img src="/project_images/arrow_right.png" type="button" id="nextform3" width="10%" height="10%" class="img-form-change">
                     </button>
                 </div>
             </div>
@@ -189,12 +182,8 @@
                     <span class="focus-input100"></span>
                 </div>
                 <div class="container-contact100-form-btn">
-                    <button type="button" id="previousform2" class="contact100-form-btn">
-                        Précédent
-                    </button> &nbsp&nbsp&nbsp&nbsp
-                    <button id="submit" class="contact100-form-btn">
-                        Envoyer
-                    </button>
+                    <img src="/project_images/arrow_left.png"  type="button" id="previousform2" width="10%" height="10%" class="img-form-change"/>
+                    <input type="image" src="/project_images/send.png" alt="submit" type="submit" width="10%" height="10%" class="img-form-change"/>
                 </div>
             </div>
         </form>
@@ -221,6 +210,19 @@
             $("#form3").fadeOut();
             $("#form2").fadeIn();
         });
+
+        $("#tel,#age").on("keypress keyup blur",function (event) {    
+           $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
+
+
+
+
+
         $("#nextform2").click(function(){
         if($("#nom").val().length == 0){
             $("#alert1").show();
@@ -303,7 +305,7 @@
         }else{
             $("#alert11").hide();
         }
-        if($("#finacement").val().length == 0){
+        if($("#financement").val().length == 0){
             $("#alert12").show();
             document.getElementById("alert12").style.color = "red";
             e.preventDefault();

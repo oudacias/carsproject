@@ -96,6 +96,12 @@ Route::get('User/SupprimerForum/{id}', 'UserController@SupprimerForum');
 Route::get('User/SupprimerCommentaire/{id}', 'UserController@SupprimerCommentaire');
 Route::get('User/AjouterArticle/{id}', 'UserController@AjouterArticle');
 Route::get('User/SupprimerFavoris/{id}', 'UserController@SupprimerFavoris');
+Route::post('profile/modifyBoutique', 'BoutiqueController@modifyBoutique');
+Route::get('profile/supprimerBoutique/{id}', 'BoutiqueController@supprimerBoutique');
+Route::post('profile/modifierImage/', 'BoutiqueController@modifierImage');
+Route::get('modifierProfile', 'UserController@modifiermonProfile');
+Route::post('modifierProfile', 'UserController@modifiermyProfile');
+Route::get('close_notif/{id}', 'ForumController@closeNotification');
 });
 
 
@@ -113,3 +119,5 @@ Route::get('/', function(){
 
 
 
+
+Route::get('send-mail', 'UserController@sendEmail');

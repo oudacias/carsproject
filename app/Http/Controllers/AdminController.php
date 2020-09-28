@@ -12,6 +12,7 @@ use App\Servicesuivi;
 use App\Voiture;
 use App\Contact;
 use App\Voitureoccasion;
+use App\Notificationadmin;
 
 class AdminController extends Controller
 {
@@ -71,7 +72,10 @@ class AdminController extends Controller
     public function listusers(){
         $users = User::where('confirmer','=',false)
                         ->where('role','=','utilisateur')
+                        ->whereIn('objectif',['fournisseur','particulier'])
                         ->orderBy('created_at','desc')->get();
+        Notificationadmin::whereIn('type_notification',['fournisseur','particulier'])->update(['vu'=>true]);
+        
         return view('Admin/Admin_users',['user'=>$users]);
     }
     public function SupprimerUser($id){

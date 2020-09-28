@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="/css/card.css">
 <link rel="stylesheet" href="/css/popup.css">
 <link rel="stylesheet" href="/css/articles.css">
+<link rel="stylesheet" href="/css/confirmation.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <title>Nouvelle Boutique</title>
@@ -9,24 +10,34 @@
 @yield('menu')
 @if(Auth::check())
 @if(Auth::user()->objectif == 'fournisseur' && (Auth::user()->confirmer))
+
 <div class="container">
+@if(session('success'))
+		<div class="animated fadeOut success">{{session('success')}}</div>
+@endif
     <div class="row">
         <div class="container-contact100" >
             <div class="wrap-forum">
                 <form method="post" action="{{ action('BoutiqueController@ajouterBoutique') }}" enctype="multipart/form-data">
                     @csrf
                     <h4>Nouvelle Boutique</h4>
-                    <div class="wrap-input100">
-                        <input class="input100" type="text" name="nom_boutique" placeholder="Nom Boutique" required>
+                    <label>Le nom de le boutique</label>
+                    <br>
+                    <span style="color: red" class="alert" id="alert1">Veuillez Remplire ce Champ</span> 
+                    <div class="wrap-input100 validate-input">
+                        <input class="input100" type="text" id="nom_boutique" name="nom_boutique">
                         <span class="focus-input100"></span>
                     </div>
-                    <div class="wrap-input100">
-                        <textarea class="input100_forum" style="height:80px" name="description_boutique" placeholder="Description Boutique" required></textarea>
+                    <label>Description de le boutique</label>
+                    <br>
+                    <span style="color: red" class="alert" id="alert2">Veuillez Remplire ce Champ</span> 
+                    <div class="wrap-input100 validate-input">
+                        <textarea class="input100_forum" style="height:80px" id="description_boutique" name="description_boutique"></textarea>
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100">
                         <div style="color:#999999">Ville</div>
-                        <select class="input100" name="ville">
+                        <select class="input100" name="ville_boutique">
                             <option title="agadir" value="agadir">AGADIR</option>
                                 
                             <option title="ait benhaddou" value="ait benhaddou">AIT BENHADDOU</option>
@@ -252,13 +263,16 @@
                     </div>
                     <div class="image-upload">
                         <label for="file-input1">Ajouter Image de la boutique
+                            <br>
+                        <span style="color: red" class="alert" id="alert3">Veuillez Insérer une image</span> 
+                        <br>
                             <img src="/project_images/garage.png"/>
                         </label>
-                        <input id="file-input1" type="file" name="boutique_image" accept="image/x-png,image/jpeg" required/>
+                        <input id="file-input1" onchange="loadFile(event)" type="file" name="boutique_image" accept="image/x-png,image/jpeg"/>
+                        <img style="width:40px;margin-left:-110px" id="preview_image"/>
                     </div>
-                    <div id="alert_boutique" style="font-size:10px;color:red"></div>
                     <div class="container-contact100-form-btn">
-                        <button id="boutique_button" class="contact100-form-btn">
+                        <button type="submit" id="boutique_button" class="contact100-form-btn">
                             Ajouter
                         </button>
                     </div>
@@ -273,12 +287,46 @@
 @endif
 @endif
 <script>
+$("#alert1").hide();
+$("#alert2").hide();
+$("#alert3").hide();
 
-$("#boutique_button").click(function(e){
+var loadFile = function(event) {
+    if($('#file-input1').val().length > 0){
+        var output = document.getElementById('preview_image');
+        output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) 
+            }
+    }else{
+        $("#file-input1").val(null);
+        $( "#preview_image" ).hide();
+    }
+};
+
+
+
+
+$("form").submit(function(e){
     if($("#file-input1").val().length == 0){
         e.preventDefault();
-        $( "#alert_boutique" ).text( "Veuillez ajouter une image" );            
+        $( "#alert3" ).show();            
+    }else{
+        $("#alert3").hide();
     }
+    if($("#nom_boutique").val().length == 0){
+        e.preventDefault();
+        $( "#alert1" ).show();
+    }else{
+        $("#alert1").hide();
+    }
+    if($("#description_boutique").val().length == 0){
+        e.preventDefault();
+        $( "#alert2" ).show();
+    }else{
+        $("#alert2").hide();
+    }
+
 });
 
 

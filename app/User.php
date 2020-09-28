@@ -63,7 +63,17 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Voiture','user_id');
     }
-    
-
+    public function notificationforum()
+    {
+        return $this->hasMany('App\Notificationforum','user_id')->where('vu','=', false);
+    }
+    public function notificationadminservice()
+    {
+        return $this->hasMany('App\Notificationadmin','admin_id')->where('vu','=', false)->where('type_notification','=','service');
+    }
+    public function notificationadminuser()
+    {
+        return $this->hasMany('App\Notificationadmin','admin_id')->where('vu','=', false)->whereIn('type_notification',['fournisseur','particulier']);
+    }
 
 }

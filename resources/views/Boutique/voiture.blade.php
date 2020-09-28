@@ -108,9 +108,7 @@
                 </select>
             </div>
             <div class="container-contact100-form-btn">
-                <button type="button" id="nextform2" class="contact100-form-btn">
-                    Suivant
-                </button>
+                    <img src="/project_images/arrow_right.png" type="button" id="nextform2" width="10%" height="10%" class="img-form-change" />
             </div>
         </div>
         <div id="form2">
@@ -127,17 +125,11 @@
             </div>
             <label>Kilométrage de la voiture</label>
             <br>
-            <span class="alert" id="alert3">Veuillez Remplire ce Champ</span>  
             <div class="wrap-input100 validate-input">
-                <input id="km" class="input100" type="text" name="kilometrage" />
                 <span class="focus-input100"></span>
-            </div>
-            <label>Couleur de la voiture</label>
-            <br>
-            <span class="alert" id="alert4">Veuillez Remplire ce Champ</span>  
-            <div class="wrap-input100 validate-input">
-                <input id="couleur" class="input100" type="text" name="couleur" />
-                <span class="focus-input100"></span>
+                <select id="kilometrage" class="input100" name="kilometrage">
+                    
+                </select>
             </div>
             <label>Carrosserie</label>
             <div class="wrap-input100 validate-input">
@@ -172,13 +164,10 @@
                 </select>
             </div>
             <div class="container-contact100-form-btn">
-            <button type="button" id="previousform1" class="contact100-form-btn">
-                Précédent
-            </button> &nbsp&nbsp&nbsp&nbsp
-            <button type="button" id="nextform3" class="contact100-form-btn">
-                Suivant
-            </button>
-        </div>
+                    <img src="/project_images/arrow_left.png" type="button" id="previousform1" width="10%" height="10%" class="img-form-change"/>
+                    <img src="/project_images/arrow_right.png" type="button" id="nextform3" width="10%" height="10%" class="img-form-change">
+                    
+            </div>
         </div>
         
 
@@ -205,14 +194,14 @@
             </div>
             <label>Description Véhicule</label>
             <br>
-            <span class="alert" id="alert5">Veuillez Remplire ce Champ</span>    
+            <span class="alert" id="alert3">Veuillez Remplire ce Champ</span>    
             <div class="wrap-input100 validate-input">
-                <input id="description" class="input100" type="text" name="description"/>
+                <textarea id="description" class="input100" type="text" style="min-height:150px" name="description"></textarea>
                 <span class="focus-input100"></span>
             </div>
             <label>Options Véhicule</label>
             <br>
-            <span class="alert" id="alert6">Veuillez Remplire ce Champ</span>    
+            <span class="alert" id="alert4">Veuillez Remplire ce Champ</span>    
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -271,7 +260,6 @@
             <br>
             <label>Prix de la voiture</label> 
             <br>
-            <span class="alert" id="alert7">Veuillez Remplire ce Champ</span>   
             <div class="wrap-input100 validate-input">
                 <input id="prix" class="input100" type="number" name="prix"/>
                 <span class="focus-input100"></span>
@@ -512,83 +500,129 @@
 						<option title="autre" value="autre">AUTRE</option>
                 </select>
             </div>
-            
-            <div class="wrap-input100 validate-input">
-                <label>Image Voiture</label><br />
-                <br>
-                <span class="alert" id="alert8">Veuillez Remplire ce Champ</span>  
-                <br />
-                <input id="image" class="input100" type="file" name="voiture_image" accept="image/x-png,image/jpeg"/>
-                <span class="focus-input100"></span>
-            </div>
-            <div class="image-upload">
-                <label for="image1">Autres Images<br>
-                    <img src="/project_images/addCar.png"/>
-                </label>
-                <input id="image1" type="file" name="image1" accept="image/x-png,image/jpeg"/>
-            </div>
-            <div id="images2" class="image-upload">
-                <label id="label2" for="image2"><br>
-                    <img src="/project_images/addCar.png"/>
-                </label>
-                <input id="image2" type="file" name="image2" accept="image/x-png,image/jpeg"/>
-            </div>
-            <div id="images3" class="image-upload">
-                <label id="label3" for="image3"><br>
-                    <img src="/project_images/addCar.png"/>
-                </label>
-                <input id="image3" type="file" name="image3" accept="image/x-png,image/jpeg"/>
-            </div>
-            <label>Voiture Occasion ?</label>
-            <div class="wrap-input100 validate-input">
-                <span class="focus-input100"></span>
-                <select id="occasion" class="input100" name="occasion">
-                    <option value="1">Oui</option>
-                    <option value="0" selected>Non</option>                                  
-                </select>
-            </div>
-            <div id="occasion_container">
-                <label>Etat de la voiture</label>
-                <br>
-                <span class="alert" id="alert9">Veuillez Remplire ce Champ</span>   
-                <div class="wrap-input100 validate-input">
-                    <input id ="etat" class="input100" type="text" name="etat"/>
-                    <span class="focus-input100"></span>
-                </div>
+                <label>Image Voiture</label>
+                    <br>
+                <span id="alert5" class="alert">Veuillez Remplire ce Champ</span>
+                <input id="image" onchange="loadFile(event)" type="file" name="voiture_image" accept="image/x-png,image/jpeg"/>
+                <img style="width:40px;margin-top:65px;float:left" id="preview_image"/>
+                <div id="other_pics" class="image-upload">
+                    <label for="file-input">
+                        <img style="width:40px;margin-top:35px;margin-left:50px;float:left" src="/project_images/add_image.png"/>
+                    </label>
+                    <input id="file-input" type="file" onclick="resetFile();" name="other_images[]"  accept="image/x-png,image/jpeg" multiple/>
 
+                </div>
+                <div id="pics" class="other_pic_preview"></div>
+                <br>
+                <span id="o_pics" class="alert">Ajouter 4 photos maximum</span>
+                <script>
+                    function resetFile(){
+                        $("#file-input").val(null);
+                        $( ".other_pic_preview" ).empty();
+                    }
+                    var loadFile = function(event) {
+                        if($('#image').val().length > 0){
+                            var output = document.getElementById('preview_image');
+                            output.src = URL.createObjectURL(event.target.files[0]);
+                                $('#other_pics').show();
+                                $('#o_pics').show();
+                                $( "#preview_image" ).show();
+                                output.onload = function() {
+                                    URL.revokeObjectURL(output.src) 
+                                }
+                        }else{
+                            $('#other_pics').hide();
+                            $("#o_pics").hide();
+                            $("#image").val(null);
+                            $("#file-input").val(null);
+                            $( "#preview_image" ).hide();
+                            $( "#pics" ).hide();
+                        }
+                    };
+                    $(function() {
+                        var imagesPreview = function(input, placeToInsertImagePreview) {
+                            if (input.files) {
+                                var filesAmount = input.files.length;
+                                if(filesAmount < 5){
+                                    $("#o_pics").hide();
+                                    for (i = 0; i < filesAmount; i++) {
+                                        var reader = new FileReader();
+                                        reader.onload = function(event) {
+                                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);  
+                                        }
+                                        reader.readAsDataURL(input.files[i]);
+                                    }
+                                }else{
+                                    $("#o_pics").show();
+                                    document.getElementById("o_pics").style.color = "red";
+                                }
+                            }
+                        };
+                        $('#file-input').on('change', function() {
+                            imagesPreview(this, 'div.other_pic_preview');
+                        });
+                    });
+                </script>
+                <br>
+                <br>
+                <label>Voiture Occasion ?</label>
+                <div class="wrap-input100 validate-input">
+                    <span class="focus-input100"></span>
+                    <select id="occasion" class="input100" name="occasion">
+                        <option value="1">Oui</option>
+                        <option value="0" selected>Non</option>                                  
+                    </select>
+                </div>
+                <div id="occasion_container">
+                    <label>Etat de la voiture</label>
+                    <div class="wrap-input100 validate-input">
+                        <input id ="etat" class="input100" type="text" name="etat"/>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                </div>
+                <div class="container-contact100-form-btn">
+                    <img src="/project_images/arrow_left.png"  type="button" id="previousform2" width="10%" height="10%" class="img-form-change"/>
+                    <input type="image" src="/project_images/send.png" alt="submit" type="submit" width="10%" height="10%" class="img-form-change"/>
+                </div>
             </div>
-            <div class="container-contact100-form-btn">
-                <button class="contact100-form-btn">
-                    Ajouter
-                </button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 <script>
     $(document).ready(function(){
         var current_year = new Date().getFullYear();
-        for(var i = 1960; i <= current_year;i++){
+        for(var i = current_year; i >= 1996;i--){
             $('#annee').append(`<option value="`+i+`">`+i+`</option>`);
         }
 
         for(var i = 2 ; i< 52 ; i++){
             $('#fiscale').append(`<option>`+i+` CV</option>`);
         }
+        for(var i = 0 ; i<= 450000 ; i++){
+            if( i < 200000){
+                $('#kilometrage').append(`<option>`+i+` - `+(i+4999)+` </option>`);
+                i = i + 4999
+            }else if(i >= 200000){
+                $('#kilometrage').append(`<option>`+i+` - `+(i+49999)+` </option>`);
+                i = i + 49999
+            }
+        }
+        $('#kilometrage').append(`<option>Plus de 500000 </option>`);
 
-        for(var i=0; i<10; i++){
+        for(var i=0; i<6; i++){
             $("#alert"+i).hide();
         }
 
-        $("#form1").show();
-        $("#form2").hide();
+        $("#o_pics").hide();
+        $("#form1").hide();
+        $("#form2").show();
         $("#form3").hide();
         $("#occasion_container").hide();
+        $('#other_pics').hide();
 
 
         $("#voiture").hide();
-        $("#images2").hide();
-        $("#images3").hide();
         var options = $("#marque option"); 
             options.detach().sort(function(a, b) { 
                 var at = $(a).text(); 
@@ -1279,12 +1313,6 @@
                 $("#occasion_container").hide();
             }
         });
-
-
-        
-
-
-
         $("#previousform1").click(function(){
             $("#form2").hide();
             $("#form1").show();
@@ -1294,17 +1322,7 @@
             $("#form3").fadeOut();
             $("#form2").fadeIn();
         });
-        $('#image1').bind('change', function() {
-		    if(image1.size > 0){
-                $("#images2").show();
-                $('#image2').bind('change', function() {
-                    if(image2.size > 0){
-                        $("#images3").show();
-                    }
-                });
-            }
-        });
-
+        
         $("#nextform2").click(function(){
         if($("#marque").val() == "0"){
             $("#alert1").show();
@@ -1324,53 +1342,44 @@
         }
     });
         $("#nextform3").click(function(){
-        $("#occasion_container").hide();
-        if($("#km").val().length == 0){
+            $("#occasion_container").hide();
+            $("#form2").hide();
+            $("#form3").show();
+        });
+    
+    $("form").submit(function(e){  
+        if($("#description").val().length == 0){
             $("#alert3").show();
             document.getElementById("alert3").style.color = "red";
+            e.preventDefault();
         }else{
             $("#alert3").hide();
         }
-        if($("#couleur").val().length == 0){
+        if(!$('[type="checkbox"]').is(":checked")){
             $("#alert4").show();
             document.getElementById("alert4").style.color = "red";
+            e.preventDefault();
         }else{
             $("#alert4").hide();
-        }
-        if($("#km").val().length > 0 && $("#couleur").val().length > 0){
-            $("#form2").hide();
-            $("#form3").show();
-        }
-    });
-    $("form").submit(function(e){  
-        if($("#description").val().length == 0){
+        } 
+        if($("#image").val().length == 0){
             $("#alert5").show();
             document.getElementById("alert5").style.color = "red";
             e.preventDefault();
         }else{
             $("#alert5").hide();
         }
-        if(!$('[type="checkbox"]').is(":checked")){
-            $("#alert6").show();
-            document.getElementById("alert6").style.color = "red";
-            e.preventDefault();
+        if($("#image").val().length != 0){
+            if($('#file-input')[0].files.length >5){
+                document.getElementById("o_pics").style.color = "red";
+                e.preventDefault();
+            }else{
+                $("#o_pics").hide();
+            }
         }else{
-            $("#alert6").hide();
-        } 
-        if($("#prix").val().length == 0){
-            $("#alert7").show();
-            document.getElementById("alert7").style.color = "red";
-            e.preventDefault();
-        }else{
-            $("#alert7").hide();
-        } 
-        if($("#image").val().length == 0){
-            $("#alert8").show();
-            document.getElementById("alert8").style.color = "red";
-            e.preventDefault();
-        }else{
-            $("#alert8").hide();
-        } 
+            $("#o_pics").hide();
+        }
+        
         
     }); 
 

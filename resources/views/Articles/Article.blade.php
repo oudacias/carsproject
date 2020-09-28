@@ -67,6 +67,9 @@
                 <div class="social__item">
                     <span class="fa fa-twitter" data-social="tw"></span>
                 </div>
+                <div class="social__item">
+                    <span class="fa fa-twitter" data-social="ig"></span>
+                </div>
             </div>
             @if($articles->count())
             <div class="container">

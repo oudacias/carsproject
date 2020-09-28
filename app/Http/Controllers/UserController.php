@@ -36,7 +36,6 @@ class UserController extends Controller
         $voiture->annee = $r->annee;
         $voiture->origine = $r->origine;
         $voiture->kilometrage = $r->kilometrage;
-        $voiture->couleur = $r->couleur;
         $voiture->carrosserie = $r->carrosserie;
         $voiture->nbr_porte = $r->nbt_porte;
         $voiture->puissance_fiscale = $r->puissance_fiscale;
@@ -67,26 +66,20 @@ class UserController extends Controller
             $voitureo->etat = $r->etat;
             $voitureo->save();
         }
-        if($r->image1){
-            $voiturei = new Voitureimage();
-            $voiturei->voiture_id=$voiture->id;
-            $image_path = $voiture->id.$dt->format('H_i_s').'.'.$r->file('image1')->getClientOriginalExtension();
-            $r->file('image1')->move(public_path('/image_uploads'), $image_path);
-            $voiturei->image1='/image_uploads/'.$image_path;
-            if($r->image2){
-                $image_path = $voiture->id.$dt->format('H_i_s').'.'.$r->file('image2')->getClientOriginalExtension();
-                $r->file('image2')->move(public_path('/image_uploads'), $image_path);
-                $voiturei->image2='/image_uploads/'.$image_path;
-                if($r->image3){
-                    $image_path = $voiture->id.$dt->format('H_i_s').'.'.$r->file('image3')->getClientOriginalExtension();
-                    $r->file('image3')->move(public_path('/image_uploads'), $image_path);
-                    $voiturei->image3='/image_uploads/'.$image_path;
-                }
+        if($r->file('other_images')){
+            foreach ($r->file('other_images') as $images){
+                $voiturei = new Voitureimage();
+                $voiturei->voiture_id=$voiture->id;
+                $image_path = $voiture->id.$dt->format('H_i_s').'.'.$images->getClientOriginalExtension();
+                $images->move(public_path('/image_uploads'), $image_path);
+                $voiturei->image1='/image_uploads/'.$image_path;
+                $voiturei->save();
             }
-            $voiturei->save();
         }
 
         return redirect()->back()->withSuccess('Voiture Ajoutée');
+        
+        
     
     }
     public function removeCar($id)
@@ -238,18 +231,47 @@ class UserController extends Controller
             }
             $nom_boutique = Boutique::all();
            if($voiture->count()){
-                return view('boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique]);
+                return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique]);
             }else{
                 return redirect()->back()->withSuccess('Pas de voiture trouvée');
             }
+    }
+    public function rechercheB($id)
+    {
+        $voiture = Voiture::where('boutique_id','=',$id)->get();
+        $nom_boutique = Boutique::all();
+        return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique]);
+    }
+    public function modifiermonProfile()
+    {
+        return view('modifierProfile');
+    }
+    public function modifiermyProfile(Request $r)
+    {
+        $user = User::find(Auth::id());
+        $email = User::where('email','=',$r->email)->where('id','!=',$user->id)->get();
+        if($email->count()==0){
+            $user->nom = $r->nom;
+            $user->prenom = $r->prenom;
+            $user->email = $r->email;
+            $user->telephone = $r->tel;
+            $user->save();
+            return redirect()->back()->withSuccess('Compte modifié');
+        }else{
+            return redirect()->back()->withSuccess('Email déjà utilisé');
         }
-        public function rechercheB($id)
-        {
-            $voiture = Voiture::where('boutique_id','=',$id)->get();
-            $nom_boutique = Boutique::all();
-            return view('boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique]);
-        }
-    
+    }
+    public function sendEmail()
+    {
+        $details = [
+            'title' => 'Mail from ItSolutionStuff.com',
+            'body' => 'This is for testing email using smtp'
+        ];
+       
+        \Mail::to('houdalemkiri@gmail.com')->send(new \App\Mail\MyTestMail($details));
+       
+        dd("Email is Sent.");
+    }
     
     
 }

@@ -9,6 +9,12 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Userimage;
+
+use App\Notificationadmin;
+use Pusher\Pusher;
+
+
+
 class RegisterController extends Controller
 {
     /*
@@ -81,13 +87,41 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         
-        $image = new Userimage();
-        $image->user_id = $user->id;
-        $image->image_path = "/project_images/hellocar.png";
-        $image->save();
-        return $user;
+            $image = new Userimage();
+            $image->user_id = $user->id;
+            $image->image_path = "/project_images/hellocar.png";
+            $image->save();
+
+
+            if($data['objectif'] == 'fournisseur' or $data['objectif'] == 'particulier'){
+                $notification_service = new Notificationadmin();
+                $admin_id = User::where('role','=','administrateur')->first();
+                $notification_service->admin_id = $admin_id->id;
+                $notification_service->type_notification = $data['objectif'];
+                $notification_service->save();
+
+                $options = array(
+                    'cluster' => 'mt1',
+                    'encrypted' => true
+                );
+                $pusher = new Pusher(
+                    'e22834bea53871f1ab35',
+                    'e76dc5f68506f1cfe69e',
+                    '1075023',
+                    $options
+                );
+                $pusher->trigger('notifyadmin', 'notify-event', $notification_service);
             }
-            return view('Admin/Nouvel_article');
+
+
+
+
+
+
+            return $user;
+            }
+            
+
 
             
 
