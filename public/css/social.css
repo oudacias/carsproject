@@ -1,40 +1,14 @@
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
-
-
-.social__item {
-  display: inline-block;
-  margin: 10px;
-}
-.social .fa {
-  background:#F6E2B5 ;
-  border-radius: 35px;
-  color: #818181;
+.twitter-share, .facebook-share {
+  background: #fff;
+  color: rgb(2, 57, 73);
   cursor: pointer;
-  display: block;
-  font-size: 30px;
-  height: 70px;
-  line-height: 70px;
-  position: relative;
-  text-align: center;
-  transition: all 0.2s;
-  width: 70px;
+  display: inline-block;
+  padding: 1em 2em;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
 }
-.social .fa:after {
-  color: #818181;
-  font-size: 14px;
-  left: 0;
-  line-height: 20px;
-  position: absolute;
-  text-align: center;
-  top: 100%;
-  width: 100%;
-}
-.social .fa-facebook:hover {
-  box-shadow: 0 0 15px rgba(59, 89, 152, 0.5) inset;
-  color: #3b5998;
-}
-
-.social .fa-twitter:hover {
-  box-shadow: 0 0 15px rgba(0, 172, 237, 0.5) inset;
-  color: #00aced;
+  
+.twitter-share:hover, .facebook-share:hover {
+  color: #FAB107;
+  
 }

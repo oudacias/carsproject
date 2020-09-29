@@ -13,8 +13,24 @@
 @yield('menu')
 @yield('recherche')
 
-    <h2>&nbsp;&nbsp;&nbsp;&nbsp;{{$boutique->nom_boutique}}</h2>
+   
+
 <div class="container other-sides">
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;{{$boutique->nom_boutique}}</h2>
+<br>
+<div class="description-border">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-block">
+                    <div class="card-introduction">
+                        <p class="m-t-24 text-muted"><strong>Description :</strong>{{$boutique->description_boutique}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @if($boutique->voiture->count())
     @foreach($boutique->voiture as $v)
     <div class="boutique-border">

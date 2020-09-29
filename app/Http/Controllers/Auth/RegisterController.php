@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'nom' => ['required', 'string', 'max:255'],
             'prenom' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            //'telephone' => ['required', 'integer', 'max:255'],
+            'telephone' => ['required', 'string', 'max:255'],
             'role' => ['required','string','max:255'],
             'objectif' => ['required','string','max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -81,15 +81,15 @@ class RegisterController extends Controller
             'nom' => $data['nom'],
             'prenom' => $data['prenom'],
             'email' => $data['email'],
+            'telephone' => '212' .$data['telephone'],
             'role' => $data['role'],
             'objectif' => $data['objectif'],
-            'telephone' => '212' .$data['telephone'],
             'password' => Hash::make($data['password']),
         ]);
         
             $image = new Userimage();
             $image->user_id = $user->id;
-            $image->image_path = "/project_images/hellocar.png";
+            $image->image_path = "/project_images/carCartoon.png";
             $image->save();
 
 
@@ -112,12 +112,6 @@ class RegisterController extends Controller
                 );
                 $pusher->trigger('notifyadmin', 'notify-event', $notification_service);
             }
-
-
-
-
-
-
             return $user;
             }
             

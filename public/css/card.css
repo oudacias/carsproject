@@ -370,6 +370,11 @@ td{
   margin-left:10%;
   padding-left:20px;
 }
+.description-border{
+  border-radius: 10px;
+  border: 0.5px solid grey;
+  width:50%;
+}
 .boutique-border{
   position: relative;
   border-color:#fa7c30;
@@ -442,7 +447,9 @@ td{
     margin-top:2%;
   }
 
-
+.description-border{
+  width: 90%;
+}
 
 .boutique-border{
   width: 90%;

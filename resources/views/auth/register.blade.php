@@ -34,15 +34,15 @@
               </span>
           @endif
       </div>
-      <div class="wrap-input100 validate-input" data-validate="Please enter your name">
+      <div class="wrap-input100 validate-input">
         <label for="cars">Objectif de l'insription </label><br><br><br>
-        <select class="select-form" name="objectif">
+        <select class="select-form" id="objectif" name="objectif">
           <option value="fournisseur">Fourisseur</option>
           <option value="particuler">Vendeur Particulier</option>
           <option value="standard">Standard</option>
         </select>
       </div>
-      <span id="spantel" style="color:red">Veuillez entrer un numéro valide</span>
+      <span id="spantel" style="color:red">Veuillez entrer un numéro de 10 numéros</span>
       <div class="wrap-input100 validate-input">
         <label style="position:absolute;top:22px">+212</label><input style="padding-left:45px" id='telephone' class="input100" type="number" name="telephone" placeholder="Téléphone">
         <span class="focus-input100"></span>
@@ -74,9 +74,9 @@
     $("#spanpassconfirm").hide();
   
   $("form").submit(function(e){
+  
     if($("#telephone").val().length != 10){
       e.preventDefault();
-      console.log("1")
       $("#spantel").show();
     }else{
       $("#spantel").hide();

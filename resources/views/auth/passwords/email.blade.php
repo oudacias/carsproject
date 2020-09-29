@@ -11,9 +11,15 @@
 @yield('menu')
 <div class="container-contact100">
     <div class="wrap-contact100">
+   
         <form method="POST" action="{{ route('password.email') }}">
         @csrf
             <span class="contact100-form-title">Confirmer Email</span>
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    <span>Un email est envoyé à cette adresse</span>
+                </div>
+            @endif
             <div class="wrap-input100 validate-input">
                 <input id='email' class="input100" type="text" name="email" placeholder="Votre Email">
                 <span class="focus-input100"></span>

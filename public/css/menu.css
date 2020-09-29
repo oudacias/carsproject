@@ -13,7 +13,10 @@ a {
   width: 10%;
   z-index: 3;
 }
-
+.brand-name{
+  color:white;
+  font-size:14px;
+}
 .header {
   background-color: #ff9800;
   box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
@@ -141,7 +144,10 @@ a {
   
   }
   
-
+  .brand-name{
+    color:white;
+    font-size:18px;
+  }
 
 
   .header li {

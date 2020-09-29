@@ -71,7 +71,7 @@
     </a>
   </div>
 </div>
-  <a href="/" class="logo" style="color:white;font-size:16px">ELAMDASSI ON CARS</a>
+  <a href="/" class="logo" style="color:white;font-size:90%">ELAMDASSI ON CARS</a>
   <input class="menu-btn" type="checkbox" id="menu-btn" />
   <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
   <ul class="menu">

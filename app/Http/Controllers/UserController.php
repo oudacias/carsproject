@@ -15,6 +15,7 @@ use App\Forum;
 use DateTime;
 use DB;
 use App\Article;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -261,17 +262,5 @@ class UserController extends Controller
             return redirect()->back()->withSuccess('Email déjà utilisé');
         }
     }
-    public function sendEmail()
-    {
-        $details = [
-            'title' => 'Mail from ItSolutionStuff.com',
-            'body' => 'This is for testing email using smtp'
-        ];
-       
-        \Mail::to('houdalemkiri@gmail.com')->send(new \App\Mail\MyTestMail($details));
-       
-        dd("Email is Sent.");
-    }
-    
     
 }

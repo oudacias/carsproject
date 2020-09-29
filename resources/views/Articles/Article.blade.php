@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/css/article.css">
     <link rel="stylesheet" type="text/css" href="/css/social.css">
     <link rel="stylesheet" type="text/css" href="/css/popup.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='https://rawgit.com/Belyash/jquery-social-buttons/master/src/jquery.social-buttons.min.js'></script>
 </head>
@@ -59,18 +60,9 @@
                     </div>
                 </div>          
             @endif
-            <h5 style="color:#FAB107">Partagez l'article : </h5>
-            <div class="social">
-                <div class="social__item">
-                    <span class="fa fa-facebook" data-social="fb"></span>
-                </div>
-                <div class="social__item">
-                    <span class="fa fa-twitter" data-social="tw"></span>
-                </div>
-                <div class="social__item">
-                    <span class="fa fa-twitter" data-social="ig"></span>
-                </div>
-            </div>
+            <p style="color:#FAB107">Partagez l'article :
+            <span class="twitter-share" data-js="twitter-share"><i class="fab fa-twitter"></i>&nbsp; Partager sur Twitter</span>
+            <span class="facebook-share" data-js="facebook-share"><i class="fab fa-facebook"></i>&nbsp; Partager sur Facebook</span>
             @if($articles->count())
             <div class="container">
                 <h4>Articles qui peuvent vous intéresser</h4>
@@ -94,20 +86,32 @@
     </div>
 </body>
 <script>
-$(function () {
-    $('[data-social]').socialButtons({
-    url: "{{$artc->titre}} " + "www.google.com"
-  });
-});
+
 
 $(document).ready(function(){
-   
-
-
     var url = $("#youtube").val();
     url = url.split('v=')[1];
     $("#video")[0].src = "https://www.youtube.com/embed/" + url;
     $("#video").show();
+
+
+    var twitterShare = document.querySelector('[data-js="twitter-share"]');
+
+    twitterShare.onclick = function(e) {
+    e.preventDefault();
+    var twitterWindow = window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup', 'height=350,width=600');
+    if(twitterWindow.focus) { twitterWindow.focus(); }
+        return false;
+    }
+
+    var facebookShare = document.querySelector('[data-js="facebook-share"]');
+
+    facebookShare.onclick = function(e) {
+    e.preventDefault();
+    var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600');
+    if(facebookWindow.focus) { facebookWindow.focus(); }
+        return false;
+    }
 });
 </script>
     
