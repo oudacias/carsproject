@@ -566,7 +566,7 @@ input[type="radio"]:checked + label > img {
     padding:20px;
 
 }
-a img:hover{
+a img:hover .media{
     filter: brightness(1.2);
 }
 .image-boutique-label{
@@ -585,4 +585,8 @@ a img:hover{
     height: 40px;
     width: 40;
     margin-right: 5px;
+}
+
+.social-img:hover{
+    filter:brightness(1.1)
 }

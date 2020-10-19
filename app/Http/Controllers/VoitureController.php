@@ -8,7 +8,7 @@ use Auth;
 use App\Voiture;
 use App\Boutique;
 use App\Voitureclick;
-
+use App\Achatvoiture;
 
 class VoitureController extends Controller
 {
@@ -47,6 +47,14 @@ class VoitureController extends Controller
         }else{
             return redirect()->away("https://web.whatsapp.com/send?phone=".$r->t);
         }
-        
+    }
+    public function vendreVoiture($id)
+    {
+        $v = new Achatvoiture();
+        $v->voiture_id = $id;
+        $v->user_id = Auth::user()->id;
+        $v->vendue = True;
+        $v->save();
+        return redirect()->back()->withSuccess('Voiture Vendue');
     }
 }

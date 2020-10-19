@@ -22,9 +22,9 @@
                 @foreach($voiture as $v)
                         <tr style="text-align:left">
                         <td style="text-align:left">{{$v->created_at->format('d-m-Y')}}</td>
-                        <td style="text-align:left">{{$v->boutique->user->nom}} &nbsp {{$v->boutique->user->prenom}}</td>
+                        <td style="text-align:left">{{$v->user->nom}} &nbsp {{$v->user->prenom}}</td>
                         <td style="text-align:left"><a id="details" href="/Services/voiturepdf/{{$v->id}}">Détails</a></td>
-                        <td style="text-align:left"><a href="/Admin/supprimer_voiture/{{$v->id"><img src="/project_images/bin.png" width="20%"></td>
+                        <td style="text-align:left"><a href="/Admin/supprimer_voiture/{{$v->id}}"><img src="/project_images/bin.png" width="20%"></td>
                         </tr>
                 @endforeach
 

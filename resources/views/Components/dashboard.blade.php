@@ -13,7 +13,7 @@
 
 <div class="row">
     <div class="col-md-4 img-index">
-	<img class="logo-menu" src="/project_images/logoCars.png">
+	<a href="/"><img class="logo-menu" src="/project_images/logoCars.png"></a>
 		<nav>
 			<ul class="mcd-menu" style="padding-top: 130px">
 			<p class="admin">Espace Administrateur</p>
@@ -54,6 +54,16 @@
 				<li>
 					<a href="/Admin/Admin_click">
 						Voitures click
+					</a>
+				</li>
+				<li>
+					<a href="/Publicite/index">
+						+ Publicité
+					</a>
+				</li>
+				<li>
+					<a href="/Publicite/supprimerPub">
+						Publicités
 					</a>
 				</li>
 			</ul>

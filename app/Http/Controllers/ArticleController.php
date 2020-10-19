@@ -29,7 +29,7 @@ class ArticleController extends Controller
                 $articles = Article::whereIn('categorie',Session::get('categorie'))->orderBy('created_at','desc')->get();
             }
         }else{
-            $articles = Article::all()->sortByDesc('created_at');
+            $articles = Article::orderBy('created_at','desc')->paginate(1);
             $categorie = Articlescategorie::all();
         }
         return view('Articles/Articles',['artc'=>$articles,'categories'=>$categorie]);

@@ -230,10 +230,11 @@
                                     <table class="table" id="table{{$u->id}}">
                                         <thead>
                                             <tr>
-                                            <th scope="col">Model</th>
-                                            <th scope="col">Lien</th>
-                                            <th scope="col">Acheté</th>
-                                            <th scope="col">Annuler</th>
+                                            <td scope="col"><strong>Model</strong></td>
+                                            <td scope="col"><strong>Lien</strong></td>
+                                            <td scope="col"><strong>Acheté</strong></td>
+                                            <td scope="col"><strong>Vendue</strong></td>
+                                            <td scope="col"><strong>Annuler</strong></td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -245,6 +246,7 @@
                                                     <td>Oui</td>
                                                 @else
                                                     <td>Non</td>
+                                                    <td><a href="/voitureVendre/{{$v->id}}"><img src="/project_images/ihandshake.png" width="20%"></a></td>
                                                     <td><a href="/Voiture/remove/{{$v->id}}"><img src="/project_images/removeCar.png" width="20%"></a></td>
 
                                                 @endif
@@ -276,6 +278,7 @@
                                             <th scope="col">Model</th>
                                             <th scope="col">Lien</th>
                                             <th scope="col">Acheté</th>
+                                            <th scope="col">Vendue</th>
                                             <th scope="col">Annuler</th>
                                             </tr>
                                         </thead>
@@ -288,6 +291,7 @@
                                                     <td>Oui</td>
                                                 @else
                                                     <td>Non</td>
+                                                    <td><a href="/voitureVendre/{{$v->id}}"><img src="/project_images/ihandshake.png" width="20%"></a></td>
                                                     <td><a href="/Voiture/remove/{{$v->id}}"><img src="/project_images/removeCar.png" width="20%"></a></td>
 
                                                 @endif

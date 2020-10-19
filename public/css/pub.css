@@ -1,0 +1,37 @@
+.pub_img{
+    object-fit:fit;
+    width:60%;
+    height:200px;
+}
+.container_pub{
+    margin-top:130px;
+    height:150%;
+    top:85%;
+    width:100%;
+    margin-left:0px
+}
+.container_pub_d{
+    margin-top:0px;
+}
+.pub_m{
+    position: inherit;
+    height:250px;
+    width:300px;
+    margin-top: -80px;
+}
+@media (min-width: 48em) {
+    .pub_img{
+        height:100%;
+    }
+    .container_pub{
+        height:50%;
+        margin-top:50%;
+        width:235px;
+        margin-left:-50px
+    }
+
+    .pub_m{
+        height:250px;
+        width:300px;
+    }
+}

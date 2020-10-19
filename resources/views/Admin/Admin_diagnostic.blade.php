@@ -27,7 +27,7 @@
                 <td style="text-align:left"><a id="details" href="/Services/diagnosticpdf/{{$d->id}}">Détails</a></td>
 
                 <td style="text-align:left"><a href="/Admin/confirmer_diagnostic/{{$d->id}}"><img src="/project_images/confirm.png" width="20%"></td>
-                <td style="text-align:left"><a href="/Admin/supprimer_diagnostic/{{$d->id"><img src="/project_images/bin.png" width="20%"></td>
+                <td style="text-align:left"><a href="/Admin/supprimer_diagnostic/{{$d->id}}"><img src="/project_images/bin.png" width="20%"></td>
                 </tr>
                 @endforeach
 

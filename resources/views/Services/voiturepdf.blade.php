@@ -43,10 +43,6 @@
     <td>:{{$voiture->kilometrage}}</td>
 </tr>
 <tr>
-    <td class="width_column">Couleur</td>
-    <td>:{{$voiture->couleur}}</td>
-</tr>
-<tr>
     <td class="width_column">Carrosserie</td>
     <td>:{{$voiture->carrosserie}}</td>
 </tr>

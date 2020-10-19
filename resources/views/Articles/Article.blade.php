@@ -31,10 +31,10 @@
                                 
                         </div>
                         @if($artc->lien_youtube)
-                        <div class="container">
+
+                        <div class="responsive-video">
                             <input type="hidden" id="youtube" value = "{{$artc->lien_youtube}}" />
-                            <iframe  id="video" class="video" frameborder="0" style="display: none"
-                            allowfullscreen></iframe>
+                            <iframe  id="video" class="video" frameborder="0" style="display: none" width="480" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
                         </div>
                         @endif
                     </div>
@@ -85,6 +85,27 @@
         </div>
     </div>
 </body>
+
+<style>
+
+.responsive-video {
+    overflow:hidden;
+    padding-bottom:46.25%;
+    position:relative;
+    height:0;
+}
+.responsive-video iframe {
+    left:0;
+    top:0;
+    height:100%;
+    width:60%;
+    position:absolute;
+    margin-left:20%;
+    margin-right:auto;
+}
+
+
+</style>
 <script>
 
 

@@ -123,8 +123,8 @@ class AdminController extends Controller
         return view('Admin/Admin_voiture',['voiture'=>$voiture]);
     }
     public function supprimerVoiture($id){
-        $voitureO = Voitureoccasion::where('voiture_id','=',$id);
-        if($voitureO){
+        $voitureO = Voitureoccasion::where('voiture_id','=',$id)->get();
+        if($voitureO->count()>0){
             $voitureO = Voitureoccasion::destroy($voitureO->id);
         }
         $voiture = Voiture::destroy($id);

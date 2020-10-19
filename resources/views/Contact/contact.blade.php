@@ -11,10 +11,10 @@
         <p id="copied">Email copié</p>
         <br>
         <div class="social">
-            <a href="{{$social->facebook}}"><img src="/project_images/facebook.png"/></a>
-            <a href="{{$social->instagram}}"><img src="/project_images/instagram.png"/></a>
-            <a onclick="visitLink()"><img src="/project_images/whatsapp1.png"/></a>
-            <a onclick="copyLink()"><img src="/project_images/gmail.png"/></a>
+            <a href="{{$social->facebook}}"><img class="social-img" src="/project_images/facebook.png"/></a>
+            <a href="{{$social->instagram}}"><img class="social-img" src="/project_images/instagram.png"/></a>
+            <a onclick="visitLink()"><img class="social-img" src="/project_images/whatsapp1.png"/></a>
+            <a onclick="copyLink()"><img class="social-img" src="/project_images/gmail.png"/></a>
         </div>     
     </div>
 </div>

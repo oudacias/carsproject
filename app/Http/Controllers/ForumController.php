@@ -25,7 +25,7 @@ class ForumController extends Controller
                 $forum = Forum::whereIn('theme',Session::get('theme'))->orderBy('created_at','desc')->get();
             }
         }else{
-            $forum = Forum::orderBy('created_at', 'desc')->get();;
+            $forum = Forum::orderBy('created_at', 'desc')->paginate(1);
             $theme = Forumtheme::all();
         }
         return view ('Forum/Forums',['forums'=>$forum,'theme'=>$theme]);
@@ -44,7 +44,7 @@ class ForumController extends Controller
                         ->where('id','!=',$id)
                         ->orderBy('created_at','desc')->limit(3)->get();
         if($forums->user_id = Auth::id()){
-            Notificationforum::where('user_id',Auth::id())->update(['vu'=>true]);
+            Notificationforum::where('user_id',Auth::id())->where('forum_id',$forums->id)->update(['vu'=>true]);
         }
         return view ('Forum/Forum',['forum'=>$forums,'otherforums'=>$forum,'user_pic'=>$user_pic]);
     }

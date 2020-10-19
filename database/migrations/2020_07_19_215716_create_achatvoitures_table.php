@@ -16,7 +16,6 @@ class CreateAchatvoituresTable extends Migration
         Schema::create('achatvoitures', function (Blueprint $table) {
             $table->id();
             $table->integer('voiture_id');
-            $table->integer('user_id');
             $table->boolean('vendue')->default(true);
             $table->timestamps();
         });

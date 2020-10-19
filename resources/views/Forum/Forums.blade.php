@@ -34,7 +34,7 @@ Rechercher par thème &nbsp;
 <br>
 <br>
 
-<div class="container">
+<div id="container" class="container">
     <div class="row">
         <div class="col-12" ><label>Partagez vos questions et idées avec nous </label>
             <a href="#new"><img src="/project_images/plus.png" width="40px"></a>
@@ -79,7 +79,7 @@ Rechercher par thème &nbsp;
             </div>
         </div>
     </div>
-    <div class="container">
+    <div id="containers" class="container">
         @foreach($forums as $f)
         <div class="row">
             <div class="col-10">
@@ -99,6 +99,10 @@ Rechercher par thème &nbsp;
             </div>
         </div>
         @endforeach
-</div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        {!! $forums->links() !!}
+    </div>
 </div>
     

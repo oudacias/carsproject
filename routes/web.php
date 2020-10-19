@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Article;
 use App\Boutique;
-
+use App\Publicite;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +51,10 @@ Route::get('Services/diagnosticpdf/{id}', 'ServiceController@diagnostiquetoPDF')
 Route::get('Services/suivipdf/{id}', 'ServiceController@suivitoPDF');
 Route::get('Services/voiturepdf/{id}', 'AdminController@voiturePDF');
 Route::post('Admin/Admin_forum/', 'ForumController@AjouterTheme');
+Route::get('Publicite/index/','PubliciteController@index');
+Route::post('Publicite/index/','PubliciteController@ajouterPublicite');
+Route::get('Publicite/supprimerPub/','PubliciteController@afficherPub');
+Route::get('Publicite/supprimerPub/{id}','PubliciteController@supprimerPublicite');
 
 });
 Route::get('Services/service_diagnostic', 'ServiceController@indexdiagnostic');
@@ -102,6 +106,7 @@ Route::post('profile/modifierImage/', 'BoutiqueController@modifierImage');
 Route::get('modifierProfile', 'UserController@modifiermonProfile');
 Route::post('modifierProfile', 'UserController@modifiermyProfile');
 Route::get('close_notif/{id}', 'ForumController@closeNotification');
+Route::get('voitureVendre/{id}', 'VoitureController@vendreVoiture');
 });
 
 
@@ -111,7 +116,11 @@ Auth::routes();
 Route::get('/', function(){
         $articles = Article::orderBy('created_at','desc')->limit(4)->get();
         $boutique = Boutique::all()->sortByDesc('created_at');
-        return view('home',['artc'=>$articles,'boutique'=>$boutique]);
+        $pub_g = Publicite::where('nom_page',"=",'/')->where('emplacement',"=",'Gauche')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_d = Publicite::where('nom_page',"=",'/')->where('emplacement',"=",'Droite')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_h = Publicite::where('nom_page',"=",'/')->where('emplacement',"=",'Haut')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_m = Publicite::where('nom_page',"=",'/')->where('emplacement',"=",'Milieu')->orderBy('created_at','desc')->limit(1)->get();
+        return view('home',['artc'=>$articles,'boutique'=>$boutique,'pub_g'=>$pub_g,'pub_d'=>$pub_d,'pub_h'=>$pub_h,'pub_m'=>$pub_m]);
 }
 );
 

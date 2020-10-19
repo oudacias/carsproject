@@ -13,38 +13,39 @@
 @yield('recherche')
 <div class="container other-sides">
     @if($voiture->count())
-    @foreach($voiture as $v)
-    <div class="boutique-border">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card-block">
-                        <div class="user-image car-image">
-                            <img src="{{$v->photo}}">
+        @foreach($voiture as $v)
+            @if(!$v->achatvoiture)
+                <div class="boutique-border">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card-block">
+                                    <div class="user-image car-image">
+                                        <img src="{{$v->photo}}">
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="col-md-8 info-border">
+                            <div class="card-block">
+                                <div class="card-introduction card_gap">
+                                    <p class="m-t-13 text-muted">
+                                    Marque : <strong>{{$v->marque}}</strong><br>
+                                    Model : <strong>{{$v->model}}</strong><br>
+                                    Description : <strong>{{$v->description}}</strong><br>
+                                    Prix : <strong>{{$v->prix}}</strong><br>
+                                    Vendeur : <strong>{{$v->user->email}}</strong>
+                                    </p>
+                                    <a href="/Boutique/voitureDetails/{{$v->id}}"><button class="btn-boutique" type="button">Savoir Plus</button></a>
+                                </div>
+
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            <div class="col-md-8 info-border">
-                <div class="card-block">
-                    <div class="card-introduction card_gap">
-                        <p class="m-t-13 text-muted">
-                        Marque : <strong>{{$v->marque}}</strong><br>
-                        Model : <strong>{{$v->model}}</strong><br>
-                        Description : <strong>{{$v->description}}</strong><br>
-                        Prix : <strong>{{$v->prix}}</strong><br>
-                        Vendeur : <strong>{{$v->user->email}}</strong>
-                        </p>
-                        <a href="/Boutique/voitureDetails/{{$v->id}}"><button class="btn-boutique" type="button">Savoir Plus</button></a>
-                    </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    @endforeach 
+            @endif
+        @endforeach 
     @endif
        
 </div>
