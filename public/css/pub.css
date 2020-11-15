@@ -3,13 +3,7 @@
     width:60%;
     height:200px;
 }
-.container_pub{
-    margin-top:130px;
-    height:150%;
-    top:85%;
-    width:100%;
-    margin-left:0px
-}
+
 .container_pub_d{
     margin-top:0px;
 }
@@ -32,6 +26,12 @@
 
     .pub_m{
         height:250px;
-        width:300px;
+        width:550px;
     }
+    
+}
+
+.container_pub{
+    height: 400px;
+
 }

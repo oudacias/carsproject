@@ -377,13 +377,13 @@ td{
 }
 .boutique-border{
   position: relative;
-  border-color:#fa7c30;
+  border-color:#A8A8A8;
   border-style:solid;
   border-width: thin;
   border-radius:20px;
   margin-top:10px;
   width:50%;
-  background: linear-gradient(70deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%);
+  background: linear-gradient(70deg, #EAEAEA 30%, rgba(0, 0, 0, 0) 30%);
   
 }
 .car-border{
@@ -405,7 +405,7 @@ td{
   width: 110px;
   margin-right: 20px;
   border-radius: 30px;
-  border-color:#fa7c30;
+  border-color:#323232;
   border-style:solid;
   border-width: thin;
 }
@@ -453,7 +453,7 @@ td{
 
 .boutique-border{
   width: 90%;
-  background: linear-gradient(-160deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%);}
+  background: linear-gradient(-160deg, #EAEAEA 30%, rgba(0, 0, 0, 0) 30%);}
 }
 .img-profile{
   border-radius: 50%;
@@ -533,4 +533,41 @@ a:hover{
 .info-boutique-label{
   color:#E77C00;
   text-align: left;
+}
+
+
+.container_filter{
+  position: relative;
+  background-color:rgb(233, 233, 233);
+  width:300px;
+  padding-left:80px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  margin-top: 20px;  
+  z-index: 0;
+}
+.container_filter1{
+  float:right;
+
+}
+
+ul{
+  list-style-type: none;
+}
+
+.filter{
+  background-color:#E4E4E4;
+  padding:10px;
+  text-align:center;
+  border-radius:40px;
+  width:300px;
+
+
+}
+
+.filter_link:hover{
+  color:white;
+  background-color:#FFC47F;
+  padding:10px;
+  font-size:20px
 }

@@ -189,6 +189,10 @@
         </form>
     </div>
 </div>
+<div style="margin-top:100px">
+@include('Components.footer')
+@yield('footer')
+</div>
         
 <script>
     $(document).ready(function(){

@@ -277,7 +277,7 @@
             <div class="wrap-input100">
                 <div style="color:#999999">Ville</div>
                 <select class="input100" name="ville">
-                <option title="agadir" value="agadir">AGADIR</option>
+                        <option title="agadir" value="agadir">AGADIR</option>
 											
 						<option title="ait benhaddou" value="ait benhaddou">AIT BENHADDOU</option>
 											
@@ -615,8 +615,8 @@
         }
 
         $("#o_pics").hide();
-        $("#form1").hide();
-        $("#form2").show();
+        $("#form1").show();
+        $("#form2").hide();
         $("#form3").hide();
         $("#occasion_container").hide();
         $('#other_pics').hide();

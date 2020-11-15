@@ -21,7 +21,11 @@
             </thead>
             <tbody>
                 @foreach($pub as $p)
-                <tr style="text-align:left">
+                    @if( date('Y-m-d')  == $p->created_at->format('Y-m-d'))
+                        <tr style="background-color:#FFCB8F">
+                    @else
+                        <tr>
+                    @endif
                 <td style="text-align:left">{{$p->nom_page}}</td>
                 <td style="text-align:left">{{$p->emplacement}}</td>
                 <td style="text-align:left">{{$p->type}}</td>

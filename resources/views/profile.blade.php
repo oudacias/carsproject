@@ -54,7 +54,7 @@
                                     <div class="col-md-12">
                                         <div style="background-color:white" class="card user-card">
                                             <div class="card-block">
-                                                <div class="card-car-text">Nombre Forum @if($user->forum->count())<a href="/User/myForums"><img src="/project_images/view1.png" width="20px"></a>@endif</div>
+                                                <div class="card-car-text">Nombre Forum @if($user->forum->count())<a href="Profile/Mes_Forums"><img src="/project_images/view1.png" width="20px"></a>@endif</div>
                                                     <div class="card-car-number">{{$user->forum->count()}}</div>
                                             </div>
                                         </div>
@@ -62,7 +62,7 @@
                                     <div class="col-md-12">
                                         <div style="background-color:white" class="card user-card">
                                             <div class="card-block">
-                                                <div class="card-car-text">Nombre Commentaire @if($user->forums->count())<a href="/User/myComments"><img src="/project_images/view1.png" width="20px"></a>@endif</div>
+                                                <div class="card-car-text">Nombre Commentaire @if($user->forums->count())<a href="Profile/Mes_Commentaires"><img src="/project_images/view1.png" width="20px"></a>@endif</div>
                                                     <div class="card-car-number">{{$user->forums->count()}}</div>
                                             </div>
                                         </div>
@@ -70,7 +70,7 @@
                                     <div class="col-md-12">
                                         <div style="background-color:white" class="card user-card">
                                             <div class="card-block">
-                                                <div class="card-car-text">Articles Sauvegardés @if($user->articles->count())<a href="/User/myArticles"><img src="/project_images/view1.png" width="20px"></a>@endif</div>
+                                                <div class="card-car-text">Articles Sauvegardés @if($user->articles->count())<a href="Profile/Mes_Articles"><img src="/project_images/view1.png" width="20px"></a>@endif</div>
                                                     <div class="card-car-number">{{$user->articles->count()}}</div>
                                             </div>
                                         </div>
@@ -83,13 +83,13 @@
                 <div class="col-md-8">
                 <div class="container">
                         <div class="row">@if(Auth::user()->objectif == 'fournisseur')
-                            <div class="col-md-6"><a href="/boutique/nouvelle_boutique">
+                            <div class="col-md-6"><a href="/BoutiqueEocars/{{Auth::id()}}/nouvelle_boutique">
                                 <div class="card profile-card">
                                     Ajouter Boutique<br><br>
                                     <img class="cars_profile" src="/project_images/garage_profile.png"> 
                                 </div>               
                             </div></a>@endif
-                            <div class="col-md-6"><a href="/boutique/voiture">
+                            <div class="col-md-6"><a href="/BoutiqueEocars/{{Auth::id()}}/voiture">
                                     <div class="card profile-card">
                                         Ajouter Voiture<br><br>
                                         <img class="cars_profile" src="/project_images/cars_profile.png" >
@@ -100,7 +100,7 @@
                     @if(Auth::user()->objectif == 'fournisseur' && $user->boutique->count())
                     <div class="card user-card">
                         <div class="card-block">
-                            <div style="text-align:center">Vos Boutiques</div>   
+                            <div style="text-align:center">Mes Boutiques</div>   
                             @foreach($user->boutique as $u)
                                 <div class="boutique-card">{{$u->nom_boutique}} ({{$u->voiture->count()}} voitures) 
                                     <img id="info_boutiques{{$u->id}}" style="float:right;margin-right:16%" width="25px" src="/project_images/edit_file.png"/>
@@ -233,7 +233,7 @@
                                             <td scope="col"><strong>Model</strong></td>
                                             <td scope="col"><strong>Lien</strong></td>
                                             <td scope="col"><strong>Acheté</strong></td>
-                                            <td scope="col"><strong>Vendue</strong></td>
+                                            <td scope="col"><strong>Vendue ? </strong></td>
                                             <td scope="col"><strong>Annuler</strong></td>
                                             </tr>
                                         </thead>
@@ -241,7 +241,7 @@
                                         @foreach($u->voiture as $v)
                                             <tr>
                                                 <td>{{$v->model}}</td>
-                                                <td><u><a href="/Boutique/voitureDetails/{{$v->id}}">Lien</a></u></td>
+                                                <td><u><a href="/BoutiqueEocars/voitureDetails/{{$v->id}}">Lien</a></u></td>
                                                 @if($v->achatvoiture)
                                                     <td>Oui</td>
                                                 @else
@@ -271,14 +271,14 @@
                         @elseif(Auth::user()->objectif == 'particulier')
                         <div class="card user-card">
                             <div class="card-block">
-                                <div style="text-align:center">Vos Voitures</div>
+                                <div style="text-align:center">Mes Voitures</div>
                                     <table class="table">
                                         <thead>
                                             <tr>
                                             <th scope="col">Model</th>
                                             <th scope="col">Lien</th>
                                             <th scope="col">Acheté</th>
-                                            <th scope="col">Vendue</th>
+                                            <th scope="col">Vendue ?</th>
                                             <th scope="col">Annuler</th>
                                             </tr>
                                         </thead>
@@ -286,7 +286,7 @@
                                         @foreach(Auth::user()->voiture as $v)
                                             <tr>
                                                 <td>{{$v->model}}</td>
-                                                <td><u><a href="/Boutique/voitureDetails/{{$v->id}}">Lien</a></u></td>
+                                                <td><u><a href="/BoutiqueEocars/voitureDetails/{{$v->id}}">Lien</a></u></td>
                                                 @if($v->achatvoiture)
                                                     <td>Oui</td>
                                                 @else
@@ -315,13 +315,13 @@
                 <div class="col-md-8">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6">@if($user->articles->count())<a href="/User/myArticles">@endif
+                            <div class="col-md-6">@if($user->articles->count())<a href="Profile/Mes_Articles">@endif
                                 <div class="card profile-card">
                                     Article Farvoris ({{$user->articles->count()}})<br><br>
                                     <img class="cars_profile" src="/project_images/favorite.png"> 
                                 </div>               
                             </div></a>
-                            <div class="col-md-6">@if($user->forum->count())<a href="/User/myForums">@endif
+                            <div class="col-md-6">@if($user->forum->count())<a href="Profile/Mes_Forums">@endif
                                 <div class="card profile-card">
                                     Forum Ajouté ({{$user->forum->count()}})<br><br>
                                     <img class="cars_profile" src="/project_images/forum.png" >
@@ -329,7 +329,7 @@
                             </div>
                         </div></a>
                         <div class="row">
-                            <div class="col-md-6">@if($user->forums->count())<a href="/User/myComments">@endif
+                            <div class="col-md-6">@if($user->forums->count())<a href="Profile/Mes_Commentaires/">@endif
                                 <div class="card profile-card">
                                     Commentaire Ajouté ({{$user->forums->count()}})<br><br>
                                     <img class="cars_profile" src="/project_images/comment.png" >
@@ -341,6 +341,10 @@
                 </div>
             </div>
         </div> 
+</div>
+<div style="margin-top:100px">
+@include('Components.footer')
+@yield('footer')
 </div>
 <script>
     $('#file-inputs').bind('change', function() {

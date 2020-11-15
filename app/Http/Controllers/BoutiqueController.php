@@ -15,7 +15,7 @@ class BoutiqueController extends Controller
     {
         $voiture = Voiture::where('vendu',false)->orderBy('created_at','desc')->get();
         $nom_boutique = Boutique::all();
-        return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique]);
+        return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'']);
     }
     public function ajouterBoutique(Request $r)
     {

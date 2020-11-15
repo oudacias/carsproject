@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use DateTime;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,20 +12,20 @@ class Article extends Model
     {
         return $this->belongsToMany('App\Article','user_article');
     }
+    public function articlepub()
+    {
+        return $this->hasMany('App\Articlepub','article_id');
+    }
 
-
-
-
-
-
-
-
-    public static function insererArticle($titre,$texte,$categorie,$image,$lien_youtube){
+    public static function insererArticle($titre,$slug,$texte,$categorie,$image,$lien_youtube){
         $article = new Article();
         $article->titre = $titre;
+        $a = Article::where('slug',"=",$slug)->get();
+        $article->slug = $slug;
         $article->texte = nl2br($texte);
         $article->categorie = $categorie;
-        $image_path = $article->titre.'.'.$image->getClientOriginalExtension();
+        $dt = new DateTime();
+        $image_path = $article->titre.$dt->format('H_i_s').'.'.$image->getClientOriginalExtension();
         $image->move(public_path('/image_uploads'), $image_path);
         $article->lien_image = '/image_uploads/'.$image_path;
         $article->lien_youtube = $lien_youtube;

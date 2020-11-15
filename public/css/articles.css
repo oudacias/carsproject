@@ -154,7 +154,7 @@ iframe {
     font-size: 30px;
     color: #333333;
     line-height: 1.2;
-    text-align: left;
+    text-align: center;
     padding-bottom: 34px;
 }
 
@@ -497,15 +497,14 @@ button[disabled]:hover{
     
 }
 .table-details{
-    width: 80%;
-    margin-left: 70px;
-    background-color:#f7eee5e0;
+    width: 100%;
+    margin-left: 0px;
     border-radius:20px;
 }
 
 .table-details td{
     text-align: left;
-    padding-left: 25px;
+    padding-left: 0px;
     padding-top: 25px;
     padding-bottom: 25px;
     border-bottom-style: solid;
@@ -590,3 +589,7 @@ a img:hover .media{
 .social-img:hover{
     filter:brightness(1.1)
 }
+
+
+
+

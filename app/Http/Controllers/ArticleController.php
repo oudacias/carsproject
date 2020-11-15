@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Articlescategorie;
 use Session;
+use App\Publicite;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -16,69 +18,43 @@ class ArticleController extends Controller
         return view('Admin/Nouvel_article',['categorie'=>$categorie]);
     }
 
-
-
     public function articles(){
-        if(Session::get('categorie')){
-            if(count(Session::get('categorie')) == 1){
-                $categorie = Articlescategorie::where("categorie","!=",Session::get('categorie'))->orderBy('categorie')->get();
-                $articles = Article::where('categorie','=',Session::get('categorie'))->orderBy('created_at','desc')->get();
-            }
-            elseif(count(Session::get('categorie')) > 1){
-                $categorie = Articlescategorie::whereNotIn('categorie',Session::get('categorie'))->get();
-                $articles = Article::whereIn('categorie',Session::get('categorie'))->orderBy('created_at','desc')->get();
-            }
-        }else{
-            $articles = Article::orderBy('created_at','desc')->paginate(1);
-            $categorie = Articlescategorie::all();
-        }
-        return view('Articles/Articles',['artc'=>$articles,'categories'=>$categorie]);
+        $pub_g = Publicite::where('nom_page',"=",'/Articles/Articles')->where('emplacement',"=",'Gauche')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_d = Publicite::where('nom_page',"=",'/Articles/Articles')->where('emplacement',"=",'Droite')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_h = Publicite::where('nom_page',"=",'/Articles/Articles')->where('emplacement',"=",'Haut')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_m = Publicite::where('nom_page',"=",'/Articles/Articles')->where('emplacement',"=",'Milieu')->orderBy('created_at','desc')->limit(1)->get();
+        $articles = Article::orderBy('created_at','desc')->get();
+        $categorie = Articlescategorie::all();
+        
+        return view('Articles/Articles',['artc'=>$articles,'categories'=>$categorie,'pub_g'=>$pub_g,'pub_d'=>$pub_d,'pub_h'=>$pub_h,'pub_m'=>$pub_m]);
     }
-    public function TrouverCategorie(Request $r)
+    public function TrouverCategorie($categorie)
     {
-        if($r->categorie){
-            if(Session::get('categorie')){
-                if(!in_array($r->categorie, Session::get('categorie'))){
-                    Session::push('categorie', $r->categorie);
-                }
-            }else{
-                Session::push('categorie', $r->categorie);
-            }
-        }
-        return redirect()->back()->withSuccess('Catégorie ajoute');
+        $pub_g = Publicite::where('nom_page',"=",'/Articles/Articles')->where('emplacement',"=",'Gauche')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_d = Publicite::where('nom_page',"=",'/Articles/Articles')->where('emplacement',"=",'Droite')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_h = Publicite::where('nom_page',"=",'/Articles/Articles')->where('emplacement',"=",'Haut')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_m = Publicite::where('nom_page',"=",'/Articles/Articles')->where('emplacement',"=",'Milieu')->orderBy('created_at','desc')->limit(1)->get();
+
+        $articles = Article::where('categorie','=',$categorie)->orderBy('created_at','desc')->get();
+        $categorie = Articlescategorie::all();
+
+    
+    
+        return view('Articles/ArticleTheme',['artc'=>$articles,'categories'=>$categorie,'pub_g'=>$pub_g,'pub_d'=>$pub_d,'pub_h'=>$pub_h,'pub_m'=>$pub_m]);
+ 
     }
 
-
-    public function DeleteCategorie($categorie)
-    {
-        $allcategories = Session::get('categorie');
-        Session::forget('categorie');   
-        $key = array_search($categorie, $allcategories);
-        unset($allcategories[$key]);
-        foreach($allcategories as $r){
-            Session::push('categorie', $r);
-        }
-        return redirect()->back()->withSuccess('Catégorie supprime');
-    }
-
-
-
-
-
-
-    public function article($id){
+    public function article($id,$slug){
         $article = Article::find($id);
         $articles = Article::where('categorie','=',$article->categorie)
-                            ->where('id','!=',$id)
+                            ->where('id','!=',$article->id)
                             ->orderBy('categorie','desc')->limit(2)->get();
         return view('Articles/Article',['artc'=>$article,'articles'=>$articles]);
     }
-    public function AjouterCategorie(Request $r)
-    {
-        $categorie = new ArticlesCategorie();
-        $categorie->categorie = $r->categorie;
-        $categorie->save();
-        return redirect()->back()->withSuccess('Nouvelle Categorie Crée');
-    }
+
+
+
+
+    
     
 }

@@ -21,7 +21,11 @@
             </thead>
             <tbody>
                 @foreach($suivi as $s)
-                <tr style="text-align:left">
+                    @if( date('Y-m-d')  == $s->created_at->format('Y-m-d'))
+                        <tr style="background-color:#FFCB8F">
+                    @else
+                        <tr>
+                    @endif
                 <td style="text-align:left">{{$s->created_at->format('d-m-Y')}}</td>
                 <td style="text-align:left">{{$s->nom}} &nbsp {{$s->prenom}}</td>
                 <td style="text-align:left"><a id="details" href="/Services/suivipdf/{{$s->id}}">Détails</a></td>

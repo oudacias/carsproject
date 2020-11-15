@@ -20,7 +20,11 @@
             </thead>
             <tbody>
                 @foreach($voiture as $v)
-                <tr style="text-align:left">
+                @if( date('Y-m-d')  == $v->created_at->format('Y-m-d'))
+                    <tr style="background-color:#FFCB8F">
+                @else
+                    <tr>
+                @endif
                 <td style="text-align:left"><a href="/Boutique/voitureDetails/{{$v->id}}">Lien</td>
                 <td style="text-align:left"><a id="details" href="/Services/voiturepdf/{{$v->id}}">Détails</a></td>
                 <td style="text-align:left">@if($v->voitureclick){{$v->voitureclick->click_nbr}}@else 0 @endif</a></td>

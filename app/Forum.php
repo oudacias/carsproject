@@ -2,6 +2,7 @@
 
 namespace App;
 use Auth;
+use Str;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +21,7 @@ class Forum extends Model
         $forum = new Forum();
         $forum->user_id = Auth::id();
         $forum->sujet = $titre;
+        $forum->sujet_slug = Str::slug($forum->sujet);;
         $forum->theme = $theme;
         $forum->texte = $texte;
         $forum->save();

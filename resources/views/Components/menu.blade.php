@@ -1,12 +1,17 @@
 @section('menu')
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<meta charset="UTF-8" />
+<meta name="author" content="EOCARS.MA">
+<meta name="description" content="EOCARS est une entreprise dédiée à l’accompagnement des acheteurs des vendeurs et des revendeurs de voitures à travers ses différents services ">
+<meta name="keywords" content="Voiture au maroc, voiture occasion maroc, achat voiture, vente voiture, annonces, occasion maroc, blog maroc, forum maroc">
+<link rel="icon" type="image/png" href="/project_images/logoCars.png">
 <link rel="stylesheet" type="text/css" href="/css/menu.css">
 <link rel="stylesheet" type="text/css" href="/css/article.css">
 <link rel="stylesheet" type="text/css" href="/css/notification.css">
 <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <script src="/javascript/notification.js" type="text/javascript"></script>
-<img style="position:absolute" class="logo-menu" src="/project_images/logoCars.png">
+<img style="position:absolute" class="logo-menu" src="/project_images/logoCars.png" alt="Eocars">
 
 <header class="header">
 <div class = "icons">
@@ -76,22 +81,45 @@
   <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
   <ul class="menu">
     <li><a class="menugap" href="/">Accueil</a></li>
-    <li><a class="menugap" href="/Services/service_suivi">Services Conseil</a></li>
-    <li><a class="menugap" href="/Forum/Forums">Forum</a></li>
-    <li><a class="menugap" href="/Articles/Articles">Magazine</a></li>
-    <li><a class="menugap" href="/Boutique/boutique">Boutique</a></li>
-    <li><a class="menugap" href="/Contact/contact">Contact</a></li>
+    <li><a class="menugap" href="/Service-Suivi">Services Conseil</a></li>
+    <li><a class="menugap" href="/ForumEocars">Forum</a></li>
+    <li><a class="menugap" href="/MagazineEocars">Magazine</a></li>
+    <li><a class="menugap" href="/BoutiqueEocars">Boutique</a></li>
+    <li><a class="menugap" href="/Contact">Contact</a></li>
     </ul>
 </header>
-
+  <div class="Message" id="msg">
+    <div class="Message-icon">
+      <img src="/project_images/bell.png" style="width:30px;margin-top:-13px"></i>
+    </div>
+    <div class="Message-body" id="msg_text">
+      <p id="notification_msg"></p>
+    </div>
+      <button class="Message-close" onclick="close_notification()"><i class="fa fa-times"></i></button>
+  </div>
+</div>
 <div class="gap">
 <body>
+
+
+<script>
+  var x = document.getElementById("msg");
+
+  x.style.display = "none";
+  function close_notification(){
+      var msg = document.getElementById("msg");
+      msg.style.display = "none";
+  }
+  
+    
+</script>
 @if(Auth::check())
 <script>  
     var channel = pusher.subscribe('notify'+ {{Auth::id()}});
     var notif_array = @json(Auth::user()->notificationforum);
     var notif_count =  {{Auth::user()->notificationforum->count()}}
     if(notif_count == 0){
+      console.log("hhh")
       document.getElementById("notification_count").style.visibility = "hidden";
       document.getElementById("box").style.display = "none";
     }else{
@@ -120,7 +148,7 @@
 
         var parentObject = document.getElementById('notif_first_class');
         var childElement = document.createElement('a');
-        var link = "/Forum/Forums/"+notif_array[i].forum_id
+        var link = "/ForumEocars/"+notif_array[i].forum_id+"/"+notif_array[i].forum_nom;
         childElement.href = link;
         childElement.setAttribute("id","notif_link");
         parentObject.appendChild(childElement);
@@ -135,8 +163,11 @@
         child_id.classList.add("txt")
       }
     }
+
+    
     channel.bind('notify-event', function(message) {
       if({{Auth::user()->id}} == message["user_id"]){
+
         notif_count += 1;  
         document.getElementById("notification_count").style.visibility = "visible";
         document.getElementById("box").style.display = "block";
@@ -166,7 +197,7 @@
 
         var parentObject = document.getElementById('notif_first_class');
         var childElement = document.createElement('a');
-        childElement.href = "/Forum/Forums/"+message.forum_id;
+        childElement.href = "/ForumEocars/"+message.forum_id+"/"+message.forum_nom;
         childElement.setAttribute("id","notif_link");
         parentObject.appendChild(childElement);
 
@@ -180,8 +211,12 @@
         var child_id = document.getElementById("notif_msg");
         child_id.classList.add("txt")
         
+        var msg = document.getElementById("msg");
+        var msg1 = document.getElementById("notification_msg");
+        document.getElementById('notification_msg').innerHTML = "Un nouveau commentaire dans le forum '"+message.forum_nom+"'";
 
-
+        msg.style.display = "block";
+        setTimeout(() => msg.style.display = "none" , 5000)
 
       }
     });

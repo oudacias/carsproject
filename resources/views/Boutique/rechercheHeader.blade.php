@@ -1,10 +1,11 @@
 @section('recherche')
-@if(session('success'))
-		<div class="animated fadeOut success">{{session('success')}}</div>
-    @endif
+@if($msg)
+	<div class="animated fadeOut success">{{$msg}}</div>
+   
+@endif
+  
 <div class="other-side">
     <div class="container shift-side">
-        
         <div class="col-md-12">
             <div class="second-side">
                     Rechercher boutiques <a onclick="showGarage()"><img width="20px" style="float:right" src="/project_images/hamburger.png"></a>
@@ -12,22 +13,23 @@
             <div id="garage" class="second-side side-form">
                 <button onclick="showBoutique()">Nom Boutique ⬇</button>
                 <div id="nom_boutique">
-                    <form method="POST" action="{{ action('UserController@ChercherVoiture') }}" enctype="multipart/form-data">
-                        @csrf   
-                        <select class="recherche-select" name="id_boutique">  
+                    <form method="GET" action="{{ action('UserController@ChercherVoitureBoutique') }}" enctype="multipart/form-data">
+                        <select id="select_boutique" class="recherche-select" name="nom_boutique">  
                                 <option value="0">Choisire la boutique</option>
                                 @foreach($nom_boutique as $n)
-                                    <option value="{{$n->id}}">{{$n->nom_boutique}}</option>
+                                    <option value="{{$n->nom_boutique}}">{{$n->nom_boutique}}</option>
                                 @endforeach
                         </select>
-                        <button name="action" value="nom_boutique" type="submit" class="recherche-cars">Lancer la recherche</button>
+                        <button id="btn_boutique_id" type="submit" class="recherche-cars">Lancer la recherche</button>
+                    </form>
                 </div>
                 <br>
                 <br>
                 <button type="button" onclick="showAutres()">Ville Boutique ⬇</button>
                 <br>
                 <div id="autres">
-                        <select class="recherche-select" name="ville_boutique">  
+                <form method="GET" action="{{ action('UserController@ChercherBoutiqueVille') }}" enctype="multipart/form-data">
+                        <select id="ville_select_id" class="recherche-select" name="ville_boutique">  
                             <option value="0">Choisire ville de boutique</option>  
                                 <option title="agadir" value="agadir">AGADIR</option>
                                                     
@@ -251,14 +253,16 @@
                                                     
                                 <option title="autre" value="autre">AUTRE</option>
                         </select>
-                        <button name="action" value="autres_boutique" type="submit" class="recherche-cars">Lancer la recherche</button>
+                        <button id="ville_select_btn" type="submit" class="recherche-cars">Lancer la recherche</button>
+                    </form>
                 </div>
             </div>
             <div class="second-side">   
                 Rechercher voitures <a onclick="showCars()"><img width="20px" style="float:right" src="/project_images/hamburger.png"></a>   
             </div>
             <div id="cars" class="second-side side-form">
-                    <select class="recherche-select" name="ville">  
+                <form method="GET" action="{{ action('UserController@ChercherVoiture') }}" enctype="multipart/form-data">
+                    <select id="ville_id_recherche" class="recherche-select" name="ville">  
                         <option value="0">Choisire ville de voiture</option>  
                             <option title="agadir" value="agadir">AGADIR</option>
                                                 
@@ -485,9 +489,9 @@
                     <br>
                     <br>
                         <label style="margin-left:40px">Prix  Max: </label>
-                        <input type="number" name="prix" class="input-prix"/>
+                        <input id="prix_id" type="number" name="prix" class="input-prix"/>
                         <br>
-                    <button name="action" value="detail_voiture" type="submit" class="recherche-cars">Lancer la recherche</button>
+                    <button id="btn_recherche_voiture" type="submit" class="recherche-cars">Lancer la recherche</button>
                 </form>
             </div>
             <div class="second-side">
@@ -495,8 +499,7 @@
             </div>
             <div id="details" class="second-side side-form">
                 <div id="Rdetail">
-                    <form method="POST" action="{{ action('UserController@ChercherVoiture') }}" enctype="multipart/form-data">
-                        @csrf   
+                    <form id="recherche_detaillee" method="GET" action="{{ action('UserController@ChercherVoitureDetail') }}">
                         <select id="marque" class="recherche-select" name="marque">  
                                 <option value="0" selected="selected">ℨ Choisire Marque</option>
                                 <option value="Renault">Renault</option>
@@ -559,11 +562,11 @@
                             <option value="Automatique">Automatique</option>
                         </select>
                         <button name="action" value="plusdetails" type="submit" class="recherche-cars">Lancer la recherche</button>
-                
-                </div>    </div>
+                    </div>    
+                </div>
+            </div>
         </div>
     </div>
-</div>
 <div>
 <script>
     $(document).ready(function(){
@@ -575,8 +578,19 @@
             }); 
             options.appendTo("#marque"); 
 
-
-
+            $("#btn_boutique_id").click(function(e){
+                
+                if($("#select_boutique").val() == 0)
+                e.preventDefault();
+            });
+            $("#ville_select_btn").click(function(e){
+                if($("#ville_select_id").val() ==0)
+                    e.preventDefault();
+            });
+            $("#btn_recherche_voiture").click(function(e){
+                if($("#prix_id").val() == "" && $("#ville_id_recherche").val() == 0)
+                    e.preventDefault();
+            })
 
         $( "#marque" ).change(function() {
             if($("#marque").val() == "Renault"){

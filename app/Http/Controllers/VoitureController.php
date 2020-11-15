@@ -24,11 +24,11 @@ class VoitureController extends Controller
         $voiture = Voiture::find($id);
         return view('Boutique/voitureDetails',['voiture'=>$voiture]);
     }
-    public function TrouverBoutique($id)
+    public function TrouverBoutique($nom_boutique)
     {
-        $boutique = Boutique::find($id);
+        $boutique = Boutique::where('nom_boutique','=',$nom_boutique)->first();
         $nom_boutique = Boutique::all();
-        return view('Boutique/boutique_voiture',['boutique'=>$boutique,'nom_boutique'=>$nom_boutique]);
+        return view('Boutique/boutique_voiture',['boutique'=>$boutique,'nom_boutique'=>$nom_boutique,'msg'=>'']);
     }
     public function NumberClick(Request $r)
     {

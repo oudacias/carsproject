@@ -1,3 +1,7 @@
+<meta name="description" content="{{$boutique->nom_boutique}} {{$boutique->description_boutique}}">
+
+
+
 <link rel="stylesheet" href="/css/mainstyle.css">
 <link rel="stylesheet" href="/css/card.css">
 <link rel="stylesheet" href="/css/popup.css">
@@ -6,14 +10,12 @@
 <link rel='stylesheet' href="/css/confirmation.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>Boutique</title>
+<title>Eocars {{$boutique->nom_boutique}}</title>
 
 @include('Components.menu')
 @include('Boutique.rechercheHeader')
 @yield('menu')
 @yield('recherche')
-
-   
 
 <div class="container other-sides">
 <h2>&nbsp;&nbsp;&nbsp;&nbsp;{{$boutique->nom_boutique}}</h2>
@@ -24,6 +26,7 @@
             <div class="col-md-12">
                 <div class="card-block">
                     <div class="card-introduction">
+                    <img src="{{$boutique->lien_image}}" style="display: block;margin-left: auto;margin-right: auto;width: 140px;">
                         <p class="m-t-24 text-muted"><strong>Description :</strong>{{$boutique->description_boutique}}</p>
                     </div>
                 </div>
@@ -33,13 +36,14 @@
 </div>
 @if($boutique->voiture->count())
     @foreach($boutique->voiture as $v)
+    @if(!$v->achatvoiture)
     <div class="boutique-border">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4">
                     <div class="card-block">
                         <div class="user-image car-image">
-                            <img src="{{$v->photo}}">
+                            <img src="{{$v->photo}}" alt="{{$v->ville}}-{{$v->marque}}">
                         </div>
                     </div>
                 </div>
@@ -53,7 +57,7 @@
                         Prix : <strong>{{$v->prix}}</strong><br>
                         Vendeur : <strong>{{$v->user->email}}</strong>
                         </p>
-                        <a href="/Boutique/voitureDetails/{{$v->id}}"><button class="btn-boutique" type="button">Savoir Plus</button></a>
+                        <a href="/BoutiqueEocars/voitureDetails/{{$v->id}}"><button class="btn-boutique" type="button">Savoir Plus</button></a>
                     </div>
 
                     </div>
@@ -62,7 +66,7 @@
             </div>
         </div>
     </div>
-    
+    @endif
     @endforeach 
 @else
 <br>
@@ -73,5 +77,13 @@
        
 </div>
 </body>
+<div class="row" style="width:104%">
+    <div class="col-12" >
+        <div style="margin-top:300px">
+            @include('Components.footer')
+            @yield('footer')
+        </div> 
+    </div>
+</div>
 
 </html>

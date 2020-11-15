@@ -9,7 +9,6 @@
 	  <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
-<body>
 @include('Components.menu')
 @yield('menu')
 <div class="container-contact100">
@@ -17,6 +16,8 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <span class="contact100-form-title">Créer Nouveau Compte</span>
+        <img src="/project_images/logoCars.png" alt="Eocars" style="display: block;margin-left: auto;margin-right: auto;width: 60px;">
+        <br>
         <div class="wrap-input100 validate-input">
             <input id="nom" class="input100" type="text" name="nom" placeholder="Votre Nom" required>
             <span class="focus-input100"></span>

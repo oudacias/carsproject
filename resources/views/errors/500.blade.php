@@ -6,3 +6,5 @@
 @include('Components.menu')
 @yield('menu')
 <center><img width="75%" height="87%" src="/project_images/error_car.png"/></center>
+@include('Components.footer')
+@yield('footer')

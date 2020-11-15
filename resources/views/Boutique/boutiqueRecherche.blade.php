@@ -19,7 +19,7 @@
                     <div class="col-md-4">
                         <div class="card-block">
                             <div class="user-image car-image">
-                                <img src="{{$v->photo}}">
+                                <img src="{{$v->photo}}" alt="{{$v->ville}}-{{$v->marque}}">
                             </div>
                         </div>
                     </div>

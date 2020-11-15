@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/css/articles.css">
 <link rel="stylesheet" href="/css/confirmation.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>Mes Forums</title>
+<title>Mes Commentaires</title>
 
 @include('Components.menu')
 @yield('menu')
@@ -12,7 +12,7 @@
 		<div class="animated fadeOut success">{{session('success')}}</div>
 @endif
 <div class="container">
-
+<h4>Mes Commentaires</h4>
 @foreach($user->forums as $f)
     <div class="row">
         <div class="col-12">
@@ -22,8 +22,8 @@
                         <div class="row">
                             <div class="col-1"><img src="/project_images/topic.png" width="80%"> </div>
                             <div class="col-9">
-                                <a href="/Forum/Forums/{{$f->id}}"><strong>{{$f->pivot->commentaire}}</strong></a><br>
-                                <a href="/Forum/Forums/{{$f->id}}">{{$f->sujet}} : </a>{{$f->texte}}<br>
+                                <a href="/ForumEocars/{{$f->id}}/{{$f->sujet_slug}}"><strong>{{$f->pivot->commentaire}}</strong></a><br>
+                                <a href="/ForumEocars/{{$f->id}}/{{$f->sujet_slug}}">{{$f->sujet}} : </a>{{$f->texte}}<br>
                                 
                             </div>
                             <div class="col-2">
@@ -36,3 +36,10 @@
         </div>
     </div>
     @endforeach
+
+
+    </div>
+<div style="margin-top:100px">
+@include('Components.footer')
+@yield('footer')
+</div>

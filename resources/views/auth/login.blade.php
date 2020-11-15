@@ -8,10 +8,12 @@
     <div class="wrap-contact100">
         <form method="POST" action="{{ route('login') }}">
         @csrf 
-            <span class="contact100-form-title">Bienvenue dans notre Plateforme</span>
+            <span class="contact100-form-title">Bienvenue dans Eocars</span>
+            <img src="/project_images/logoCars.png" alt="Eocars" style="display: block;margin-left: auto;margin-right: auto;width: 60px;">
             @if ($errors->has('password') or $errors->has('email'))
                 <h7 style="color:#FAB107">Email ou mot de passe incorrect</h7>                    
-            @endif       
+            @endif   
+            <br>    
             <div class="wrap-input100 validate-input">
                 <input id='email' class="input100" type="text" name="email" placeholder="Votre Email" required>
                 <span class="focus-input100"></span>

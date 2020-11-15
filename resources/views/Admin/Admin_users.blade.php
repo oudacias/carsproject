@@ -1,11 +1,58 @@
 <link rel='stylesheet' href="/css/popup.css">
 <link rel='stylesheet' href="/css/confirmation.css">
+<link rel='stylesheet' href="/css/select_css.css">
+
 @include('Components.dashboard')
 @yield('dashboard')
 	@if(session('success'))
 		<div class="animated fadeOut success">{{session('success')}}</div>
 	@endif
 	<div class="text_header">Liste des Utilisateurs</div>
+	<form class="contact100-form validate-form" method="post" action="{{ action('AdminController@searchUsers') }}">
+	@csrf
+		<div class="container">
+			<div class="row">
+				<div class="col-3">
+					<div class="select">
+						<select name="objectif" id="slct">
+							<option selected disabled>Choisire Objectif</option>
+								<option>fournisseur</option>
+								<option>particulier</option>
+								<option>Standard</option>
+							</select>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="select">
+						<select name="confirmer" id="slct">
+							<option value="default">Confirmé ?</option>
+							<option value="1">Oui</option>
+							<option value="0">Non</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="select">
+						<select name="date" id="slct">
+							<option value="0">Choisire Date</option>
+							@foreach($dates as $a)
+								<option>{{$a}}</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+				<div class="col-3">
+					<input type="image" src="/project_images/search.png" style="width:70px">
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+
+
+
     <table class="table">
   <thead>
     <tr>
@@ -22,7 +69,11 @@
   </thead>
   <tbody>
 	@foreach($user as $u)
-    <tr>
+		@if( date('Y-m-d')  == $u->created_at->format('Y-m-d'))
+			<tr style="background-color:#FFCB8F">
+		@else
+			<tr>
+		@endif
 		<td>{{$u->created_at->todatestring()}}</td>
 		<td>{{$u->nom}}</td>
 		<td>{{$u->prenom}}</td>

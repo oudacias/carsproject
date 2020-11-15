@@ -18,7 +18,7 @@
     @yield('menu')
 
 
-    <div class="container">
+    <div class="container" id="container">
         <div class="row justify-content-around">
             <h1 id="titres">{{$artc->titre}}</h1></div>
             <div class="header-banner" style="background-image: url('{{$artc->lien_image}}')"></div>
@@ -26,9 +26,9 @@
                 <div class="col-md-12"> 
                     <div class="card user-card">
                         <div class="card-block">
+                        @if($artc->articlepub)@foreach($artc->articlepub as $p)<center><img src="{{$p->image_path}}" style="width:200px;height:200px" alt="{{$p->titre}}"></center>@endforeach @endif
                             <div class="card-introduction"><p class="m-t-13 text-muted">
                                 {!!html_entity_decode($artc->texte)!!}
-                                
                         </div>
                         @if($artc->lien_youtube)
 
@@ -43,7 +43,7 @@
             
             @if(Auth::check())
                 @if($artc->user->count())
-                    <h6 style="color:#441800">C'est article est dans votre collection de <u><a href="/User/myArticles">favoris</a></u></h6>
+                    <h6 style="color:#441800">Cet article est dans votre collection de <u><a href="/Profile/Mes_Articles">favoris</a></u></h6>
                 @else
                     <h5 style="color:#FAB107">Ajouter au favoris : <a href="/User/AjouterArticle/{{$artc->id}}"><img src="/project_images/heart1.png" width="40px"></a></h5>
                 @endif
@@ -71,9 +71,9 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="row">
-                            <div class="col-md-3"><img class="cars_article" src="{{$a->lien_image}}"></div>
-                                <div class="col-md-8 article_card"><h8><strong>{{$a->titre}}</strong></h8>
-                                    <p class="m-t-13 text-muted">{!!html_entity_decode(Str::limit($a->texte, 150))!!}</p><a href="/Articles/Article/{{$a->id}}">Lire Plus</a>
+                            <div class="col-md-3"><a href="/MagazineEocars/{{$a->id}}/{{$a->slug}}"><img class="cars_article" src="{{$a->lien_image}}" alt="{{$a->titre}}"></a></div>
+                                <div class="col-md-8 article_card"><h8><a href="/MagazineEocars/{{$a->id}}/{{$a->slug}}"><strong>{{$a->titre}}</strong></a></h8>
+                                    <p class="m-t-13 text-muted">{!!html_entity_decode(Str::limit($a->texte, 150))!!}</p><a href="/MagazineEocars/{{$a->id}}/{{$a->slug}}">Lire Plus</a>
                                 </div>
                             </div>
                         </div>               
@@ -84,7 +84,12 @@
             @endif
         </div>
     </div>
+    </div>
 </body>
+<div style="margin-top:100px">
+@include('Components.footer')
+@yield('footer')
+</div>
 
 <style>
 
@@ -110,10 +115,12 @@
 
 
 $(document).ready(function(){
-    var url = $("#youtube").val();
-    url = url.split('v=')[1];
-    $("#video")[0].src = "https://www.youtube.com/embed/" + url;
-    $("#video").show();
+    if($("#youtube").val()){
+        var url = $("#youtube").val();
+        url = url.split('v=')[1];
+        $("#video")[0].src = "https://www.youtube.com/embed/" + url;
+        $("#video").show();
+    }
 
 
     var twitterShare = document.querySelector('[data-js="twitter-share"]');

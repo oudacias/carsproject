@@ -282,6 +282,10 @@
         </div>
     </div>
 </div>
+<div style="margin-top:100px">
+@include('Components.footer')
+@yield('footer')
+</div>
 @else
 <script>window.location = "/";</script>
 @endif

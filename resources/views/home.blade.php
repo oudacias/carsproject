@@ -17,6 +17,7 @@
 <title>ELAMDASSI ON CARS</title>
 <div class="container">
 @if($pub_h->count())
+<div class="col-md-12">
     @foreach($pub_h as $h)
         @if($h->type == 'Youtube')
             <div class="responsive-video">
@@ -24,13 +25,14 @@
                 <iframe  id="video" class="video" frameborder="0" style="display: none" width="480" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
             </div>
         @elseif($h->type == 'Image')
-            <center><a href="{{$h->lien_publicite}}"><img src="{{$h->lien_media}}"></a></center>
+            <center><a href="//{{$h->lien_publicite}}"><img src="{{$h->lien_media}}"></a></center>
         @elseif($h->type == 'Javascript')
             <script>
                 {{$h->script}}
             </script>
         @endif
     @endforeach
+</div>
 @endif
 
 <div class="row">
@@ -41,7 +43,7 @@
                 <div class="card-block">
                     <div class="card-introduction">
                     @if($g->type == 'Image')
-                        <center><a href="{{$g->lien_publicite}}"><img src="{{$g->lien_media}}" class="pub_img"></a></center>
+                        <center><a href="//{{$g->lien_publicite}}"><img src="{{$g->lien_media}}" class="pub_img"></a></center>
                     @elseif($g->type == 'Javascript')
                         <script>
                             {{$g->script}}
@@ -74,7 +76,7 @@
                 <div class="col-md-3">
                     <div class="card-block">
                         <div class="user-image">
-                            <img src="/project_images/cars.jpg">
+                            <img src="/project_images/cars.jpg" alt="Eocars">
                         </div>
                     </div>
                 </div>
@@ -84,7 +86,7 @@
         <h4 class="tile-carousel">Nos Derniers Boutiques</h4>
         <section class="customer-logos slider">               
             @foreach($boutique as $b)
-                <div style="text-align:center" class="slide"><a href="/Boutique/boutique_voiture/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
+                <div style="text-align:center" class="slide"><a href="/Boutique/boutique_voiture/{{$b->id}}"><img src="{{$b->lien_image}}" alt="{{$b->nom_boutique}}">{{$b->nom_boutique}}</a></div>
                 <div style="text-align:center" class="slide"><a href="/Boutique/boutique_voiture/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
                 <div style="text-align:center" class="slide"><a href="/Boutique/boutique_voiture/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
                 <div style="text-align:center" class="slide"><a href="/Boutique/boutique_voiture/{{$b->id}}"><img src="{{$b->lien_image}}">{{$b->nom_boutique}}</a></div>
@@ -97,7 +99,7 @@
                 <div class="card-block">
                     <div class="card-introduction">
                         @if($m->type == 'Image')
-                            <center><a href="{{$m->lien_publicite}}"><img src="{{$m->lien_media}}" class="pub_m"></a></center>
+                            <center><a href="//{{$m->lien_publicite}}"><img src="{{$m->lien_media}}" class="pub_m"></a></center>
                         @elseif($m->type == 'Javascript')
                             <script>
                                 {{$m->script}}
@@ -116,13 +118,8 @@
             <div class="user-card container_pub container_pub_d"> 
                 <div class="card-block">
                     <div class="card-introduction">
-                    @if($d->type == 'Youtube')
-                        <div class="responsive-video">
-                            <input type="hidden" id="youtube_d" value = "{{$d->lien_youtube}}"/>
-                            <iframe  id="video" class="video" frameborder="0" style="display: none" width="480" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-                        </div>
-                    @elseif($d->type == 'Image')
-                        <center><a href="{{$d->lien_publicite}}"><img src="{{$d->lien_media}}" class="pub_img"></a></center>
+                    @if($d->type == 'Image')
+                        <center><a href="//{{$d->lien_publicite}}"><img src="{{$d->lien_media}}" class="pub_img"></a></center>
                     @elseif($d->type == 'Javascript')
                         <script>
                             {{$d->script}}
@@ -138,7 +135,10 @@
 
 <div class="container" id="containers">
 <!-- ********* -->
+<br>
+<br>
     <h4>Nos Dérniers Articles</h4>
+    <br>
     <div class="row">
     @foreach($artc as $a)
         <div class="col-md-6">
@@ -146,15 +146,15 @@
                 <div class="col-md-4">
                     <div class="card-block">
                         <div class="user-image">
-                            <img src="{{$a->lien_image}}">
+                        <a href="/MagazineEocars/{{$a->id}}/{{$a->slug}}"><img src="{{$a->lien_image}}" alt="{{$a->slug}}"></a>
                         </div>
                     </div>
                 </div>
             <div class="col-md-8">
                 <div class="card-block">
                     <div class="card-introduction">
-                        <strong  STYLE="text-transform:uppercase">{{$a->titre}}</strong>
-                        <p class="m-t-13 text-muted">{!!html_entity_decode(Str::limit($a->texte, 250))!!}<a class="link_article" href="/Articles/Article/{{$a->id}}">Lire Plus</a>
+                        <a href="/MagazineEocars/{{$a->id}}/{{$a->slug}}"><strong  style="text-transform:uppercase">{{$a->titre}}</strong></a>
+                        <p class="m-t-13 text-muted">{!!html_entity_decode(Str::limit($a->texte, 250))!!}<a class="link_article" href="/MagazineEocars/{{$a->id}}/{{$a->slug}}">Lire Plus</a>
                     </div>
                     </div>
                 </div>
@@ -164,6 +164,9 @@
     </div>
 </div>
 </div>
+</div>
+
+
 <style>
 .responsive-video {
     overflow:hidden;
@@ -172,8 +175,8 @@
 }
 .responsive-video iframe {
     left:0;
-    top:100px;
-    height:40%;
+    top:0px;
+    height:100%;
     width:60%;
     position:absolute;
     margin-left:20%;
@@ -181,14 +184,20 @@
 }
 </style>
 </body>
-
+<br>
+<br>
+<br>
+@include('Components.footer')
+@yield('footer')
 
 <script>
 $(document).ready(function(){
-    var url = $("#youtube_h").val();
-    url = url.split('v=')[1];
-    $("#video")[0].src = "https://www.youtube.com/embed/" + url;
-    $("#video").show();
+    if($("#youtube").val()){
+        var url = $("#youtube_h").val();
+        url = url.split('v=')[1];
+        $("#video")[0].src = "https://www.youtube.com/embed/" + url;
+        $("#video").show();
+    }
 });
 </script>
 <html>
