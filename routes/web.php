@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Article;
 use App\Boutique;
 use App\Publicite;
+use App\Seodata;
+use App\Pagedata;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +45,7 @@ Route::get('Admin/supprimer_diagnostic/{id}','AdminController@supprimerDiagnosti
 Route::get('Admin/Admin_suivi', 'ServiceController@afficherSuivi');
 Route::get('Admin/Admin_suivi', 'ServiceController@afficherSuivi');
 Route::get('Admin/Admin_boutique', 'AdminController@afficherBoutique');
+Route::post('Admin/Admin_type_boutique', 'AdminController@changerTypeBoutique');
 Route::post('Admin/searchBoutique', 'AdminController@searchBoutique');
 Route::get('Admin/supprimer_boutique/{id}', 'AdminController@supprimerBoutique');
 Route::get('Admin/Admin_voiture', 'AdminController@afficherVoiture');
@@ -63,6 +66,17 @@ Route::post('Admin/AjouterPub/','AdminController@AjouterPub');
 Route::get('Admin/SupprimerPub/{id}','AdminController@SupprimerPub');
 Route::post('Admin/AjouterPubArticle/','AdminController@AjouterPubArticle');
 Route::get('Admin/SupprimerPubArticle/{id}','AdminController@SupprimerPubArticle');
+Route::get('Admin/Admin_option/', 'AdminController@options');
+Route::post('Admin/Admin_option/seo', 'AdminController@ajouterSeo');
+Route::post('Admin/Admin_option/page', 'AdminController@ajouterIntroPage');
+Route::post('Admin/Admin_option/design', 'AdminController@modifierDesign');
+Route::post('Admin/Admin_option/social', 'AdminController@modifierSocial');
+
+
+
+
+
+
 
 });
 Route::get('Services/service_diagnostic', 'ServiceController@indexdiagnostic');
@@ -79,7 +93,8 @@ Route::post('/ForumEocars/Comment', 'ForumController@insertComment');
 Route::post('Services/service_diagnostic', 'ServiceController@ajouterdiagnostic');
 Route::post('Service-Suivi', 'ServiceController@ajoutersuivi');
 Route::get('Service-Suivi', 'ServiceController@indexsuivi');
-Route::get('BoutiqueEocars/', 'BoutiqueController@indexboutique');
+Route::get('BoutiqueEocars/', 'BoutiqueController@indexBoutique');
+Route::get('BoutiqueEocars/tri', 'BoutiqueController@trierBoutique');
 Route::get('BoutiqueEocars/voitureDetails/{id}', 'VoitureController@VoitureDetails');
 Route::get('Contact/', 'ContactController@contactme');
 
@@ -126,13 +141,18 @@ Route::get('voitureVendre/{id}', 'VoitureController@vendreVoiture');
 Auth::routes();
 
 Route::get('/', function(){
+        
+        $page_home = Pagedata::where('page',"=","Accueil")->orderBy('created_at','desc')->first();
+
+        $seo_home = Seodata::where('page',"=","Accueil")->orderBy('created_at','desc')->first();
+
         $articles = Article::orderBy('created_at','desc')->limit(4)->get();
         $boutique = Boutique::all()->sortByDesc('created_at');
         $pub_g = Publicite::where('nom_page',"=",'/')->where('emplacement',"=",'Gauche')->orderBy('created_at','desc')->limit(1)->get();
         $pub_d = Publicite::where('nom_page',"=",'/')->where('emplacement',"=",'Droite')->orderBy('created_at','desc')->limit(1)->get();
         $pub_h = Publicite::where('nom_page',"=",'/')->where('emplacement',"=",'Haut')->orderBy('created_at','desc')->limit(1)->get();
         $pub_m = Publicite::where('nom_page',"=",'/')->where('emplacement',"=",'Milieu')->orderBy('created_at','desc')->limit(1)->get();
-        return view('home',['artc'=>$articles,'boutique'=>$boutique,'pub_g'=>$pub_g,'pub_d'=>$pub_d,'pub_h'=>$pub_h,'pub_m'=>$pub_m]);
+        return view('home',['artc'=>$articles,'boutique'=>$boutique,'pub_g'=>$pub_g,'pub_d'=>$pub_d,'pub_h'=>$pub_h,'pub_m'=>$pub_m,'seo_home'=>$seo_home,'page_home'=>$page_home]);
 }
 );
 

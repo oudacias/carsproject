@@ -10,7 +10,8 @@ use DateTime;
 use App\Notificationadmin;
 use App\User;
 use Pusher\Pusher;
-
+use App\Seodata;
+use App\Pagedata;
 
 class ServiceController extends Controller
 {
@@ -20,7 +21,11 @@ class ServiceController extends Controller
     }
     public function indexsuivi()
     {
-        return view('Services/service_suivi');
+        $page_suivi = Pagedata::where('page',"=","Suivi")->orderBy('created_at','desc')->first();
+
+        $seo_suivi = Seodata::where('page',"=","Suivi")->orderBy('created_at','desc')->first();
+
+        return view('Services/service_suivi',['seo_suivi'=>$seo_suivi,'page_suivi'=>$page_suivi]);
     }
     public function ajouterdiagnostic(Request $r)
     {

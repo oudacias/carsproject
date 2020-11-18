@@ -24,10 +24,11 @@
   color: black;
   margin-top: 5px;
   text-align: left;
-  height: 36px;
+  height: 30px;
   position: relative;
 }
-.mcd-menu li :hover {
+.mcd-menu li a:hover {
+
   border-radius: 10px;
   background-color: #FAB107;
 

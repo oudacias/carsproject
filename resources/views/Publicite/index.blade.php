@@ -21,8 +21,8 @@
         <select name="nom_page" id="preview" onchange="preview_page()" class="input100">
             <option value="0">-----</option>
             <option value="/">Accueil</option>
-            <option value="/Articles/Articles">Magazine</option>
-            <option value="/Forum/Forums/">Forum</option>
+            <option value="/MagazineEocars">Magazine</option>
+            <option value="/ForumEocars">Forum</option>
         </select>
     </div>
 </div>
@@ -59,7 +59,7 @@
         <label for="file-input">
             <img src="/project_images/cloud.png"/>
         </label>
-        <input id="file-input" type="file" name="lien_media"/>
+        <input id="file-input" type="file" name="lien_media" accept="image/x-png,image/jpeg"/>
     </div>
 </div>
 <div id="lien_youtube_section" style="margin-top:20px" class="wrap-contact100">
@@ -135,7 +135,7 @@ function check_type(){
 $("form").submit(function(e){
     if($("#preview").val() == "0"){
         e.preventDefault();
-        alert("Veuillez choisire une page");
+        alert("Veuillez choisir une page");
     }
     if($("#type_pub").val() == "Javascript" && $("#script").val().length == 0){
         e.preventDefault();

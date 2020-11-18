@@ -9,6 +9,7 @@ use App\Voiture;
 use App\Boutique;
 use App\Voitureclick;
 use App\Achatvoiture;
+use App\Voiturevu;
 
 class VoitureController extends Controller
 {
@@ -22,6 +23,9 @@ class VoitureController extends Controller
     public function VoitureDetails($id)
     {
         $voiture = Voiture::find($id);
+        $voiture->nbr_vu =  $voiture->nbr_vu +1;
+        $voiture->save();
+        
         return view('Boutique/voitureDetails',['voiture'=>$voiture]);
     }
     public function TrouverBoutique($nom_boutique)

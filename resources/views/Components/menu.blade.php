@@ -2,18 +2,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
 <meta charset="UTF-8" />
 <meta name="author" content="EOCARS.MA">
-<meta name="description" content="EOCARS est une entreprise dédiée à l’accompagnement des acheteurs des vendeurs et des revendeurs de voitures à travers ses différents services ">
-<meta name="keywords" content="Voiture au maroc, voiture occasion maroc, achat voiture, vente voiture, annonces, occasion maroc, blog maroc, forum maroc">
-<link rel="icon" type="image/png" href="/project_images/logoCars.png">
 <link rel="stylesheet" type="text/css" href="/css/menu.css">
 <link rel="stylesheet" type="text/css" href="/css/article.css">
 <link rel="stylesheet" type="text/css" href="/css/notification.css">
 <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <script src="/javascript/notification.js" type="text/javascript"></script>
-<img style="position:absolute" class="logo-menu" src="/project_images/logoCars.png" alt="Eocars">
 
-<header class="header">
+@php $design= App\Design::first() @endphp
+<link rel="icon" type="image/png" href="{{$design->logo}}">
+<img style="position:absolute" class="logo-menu" src="{{$design->logo}}" alt="Eocars">
+<style>
+  button{
+    background-color:{{$design->btn_color}}
+  }
+  .recherche-cars{
+    background-color:{{$design->btn_color}}
+  }
+  .contact100-form-btn{
+    background-color:{{$design->btn_color}}
+
+  }
+</style>
+
+
+
+
+<header class="header" style="background-color:{{$design->menu_color}}">
 <div class = "icons">
   <div class = "notification">
     <a href = "#">
@@ -39,11 +54,13 @@
                   <div class = "txts">Mon Profile</div>
                 </a>
               </div>
+              @if(Auth::user()->role == 'utilisateur')
               <div class = "sec old">
                 <a href = "/modifierProfile">
                   <div class = "txts">Modifier mon profile</div>
                 </a>
               </div>
+              @endif
               <div class = "sec old">
               <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                   <div class = "txts">Se déconnecter</div>
@@ -80,12 +97,12 @@
   <input class="menu-btn" type="checkbox" id="menu-btn" />
   <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
   <ul class="menu">
-    <li><a class="menugap" href="/">Accueil</a></li>
-    <li><a class="menugap" href="/Service-Suivi">Services Conseil</a></li>
-    <li><a class="menugap" href="/ForumEocars">Forum</a></li>
-    <li><a class="menugap" href="/MagazineEocars">Magazine</a></li>
-    <li><a class="menugap" href="/BoutiqueEocars">Boutique</a></li>
-    <li><a class="menugap" href="/Contact">Contact</a></li>
+    <li><a style="background-color:{{$design->menu_color}}" class="menugap" href="/">Accueil</a></li>
+    <li><a style="background-color:{{$design->menu_color}}" class="menugap" href="/Service-Suivi">Services Conseil</a></li>
+    <li><a style="background-color:{{$design->menu_color}}" class="menugap" href="/ForumEocars">Forum</a></li>
+    <li><a style="background-color:{{$design->menu_color}}" class="menugap" href="/MagazineEocars">Magazine</a></li>
+    <li><a style="background-color:{{$design->menu_color}}" class="menugap" href="/BoutiqueEocars">Boutique</a></li>
+    <li><a style="background-color:{{$design->menu_color}}" class="menugap" href="/Contact">Contact</a></li>
     </ul>
 </header>
   <div class="Message" id="msg">

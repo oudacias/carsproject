@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBoutiquesTable extends Migration
+class CreateSeodatasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateBoutiquesTable extends Migration
      */
     public function up()
     {
-        Schema::create('boutiques', function (Blueprint $table) {
+        Schema::create('seodatas', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('nom_boutique');
-            $table->string('description_boutique');
-            $table->Text('lien_image');
-            $table->boolean('type')->default(false);
+            $table->string('page');
+            $table->text('description')->nullable();
+            $table->text('keywords')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -31,6 +28,6 @@ class CreateBoutiquesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('boutiques');
+        Schema::dropIfExists('seodatas');
     }
 }

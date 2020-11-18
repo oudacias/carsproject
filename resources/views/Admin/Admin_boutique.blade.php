@@ -18,7 +18,7 @@
                     <div class="col-3">
                         <div class="select">
                             <select name="ville" id="slct">
-                                <option selected disabled>Choisire Ville</option>
+                                <option selected disabled>Choisir Ville</option>
                                     <option title="agadir" value="agadir">AGADIR</option>
 
                                     <option title="ait benhaddou" value="ait benhaddou">AIT BENHADDOU</option>
@@ -247,7 +247,7 @@
                     <div class="col-3">
                         <div class="select">
                             <select name="date" id="slct">
-                                <option value="0">Choisire Date</option>
+                                <option value="0">Choisir Date</option>
                                 @foreach($dates as $a)
                                     <option>{{$a}}</option>
                                 @endforeach
@@ -260,12 +260,6 @@
                 </div>
             </div>
         </form>
-
-
-
-
-
-
         <table class="table">
             <thead>
                 <tr>
@@ -276,6 +270,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Telephone</th>
                 <th scope="col">Ville</th>
+                <th scope="col">Type</th>
                 <th scope="col">Supprimer</th>
                 </tr>
             </thead>
@@ -294,6 +289,21 @@
                 <td style="text-align:left">{{$b->user->email}}</td>
                 <td style="text-align:left">{{$b->user->telephone}} </td>
                 <td style="text-align:left">{{$b->ville_boutique}} </td>
+                <td style="text-align:left">
+                    <form id="type_form" method="POST" action="{{ action ('AdminController@changerTypeBoutique') }}">
+                    @csrf
+                        <input type="hidden" name="boutique_id" value="{{$b->id}}">
+                        <select name="boutique_type" id="boutique_type">
+                            @if($b->type)
+                                <option value="0"  >Normal</option>
+                                <option  value="1" selected>Pro</option>
+                            @else
+                                <option value="0"  selected>Normal</option>
+                                <option  value="1" >Pro</option>
+                            @endif
+                        </select>
+                    </form>
+                </td>
                 <td style="text-align:left"><a href="/Admin/supprimer_boutique/{{$b->id}}"><img src="/project_images/bin.png" width="20%"></td>
                 </tr>
                 @endforeach
@@ -301,3 +311,9 @@
             </tbody>
         </table>
     </div>       
+<script>
+
+$("#boutique_type").change(function(e){
+    $('#type_form').submit();
+});
+</script>

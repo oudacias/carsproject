@@ -16,6 +16,8 @@ use DateTime;
 use DB;
 use App\Article;
 use Illuminate\Support\Str;
+use App\Seodata;
+use App\Pagedata;
 
 class UserController extends Controller
 {
@@ -148,52 +150,77 @@ class UserController extends Controller
     }
     public function ChercherVoitureBoutique(Request $r)
     {
-        $boutique = Boutique::where('nom_boutique','=',$r->nom_boutique)->first();
-        $voiture = Voiture::where('boutique_id','=',$boutique->id)->get();
         $nom_boutique = Boutique::all();
-        if(!$voiture->count()){
-            $voiture = Voiture::all()->sortByDesc('created_at');
-            return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'Pas de voiture trouvée']);
-        }            
-        return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'']);
-
-    
+        $boutique = Boutique::where('nom_boutique','=',$r->nom_boutique)->first();         
+        return view('Boutique/boutique_voiture',['boutique'=>$boutique,'nom_boutique'=>$nom_boutique,'msg'=>'']);
     }
     public function ChercherBoutiqueVille(Request $r)
     {
-        $b = Boutique::where('ville_boutique','=',$r->ville_boutique)
-                                    ->get('id');
-        $voiture = Voiture::whereIn('boutique_id',$b)->get();
+        $page_boutique = Pagedata::where('page',"=","Boutique")->orderBy('created_at','desc')->first();
+        $seo_boutique = Seodata::where('page',"=","Boutique")->orderBy('created_at','desc')->first();
+        $boutique_pro = Boutique::where('ville_boutique','=',$r->ville_boutique)->where('type',"=",1)
+                                    ->get()->shuffle();
+        $boutique = Boutique::where('ville_boutique','=',$r->ville_boutique)->where('type',"=",0)
+                                    ->get();
         $nom_boutique = Boutique::all();
-        if(!$voiture->count()){
-            $voiture = Voiture::all()->sortByDesc('created_at');
-            return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'Pas de voiture trouvée']);
-        }            
-        return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'']);
+        if(!$boutique_pro->count() && !$boutique->count()){
+            $boutique = Boutique::where('type',"=",1)->get('id');
+
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)->where('vendu',false)->get()->shuffle();
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)->where('vendu',false)->orderBy('created_at','desc')->get();              
+            return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'Pas de boutique trouvée','seo_boutique'=>$seo_boutique,'page_boutique'=>$page_boutique,'voiture_pro'=>$voiture_pro]);
+        }  
+            return view('Boutique/boutique',['boutique_pro'=>$boutique_pro,'boutique'=>$boutique,'nom_boutique'=>$nom_boutique,'msg'=>' ','seo_boutique'=>$seo_boutique,'page_boutique'=>$page_boutique]);
     }
+
+
+
     public function ChercherVoiture(Request $r)
     {
+        $page_boutique = Pagedata::where('page',"=","Boutique")->orderBy('created_at','desc')->first();
+        $seo_boutique = Seodata::where('page',"=","Boutique")->orderBy('created_at','desc')->first();
+
+        $boutique = Boutique::where('type',"=",1)->get('id');
+
         if($r->ville != "0" && !$r->prix){
-            $voiture = Voiture::where('ville','=',$r->ville)
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                ->where('ville','=',$r->ville)
                                 ->orderBy('created_at','desc')
                                 ->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                ->where('ville','=',$r->ville)
+                                ->orderBy('created_at','desc')
+                                ->get()->shuffle();
         
         }elseif($r->ville != "0" && $r->prix){
-                $voiture = Voiture::where('ville','=',$r->ville)
+                $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                        ->where('ville','=',$r->ville)
                                         ->where('prix','<=',$r->prix)
                                         ->orderBy('created_at','desc')
                                         ->get();
+                $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                        ->where('ville','=',$r->ville)
+                                        ->where('prix','<=',$r->prix)
+                                        ->orderBy('created_at','desc')
+                                        ->get()->shuffle();
         }elseif($r->ville == "0" && $r->prix){
-                $voiture = Voiture::where('prix','<=',$r->prix)
+                $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                    ->where('prix','<=',$r->prix)
                                     ->orderBy('created_at','desc')
                                     ->get();
+                $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                    ->where('prix','<=',$r->prix)
+                                    ->orderBy('created_at','desc')
+                                    ->get()->shuffle();
         }
         $nom_boutique = Boutique::all();
-        if(!$voiture->count()){
-            $voiture = Voiture::all()->sortByDesc('created_at');
-            return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'Pas de voiture trouvée']);
+        if(!$voiture->count() && !$voiture_pro->count()){
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)->where('vendu',false)->get()->shuffle();
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)->where('vendu',false)->orderBy('created_at','desc')->get();
+                        
+            return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'Pas de voiture trouvée','seo_boutique'=>$seo_boutique,'page_boutique'=>$page_boutique,'voiture_pro'=>$voiture_pro]);
         }            
-        return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'']);
+        return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'','seo_boutique'=>$seo_boutique,'page_boutique'=>$page_boutique,'voiture_pro'=>$voiture_pro]);
     }
 
 
@@ -204,65 +231,126 @@ class UserController extends Controller
     
     public function ChercherVoitureDetail(Request $r)
     {
+        $page_boutique = Pagedata::where('page',"=","Boutique")->orderBy('created_at','desc')->first();
+        $seo_boutique = Seodata::where('page',"=","Boutique")->orderBy('created_at','desc')->first();
+
+        $boutique = Boutique::where('type',"=",1)->get('id');
+
         if($r->marque !="0" && $r->model !="0" && $r->carburant !="0" && $r->vitesse !="0"){
-            $voiture = Voiture::where('marque','=',$r->marque)
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                ->where('marque','=',$r->marque)
                                 ->where('model','=',$r->model)
                                 ->where('carburant','=',$r->carburant)
                                 ->where('boite_vitesse','=',$r->vitesse)
                                 ->orderBy('created_at','desc')
                                 ->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                ->where('marque','=',$r->marque)
+                                ->where('model','=',$r->model)
+                                ->where('carburant','=',$r->carburant)
+                                ->where('boite_vitesse','=',$r->vitesse)
+                                ->orderBy('created_at','desc')
+                                ->get()->shuffle();
         }elseif($r->marque !="0" && $r->model !="0" && $r->carburant !="0" && $r->vitesse =="0"){
-            $voiture = Voiture::where('marque','=',$r->marque)
+            $voiture_pro = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                ->where('marque','=',$r->marque)
                                 ->where('model','=',$r->model)
                                 ->where('carburant','=',$r->carburant)
                                 ->orderBy('created_at','desc')
                                 ->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                ->where('marque','=',$r->marque)
+                                ->where('model','=',$r->model)
+                                ->where('carburant','=',$r->carburant)
+                                ->orderBy('created_at','desc')
+                                ->get()->shuffle();
         }elseif($r->marque !="0" && $r->model !="0" && $r->carburant =="0" && $r->vitesse =="0"){
-            $voiture = Voiture::where('marque','=',$r->marque)
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                ->where('marque','=',$r->marque)
                                 ->where('model','=',$r->model)
                                 ->orderBy('created_at','desc')
                                 ->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                ->where('marque','=',$r->marque)
+                                ->where('model','=',$r->model)
+                                ->orderBy('created_at','desc')
+                                ->get()->shuffle();
 
         }elseif($r->marque !="0" && $r->model =="0" && $r->carburant !="0" && $r->vitesse !="0"){
-            $voiture = Voiture::where('marque','=',$r->marque)
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                ->where('marque','=',$r->marque)
                                 ->where('carburant','=',$r->carburant)
                                 ->where('boite_vitesse','=',$r->vitesse)
                                 ->orderBy('created_at','desc')
                                 ->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                ->where('marque','=',$r->marque)
+                                ->where('carburant','=',$r->carburant)
+                                ->where('boite_vitesse','=',$r->vitesse)
+                                ->orderBy('created_at','desc')
+                                ->get()->shuffle();
 
         }elseif($r->marque !="0" && $r->model =="0" && $r->carburant =="0" && $r->vitesse !="0"){
-            $voiture = Voiture::where('marque','=',$r->marque)
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                ->where('marque','=',$r->marque)
                                 ->where('boite_vitesse','=',$r->vitesse)
                                 ->orderBy('created_at','desc')
                                 ->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                ->where('marque','=',$r->marque)
+                                ->where('boite_vitesse','=',$r->vitesse)
+                                ->orderBy('created_at','desc')
+                                ->get()->shuffle();
 
         }elseif($r->marque !="0" && $r->model =="0" && $r->carburant =="0" && $r->vitesse =="0"){
-            $voiture = Voiture::where('marque','=',$r->marque)
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                ->where('marque','=',$r->marque)
                                 ->orderBy('created_at','desc')
                                 ->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                ->where('marque','=',$r->marque)
+                                ->orderBy('created_at','desc')
+                                ->get()->shuffle();
 
         }elseif($r->marque =="0" && $r->model =="0" && $r->carburant !="0" && $r->vitesse !="0"){
-            $voiture = Voiture::where('carburant','=',$r->carburant)
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                ->where('carburant','=',$r->carburant)
                                 ->where('boite_vitesse','=',$r->vitesse)
                                 ->orderBy('created_at','desc')
                                 ->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                ->where('carburant','=',$r->carburant)
+                                ->where('boite_vitesse','=',$r->vitesse)
+                                ->orderBy('created_at','desc')
+                                ->get()->shuffle();
 
         }elseif($r->marque =="0" && $r->model =="0" && $r->carburant !="0" && $r->vitesse =="0"){
-            $voiture = Voiture::where('carburant','=',$r->carburant)
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                ->where('carburant','=',$r->carburant)
                                 ->orderBy('created_at','desc')
                                 ->get();  
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                ->where('carburant','=',$r->carburant)
+                                ->orderBy('created_at','desc')
+                                ->get()->shuffle();  
 
         }elseif($r->marque =="0" && $r->model =="0" && $r->carburant =="0" && $r->vitesse !="0"){
-            $voiture = Voiture::where('boite_vitesse','=',$r->vitesse)
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)
+                                ->where('boite_vitesse','=',$r->vitesse)
                                 ->orderBy('created_at','desc')
                                 ->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)
+                                ->where('boite_vitesse','=',$r->vitesse)
+                                ->orderBy('created_at','desc')
+                                ->get()->shuffle();
         }
         $nom_boutique = Boutique::all();
-        if(!$voiture->count()){
-            $voiture = Voiture::all()->sortByDesc('created_at');
-            return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'Pas de voiture trouvée']);
+        if(!$voiture->count() && !$voiture_pro->count()){
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)->where('vendu',false)->get()->shuffle();
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)->where('vendu',false)->orderBy('created_at','desc')->get();
+            return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'Pas de voiture trouvée','seo_boutique'=>$seo_boutique,'page_boutique'=>$page_boutique,'voiture_pro'=>$voiture_pro]);
         }            
-        return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'']);
+        return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'','seo_boutique'=>$seo_boutique,'page_boutique'=>$page_boutique,'voiture_pro'=>$voiture_pro]);
     }
     public function rechercheB($id)
     {

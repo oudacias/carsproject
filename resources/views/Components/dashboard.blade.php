@@ -7,20 +7,24 @@
 <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
 <script src="/javascript/notification.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@php $design= App\Design::first() @endphp
+<link rel="icon" type="image/png" href="{{$design->logo}}">
 
+
+<title>Espace Admin Eocars</title>
 
 
 
 <div class="row">
     <div class="col-md-4 img-index">
-	<a href="/"><img class="logo-menu" src="/project_images/logoCars.png"></a>
+	<a href="/"><img class="logo-menu" src="{{$design->logo}}"></a>
 		<nav>
 			<ul class="mcd-menu" style="padding-top: 130px">
 			<p class="admin">Espace Administrateur</p>
 
 				<li>
 					<a href="/Admin/Admin_articles">
-						Nos articles
+						<img src="/project_images/open_book.png" width="20px">Nos articles
 					</a>
 				</li>
 				<li>
@@ -29,31 +33,32 @@
 					</a>
 				</li>
 				<li>
-					<a href="/Admin/Admin_forum">Forum</a>
+					<a href="/Admin/Admin_forum">
+					<img src="/project_images/discussion.png" width="20px">Forum</a>
 				</li>
 				<li>
 					<a href="/Admin/Admin_users">
-						Utilisateurs <span id="notification_user" style="background-color:#E3BDBD;border-radius:50%;padding:5px 6px;font-size:10px"></span>
+						<img src="/project_images/users.png" width="20px">Utilisateurs <span id="notification_user" style="background-color:#E3BDBD;border-radius:50%;padding:5px 6px;font-size:10px"></span>
 					</a>
 				</li>
 				<li>
 					<a href="/Admin/Admin_suivi">
-						Suivi <span id="notification_count" style="background-color:#E3BDBD;border-radius:50%;padding:5px 6px;font-size:10px"></span>
+						<img src="/project_images/help.png" width="20px">Suivi <span id="notification_count" style="background-color:#E3BDBD;border-radius:50%;padding:5px 6px;font-size:10px"></span>
 					</a>
 				</li>
 				<li>
 					<a href="/Admin/Admin_boutique">
-						Boutiques
+						<img src="/project_images/shop.png" width="15px">Boutiques
 					</a>
 				</li>
 				<li>
 					<a href="/Admin/Admin_voiture">
-						Voitures
+						<img src="/project_images/addCar.png" width="25px">Voitures
 					</a>
 				</li>
 				<li>
 					<a href="/Admin/Admin_click">
-						Voitures click
+						<img src="/project_images/click.png" width="20px">Voitures click
 					</a>
 				</li>
 				<li>
@@ -63,7 +68,12 @@
 				</li>
 				<li>
 					<a href="/Publicite/supprimerPub">
-						Publicités
+						<img src="/project_images/add_ads.png" width="20px">Publicités
+					</a>
+				</li>
+				<li>
+					<a href="/Admin/Admin_option">
+						<img src="/project_images/settings.png" width="20px">Options
 					</a>
 				</li>
 			</ul>

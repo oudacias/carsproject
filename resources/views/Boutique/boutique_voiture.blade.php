@@ -25,6 +25,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card-block">
+
+                @if($boutique->type)<img  style="float:right" src="/project_images/pro_tag.png" width="50px">@endif
+
                     <div class="card-introduction">
                     <img src="{{$boutique->lien_image}}" style="display: block;margin-left: auto;margin-right: auto;width: 140px;">
                         <p class="m-t-24 text-muted"><strong>Description :</strong>{{$boutique->description_boutique}}</p>

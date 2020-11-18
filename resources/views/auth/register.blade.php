@@ -11,12 +11,14 @@
 </head>
 @include('Components.menu')
 @yield('menu')
+@php $design= App\Design::first() @endphp
+
 <div class="container-contact100">
   <div class="wrap-contact100">
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <span class="contact100-form-title">Créer Nouveau Compte</span>
-        <img src="/project_images/logoCars.png" alt="Eocars" style="display: block;margin-left: auto;margin-right: auto;width: 60px;">
+        <img src="{{$design->logo}}" alt="Eocars" style="display: block;margin-left: auto;margin-right: auto;width: 60px;">
         <br>
         <div class="wrap-input100 validate-input">
             <input id="nom" class="input100" type="text" name="nom" placeholder="Votre Nom" required>

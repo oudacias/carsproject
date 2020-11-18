@@ -46,7 +46,7 @@
                                                 <label for="file-input{{$v->id}}">Ajouter Image &nbsp;&nbsp;
                                                     <img src="/project_images/plus.png" style="width:40px"/>
                                                 </label>
-                                                <input id="file-input{{$v->id}}" type="file" name="lien_image"/>
+                                                <input id="file-input{{$v->id}}" type="file" name="lien_image" accept="image/x-png,image/jpeg"/>
                                             </div>
                                             <input type="hidden" name="voiture_id" value="{{ $v->id}}">
                                             <div class="wrap-input100">

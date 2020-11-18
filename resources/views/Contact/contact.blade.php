@@ -1,17 +1,16 @@
-<meta name="description" content="Contacter EOCARS dans ses différentes plateformes Facebook, Instagram, Whatsapp et Gmail">
-<meta name="keywords" content="contact Eocars, contact voiture, achat voiture, achat voiture Facebook, Instagram, Whatsapp">
-
 <link rel="stylesheet" href="/css/mainstyle.css">
 <link rel="stylesheet" href="/css/card.css">
 <link rel="stylesheet" href="/css/popup.css">
 <link rel="stylesheet" href="/css/articles.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<meta name="description" content="{{$seo_contact->description}}">
+<meta name="keywords" content="{{$seo_contact->keywords}}">
 <title>Eocars Contact</title>
 @include('Components.menu')
 @yield('menu')
 <div class="container-contact100">
     <div class="wrap-contact100">
-        <h3 style="color:#FAB107;text-align:center">Une question ? Une proposition ? Envoyez-nous un message :)</h3>
+        @if($page_contact->introduction)<h3 style="color:#FAB107;text-align:center">{{$page_contact->introduction}}</h3>@endif
         <p id="copied">Email copié</p>
         <br>
         <div class="social">
@@ -51,8 +50,6 @@ $(document).ready(function(){
         window.location.href = "https://web.whatsapp.com/send?phone="+{{$social->whatsapp}};
     }
 
-
-    
 </script>
 
   

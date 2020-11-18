@@ -24,7 +24,7 @@
             <div class="wrap-input100 validate-input">
                 <span class="focus-input100"></span>
                 <select id="marque" class="input100" name="marque">
-                <option value="0" selected="selected">ℨ Choisire Marque</option>
+                <option value="0" selected="selected">ℨ Choisir Marque</option>
                     <option value="Renault">Renault</option>
                     <option value="Peugeot">Peugeot</option>
                     <option value="Opel">Opel</option>
@@ -73,7 +73,7 @@
             <label>Model de la voiture</label>
             <div class="wrap-input100 validate-input">
                 <select id="model" class="input100" name="model">  
-                    <option value="0">Choisire modèle</option>
+                    <option value="0">Choisir modèle</option>
                 </select>
             </div>
             <label>Version de la voiture</label>

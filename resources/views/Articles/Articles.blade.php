@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="/css/pub.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<meta name="description" content="{{$seo_article->description}}">
+<meta name="keywords" content="{{$seo_article->keywords}}">
+
 @include('Components.menu')
 @yield('menu')
 
@@ -34,14 +37,31 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
 
 
-
+@if($page_article->introduction)
 <div class="container">
+    <div class="row">
+        <div class="col-10">
+            <div class="user-card" style="margin-bottom:50px"> 
+                <div class="card">
+                    @if($page_article->lien_img)
+                    <div class="user-image img-home">
+                        <img src="{{$page_article->lien_img}}">
+                    </div>
+                    @endif
+                    <div class="card-introduction">
+                        <p  style="padding:50px">{{$page_article->introduction}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+@endif
+
+
+<div class="col-md-12">
 @if($pub_h->count())
     @foreach($pub_h as $h)
         @if($h->type == 'Youtube')
@@ -58,6 +78,8 @@
         @endif
     @endforeach
 @endif
+</div>
+</div>
 <div class="row">
 @if($pub_g->count())
     @foreach($pub_g as $g)
@@ -101,13 +123,13 @@
                 <div class="col-md-8">
                     <div class="card-block">
                         <div class="card-introduction">
-                        <a href="/MagazineEocars/{{$a->id}}/{{$a->slug}}"><strong>{{$a->titre}}</strong></a>
-                        <p>Rédigé : {{$a->created_at->format('d-m-Y')}}</p>
+                            <a href="/MagazineEocars/{{$a->id}}/{{$a->slug}}"><strong>{{$a->titre}}</strong></a>
+                            <p>Rédigé : {{$a->created_at->format('d-m-Y')}}</p>
                             <p class="m-t-13 text-muted">{!!html_entity_decode(Str::limit($a->texte, 650))!!}</p><a href="/MagazineEocars/{{$a->id}}/{{$a->slug}}">Lire Plus</a>
-                        </div>
                         </div>
                     </div>
                 </div>
+            </div>
         @endforeach     
     </div>
     @if($pub_d->count())

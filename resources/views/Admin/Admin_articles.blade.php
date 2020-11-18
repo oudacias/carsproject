@@ -31,7 +31,7 @@
     		<div class="col-3">
 				<div class="select">
 					<select name="titre" id="slct">
-						<option selected disabled>Choisire Titre</option>
+						<option selected disabled>Choisir Titre</option>
 						@foreach($articles->sortBy('titre') as $a)
 							<option>{{$a->titre}}</option>
 						@endforeach
@@ -41,7 +41,7 @@
 			<div class="col-3">
 			<div class="select">
 				<select name="categorie" id="slct">
-					<option selected disabled>Choisire Catégorie</option>
+					<option selected disabled>Choisir Catégorie</option>
 					@foreach($categorie as $c)
 						<option>{{$c->categorie}}</option>
 					@endforeach
@@ -51,7 +51,7 @@
     		<div class="col-3">
 				<div class="select">
 					<select name="date" id="slct">
-						<option value="0">Choisire Date</option>
+						<option value="0">Choisir Date</option>
 						@foreach($dates as $a)
 							<option>{{$a}}</option>
 						@endforeach
@@ -115,7 +115,7 @@
 							<label for="file-input{{$a->id}}">Ajouter Image &nbsp;&nbsp;
 								<img src="/project_images/plus.png" style="width:40px"/>
 							</label>
-							<input id="file-input{{$a->id}}" type="file" name="lien_image"/>
+							<input id="file-input{{$a->id}}" type="file" name="lien_image" accept="image/x-png,image/jpeg"/>
 						</div>
 						<input type="hidden" name="article_id" value="{{ $a->id}}">
 						<div class="wrap-input100">

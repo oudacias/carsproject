@@ -9,8 +9,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
 <script src="/javascript/carousel.js"></script>
 
-
-
+<meta name="description" content="{{$seo_home->description}}">
+<meta name="keywords" content="{{$seo_home->keywords}}">
 
 @include('Components.menu')
 @yield('menu')
@@ -62,26 +62,34 @@
 @elseif(!$pub_g->count() && !$pub_d->count())
     <div class="col-md-12">
 @endif
-        <div class="container" id="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card user-card">
-                        <div class="card-block">
-                            <div class="card-introduction">
-                                <p class="m-t-24 text-muted">ELAMDASSI ON CARS est une entreprise dédiée à l’accompagnement des acheteurs des vendeurs et des revendeurs de voitures à travers ses différents services présentés sur nos plateformes aussi bien que le suivis  terrain de nos clients pour leurs assurer toutes les conditions d’une bonne opération achat revente cette entreprise à été à l’instar d’une chaine YouTube en pleine évolutions crée en 2016 par l’équipe de EOCARS</p>
+        @if($page_home->introduction)
+            <div class="container" id="container">
+                <div class="row">
+                @if($page_home->lien_img)
+                    <div class="col-md-8">
+                @else
+                    <div class="col-md-11">
+                @endif
+                        <div class="card user-card">
+                            <div class="card-block">
+                                <div class="card-introduction">
+                                    <p class="m-t-24 text-muted">{{$page_home->introduction}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card-block">
-                        <div class="user-image">
-                            <img src="/project_images/cars.jpg" alt="Eocars">
+                    @if($page_home->lien_img)
+                        <div class="col-md-3">
+                            <div class="card-block">
+                                <div class="user-image">
+                                    <img src="{{$page_home->lien_img}}" alt="Eocars">
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
-        </div>
+        @endif
         <!-- Carousel  -->
         <h4 class="tile-carousel">Nos Derniers Boutiques</h4>
         <section class="customer-logos slider">               
@@ -167,22 +175,6 @@
 </div>
 
 
-<style>
-.responsive-video {
-    overflow:hidden;
-    height:0;
-    padding-bottom:25%;
-}
-.responsive-video iframe {
-    left:0;
-    top:0px;
-    height:100%;
-    width:60%;
-    position:absolute;
-    margin-left:20%;
-    margin-right:auto;
-}
-</style>
 </body>
 <br>
 <br>
@@ -192,7 +184,7 @@
 
 <script>
 $(document).ready(function(){
-    if($("#youtube").val()){
+    if($("#youtube_h").val()){
         var url = $("#youtube_h").val();
         url = url.split('v=')[1];
         $("#video")[0].src = "https://www.youtube.com/embed/" + url;

@@ -25,7 +25,7 @@
 			<div class="col-3">
 				<div class="select">
 					<select name="theme" id="slct">
-						<option selected disabled>Choisire Thème</option>
+						<option selected disabled>Choisir Thème</option>
 						@foreach($theme as $t)
 							<option>{{$t->theme}}</option>
 						@endforeach
@@ -44,7 +44,7 @@
     		<div class="col-3">
 				<div class="select">
 					<select name="date" id="slct">
-						<option value="0">Choisire Date</option>
+						<option value="0">Choisir Date</option>
 						@foreach($dates as $a)
 							<option>{{$a}}</option>
 						@endforeach

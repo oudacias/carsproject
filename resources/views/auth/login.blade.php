@@ -4,12 +4,14 @@
     <link rel="stylesheet" type="text/css" href="/css/articles.css">
 @include('Components.menu')
 @yield('menu')
+@php $design= App\Design::first() @endphp
+
 <div class="container-contact100">
     <div class="wrap-contact100">
         <form method="POST" action="{{ route('login') }}">
         @csrf 
             <span class="contact100-form-title">Bienvenue dans Eocars</span>
-            <img src="/project_images/logoCars.png" alt="Eocars" style="display: block;margin-left: auto;margin-right: auto;width: 60px;">
+            <img src="{{$design->logo}}" alt="Eocars" style="display: block;margin-left: auto;margin-right: auto;width: 60px;">
             @if ($errors->has('password') or $errors->has('email'))
                 <h7 style="color:#FAB107">Email ou mot de passe incorrect</h7>                    
             @endif   

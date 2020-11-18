@@ -11,11 +11,11 @@
                     Rechercher boutiques <a onclick="showGarage()"><img width="20px" style="float:right" src="/project_images/hamburger.png"></a>
             </div>
             <div id="garage" class="second-side side-form">
-                <button onclick="showBoutique()">Nom Boutique ⬇</button>
+                <a style="cursor:pointer" onclick="showBoutique()">Nom Boutique ⬇</a>
                 <div id="nom_boutique">
                     <form method="GET" action="{{ action('UserController@ChercherVoitureBoutique') }}" enctype="multipart/form-data">
                         <select id="select_boutique" class="recherche-select" name="nom_boutique">  
-                                <option value="0">Choisire la boutique</option>
+                                <option value="0">choisir la boutique</option>
                                 @foreach($nom_boutique as $n)
                                     <option value="{{$n->nom_boutique}}">{{$n->nom_boutique}}</option>
                                 @endforeach
@@ -25,12 +25,12 @@
                 </div>
                 <br>
                 <br>
-                <button type="button" onclick="showAutres()">Ville Boutique ⬇</button>
+                <a style="cursor:pointer" type="button" onclick="showAutres()">Ville Boutique ⬇</a>
                 <br>
                 <div id="autres">
                 <form method="GET" action="{{ action('UserController@ChercherBoutiqueVille') }}" enctype="multipart/form-data">
                         <select id="ville_select_id" class="recherche-select" name="ville_boutique">  
-                            <option value="0">Choisire ville de boutique</option>  
+                            <option value="0">choisir ville de boutique</option>  
                                 <option title="agadir" value="agadir">AGADIR</option>
                                                     
                                 <option title="ait benhaddou" value="ait benhaddou">AIT BENHADDOU</option>
@@ -263,7 +263,7 @@
             <div id="cars" class="second-side side-form">
                 <form method="GET" action="{{ action('UserController@ChercherVoiture') }}" enctype="multipart/form-data">
                     <select id="ville_id_recherche" class="recherche-select" name="ville">  
-                        <option value="0">Choisire ville de voiture</option>  
+                        <option value="0">choisir ville de voiture</option>  
                             <option title="agadir" value="agadir">AGADIR</option>
                                                 
                             <option title="ait benhaddou" value="ait benhaddou">AIT BENHADDOU</option>
@@ -501,7 +501,7 @@
                 <div id="Rdetail">
                     <form id="recherche_detaillee" method="GET" action="{{ action('UserController@ChercherVoitureDetail') }}">
                         <select id="marque" class="recherche-select" name="marque">  
-                                <option value="0" selected="selected">ℨ Choisire Marque</option>
+                                <option value="0" selected="selected">ℨ choisir Marque</option>
                                 <option value="Renault">Renault</option>
                                 <option value="Peugeot">Peugeot</option>
                                 <option value="Opel">Opel</option>
@@ -547,10 +547,10 @@
                                 <option value="Kia">Kia</option>
                         </select>
                         <select id="model" class="recherche-select" name="model">  
-                                <option value="0">Choisire modèle</option>
+                                <option value="0">choisir modèle</option>
                         </select>
                         <select class="recherche-select" name="carburant">  
-                            <option value="0" selected="selected">Choisire Carburant</option>
+                            <option value="0" selected="selected">choisir Carburant</option>
                             <option value="Essence">Essence</option>
                             <option value="Diesel">Diesel</option>
                             <option value="Electrique">Electrique</option>
@@ -562,6 +562,7 @@
                             <option value="Automatique">Automatique</option>
                         </select>
                         <button name="action" value="plusdetails" type="submit" class="recherche-cars">Lancer la recherche</button>
+                    </form>
                     </div>    
                 </div>
             </div>
@@ -595,7 +596,7 @@
         $( "#marque" ).change(function() {
             if($("#marque").val() == "Renault"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">Choisir modèle</option>`);
                 $('#model').append(`<option value="Clio">Clio</option>`);
                 $('#model').append(`<option value="Alaskan">Alaskan</option>`);
                 $('#model').append(`<option value="Avantime">Avantime</option>`);
@@ -627,7 +628,7 @@
             }
             if($("#marque").val() == "Peugeot"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">Choisir modèle</option>`);
                 $('#model').append(`<option value="206+">206+</option>`);
                 $('#model').append(`<option value="Bipper Tepee">Bipper Tepee</option>`);
                 $('#model').append(`<option value="Boxer">Boxer</option>`);
@@ -666,7 +667,7 @@
             }
             if($("#marque").val() == "Opel"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Adam">Adam</option>`);
                 $('#model').append(`<option value="Agila">Agila</option>`);
                 $('#model').append(`<option value="Antara">Antara</option>`);
@@ -691,7 +692,7 @@
             }
             if($("#marque").val() == "Citroen"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="2 CV">2 CV</option>`);
                 $('#model').append(`<option value="Berlingo">Berlingo</option>`);
                 $('#model').append(`<option value="C elysee">C elysee</option>`);
@@ -723,7 +724,7 @@
             }
             if($("#marque").val() == "Volkswagen"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Amarok">Amarok</option>`);
                 $('#model').append(`<option value="Arteon">Arteon</option>`);
                 $('#model').append(`<option value="CC">CC</option>`);
@@ -753,7 +754,7 @@
             }
             if($("#marque").val() == "Mercedes"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="450 SEL">450 SEL</option>`);
                 $('#model').append(`<option value="AMG GT">AMG GT</option>`);
                 $('#model').append(`<option value="CL">CL</option>`);
@@ -789,7 +790,7 @@
             }
             if($("#marque").val() == "BMW"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="I3">I3</option>`);
                 $('#model').append(`<option value="I8">I8</option>`);
                 $('#model').append(`<option value="M2">M2</option>`);
@@ -820,7 +821,7 @@
             }
             if($("#marque").val() == "Nissan"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="370 Z">370 Z</option>`);
                 $('#model').append(`<option value="EVALIA">EVALIA</option>`);
                 $('#model').append(`<option value="GT R">GT R</option>`);
@@ -842,7 +843,7 @@
             }
             if($("#marque").val() == "Toyota"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Auris">Auris</option>`);
                 $('#model').append(`<option value="Auris Sports">Auris Sports</option>`);
                 $('#model').append(`<option value="Avensis">Avensis</option>`);
@@ -865,7 +866,7 @@
             }
             if($("#marque").val() == "Ford"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Bmax">Bmax</option>`);
                 $('#model').append(`<option value="Bronco">Bronco</option>`);
                 $('#model').append(`<option value="Cmax">Cmax</option>`);
@@ -899,7 +900,7 @@
             }
             if($("#marque").val() == "Audi"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="A1">A1</option>`);
                 $('#model').append(`<option value="A3">A3</option>`);
                 $('#model').append(`<option value="A4">A4</option>`);
@@ -934,7 +935,7 @@
             }
             if($("#marque").val() == "Fiat"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="124 Spider">124 Spider</option>`);
                 $('#model').append(`<option value="500 C">500 C</option>`);
                 $('#model').append(`<option value="500 L">500 L</option>`);
@@ -957,7 +958,7 @@
             }
             if($("#marque").val() == "Abarth"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="124 Spider">124 Spider</option>`);
                 $('#model').append(`<option value="500 C">500 C</option>`);
                 $('#model').append(`<option value="500">500</option>`);
@@ -967,13 +968,13 @@
             }
             if($("#marque").val() == "AC"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Cobra">Cobra</option>`);
 
             }
             if($("#marque").val() == "Aixam"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="City">City</option>`);
                 $('#model').append(`<option value="Coupe">Coupe</option>`);
                 $('#model').append(`<option value="Crossline">Crossline</option>`);
@@ -986,7 +987,7 @@
             }
             if($("#marque").val() == "Alfa Romeo"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="GT">GT</option>`);
                 $('#model').append(`<option value="GTV">GTV</option>`);
                 $('#model').append(`<option value="Giulia">Giulia</option>`);
@@ -1001,20 +1002,20 @@
             }
             if($("#marque").val() == "Alpine"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="A110">A110</option>`);
 
             }
             if($("#marque").val() == "AMC"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Javelin">Javelin</option>`);
                 $('#model').append(`<option value="Rambler Martin">Rambler Martin</option>`);
 
             }
             if($("#marque").val() == "Aston Martin"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Cygnet">Cygnet</option>`);
                 $('#model').append(`<option value="DB11">DB11</option>`);
                 $('#model').append(`<option value="DB 9 GT">DB 9 GT</option>`);
@@ -1026,7 +1027,7 @@
             }
             if($("#marque").val() == "Austin Healey"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Healey Spirit">Healey Spirit</option>`);
                 $('#model').append(`<option value="7">7</option>`);
                 $('#model').append(`<option value="100">100</option>`);
@@ -1035,25 +1036,25 @@
             }
             if($("#marque").val() == "Autobianchi"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value=""></option>`);
 
             }
             if($("#marque").val() == "Auverland"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value=""></option>`);
 
             }
             if($("#marque").val() == "Bellier"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Docker">Docker</option>`);
 
             }
             if($("#marque").val() == "Bentley"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Arnage">Arnage</option>`);
                 $('#model').append(`<option value="Bentayga">Bentayga</option>`);
                 $('#model').append(`<option value="Continenetal">Continenetal</option>`);
@@ -1066,12 +1067,12 @@
             }
             if($("#marque").val() == "Bluecar"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Bluesummer">Bluesummer</option>`);
             }
             if($("#marque").val() == "Buick"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Electra">Electra</option>`);
                 $('#model').append(`<option value="Gransport">Gransport</option>`);
                 $('#model').append(`<option value="lesabre">lesabre</option>`);
@@ -1084,7 +1085,7 @@
             }
             if($("#marque").val() == "Cadillac"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="60S">60S</option>`);
                 $('#model').append(`<option value="CTS">CTS</option>`);
                 $('#model').append(`<option value="Deville">Deville</option>`);
@@ -1099,20 +1100,20 @@
             }
             if($("#marque").val() == "Casalini"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="M14">M14</option>`);
                 $('#model').append(`<option value="M20">M20</option>`);
             }
             if($("#marque").val() == "Chatenet"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="CH 26">CH 26</option>`);
                 $('#model').append(`<option value="CH 40">CH 40</option>`);
                 $('#model').append(`<option value="CH 46">CH 46</option>`);
             }
             if($("#marque").val() == "Chevrolet"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Aveo">Aveo</option>`);
                 $('#model').append(`<option value="Bel Air">Bel Air</option>`);
                 $('#model').append(`<option value="Blazer">Blazer</option>`);
@@ -1142,7 +1143,7 @@
             }
             if($("#marque").val() == "Chrysler"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="300C">300C</option>`);
                 $('#model').append(`<option value="Grand Voyager">Grand Voyager</option>`);
                 $('#model').append(`<option value="Le baron">Le baron</option>`);
@@ -1152,12 +1153,12 @@
             }
             if($("#marque").val() == "Cord"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="810">810</option>`);
             }
             if($("#marque").val() == "Corvette"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="C3">C3</option>`);
                 $('#model').append(`<option value="C6">C6</option>`);
                 $('#model').append(`<option value="C7">C7</option>`);
@@ -1166,7 +1167,7 @@
             }
             if($("#marque").val() == "Dacia"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Dokker">Dokker</option>`);
                 $('#model').append(`<option value="Duster">Duster</option>`);
                 $('#model').append(`<option value="Logan">Logan</option>`);
@@ -1178,14 +1179,14 @@
             }
             if($("#marque").val() == "Daihatsu"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Cuore">Cuore</option>`);
                 $('#model').append(`<option value="Sirion">Sirion</option>`);
                 $('#model').append(`<option value="Trevis">Trevis</option>`);
             }
             if($("#marque").val() == "Dodge"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Caliber">Caliber</option>`);
                 $('#model').append(`<option value="Challenger">Challenger</option>`);
                 $('#model').append(`<option value="Charger">Charger</option>`);
@@ -1196,7 +1197,7 @@
             }
             if($("#marque").val() == "Honda"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Accord">Accord</option>`);
                 $('#model').append(`<option value="Civic">Civic</option>`);
                 $('#model').append(`<option value="Cr-V">Cr-V</option>`);
@@ -1212,7 +1213,7 @@
             }
             if($("#marque").val() == "Hyundai"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="i10">i10</option>`);
                 $('#model').append(`<option value="i20">i20</option>`);
                 $('#model').append(`<option value="I30">I30</option>`);
@@ -1232,7 +1233,7 @@
             }
             if($("#marque").val() == "Land rover"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Defender">Defender</option>`);
                 $('#model').append(`<option value="Discovery">Discovery</option>`);
                 $('#model').append(`<option value="Discovery sport">Discovery sport</option>`);
@@ -1248,7 +1249,7 @@
             }
             if($("#marque").val() == "Jaguar"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="E-Pace">E-Pace</option>`);
                 $('#model').append(`<option value="F-Pace">F-Pace</option>`);
                 $('#model').append(`<option value="F-type">F-type</option>`);
@@ -1263,7 +1264,7 @@
             }
             if($("#marque").val() == "Volvo"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Fm9">Fm9</option>`);
                 $('#model').append(`<option value="S60">S60</option>`);
                 $('#model').append(`<option value="S90">S90</option>`);
@@ -1286,7 +1287,7 @@
             }
             if($("#marque").val() == "Kia"){
                 $('#model').empty();
-                $('#model').append(`<option value="0">Choisire modèle</option>`);
+                $('#model').append(`<option value="0">choisir modèle</option>`);
                 $('#model').append(`<option value="Ceed">Ceed</option>`);
                 $('#model').append(`<option value="E-Niro">E-Niro</option>`);
                 $('#model').append(`<option value="E-Soul">E-Soul</option>`);

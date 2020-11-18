@@ -29,4 +29,8 @@ class Voiture extends Model
     {
         return $this->hasOne('App\Voiturepub','voiture_id');
     }
+    public function voiturevu()
+    {
+        return $this->hasOne('App\Voiturevu','voiture_id');
+    }
 }

@@ -12,27 +12,32 @@ use Pusher\Pusher;
 use App\Notificationforum;
 use App\Publicite;
 use Str;
-
+use App\Seodata;
+use App\Pagedata;
 
 class ForumController extends Controller
 {
     public function index(){
-        $pub_g = Publicite::where('nom_page',"=",'/Forum/Forums/')->where('emplacement',"=",'Gauche')->orderBy('created_at','desc')->limit(1)->get();
-        $pub_d = Publicite::where('nom_page',"=",'/Forum/Forums/')->where('emplacement',"=",'Droite')->orderBy('created_at','desc')->limit(1)->get();
-        $pub_h = Publicite::where('nom_page',"=",'/Forum/Forums/')->where('emplacement',"=",'Haut')->orderBy('created_at','desc')->limit(1)->get();
-        $pub_m = Publicite::where('nom_page',"=",'/Forum/Forums/')->where('emplacement',"=",'Milieu')->orderBy('created_at','desc')->limit(1)->get();
+        $page_forum = Pagedata::where('page',"=","Forum")->orderBy('created_at','desc')->first();
+
+        $seo_forum = Seodata::where('page',"=","Forum")->orderBy('created_at','desc')->first();
+
+        $pub_g = Publicite::where('nom_page',"=",'/ForumEocars')->where('emplacement',"=",'Gauche')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_d = Publicite::where('nom_page',"=",'/ForumEocars')->where('emplacement',"=",'Droite')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_h = Publicite::where('nom_page',"=",'/ForumEocars')->where('emplacement',"=",'Haut')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_m = Publicite::where('nom_page',"=",'/ForumEocars')->where('emplacement',"=",'Milieu')->orderBy('created_at','desc')->limit(1)->get();
         
         
         $forum = Forum::orderBy('created_at', 'desc')->paginate(10);
         $theme = Forumtheme::all();
     
-        return view ('Forum/Forums',['forums'=>$forum,'theme'=>$theme,'pub_g'=>$pub_g,'pub_d'=>$pub_d,'pub_h'=>$pub_h,'pub_m'=>$pub_m]);
+        return view ('Forum/Forums',['forums'=>$forum,'theme'=>$theme,'pub_g'=>$pub_g,'pub_d'=>$pub_d,'pub_h'=>$pub_h,'pub_m'=>$pub_m,'seo_forum'=>$seo_forum,'page_forum'=>$page_forum]);
     }
     public function indexTheme($theme){
-        $pub_g = Publicite::where('nom_page',"=",'/Forum/Forums/')->where('emplacement',"=",'Gauche')->orderBy('created_at','desc')->limit(1)->get();
-        $pub_d = Publicite::where('nom_page',"=",'/Forum/Forums/')->where('emplacement',"=",'Droite')->orderBy('created_at','desc')->limit(1)->get();
-        $pub_h = Publicite::where('nom_page',"=",'/Forum/Forums/')->where('emplacement',"=",'Haut')->orderBy('created_at','desc')->limit(1)->get();
-        $pub_m = Publicite::where('nom_page',"=",'/Forum/Forums/')->where('emplacement',"=",'Milieu')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_g = Publicite::where('nom_page',"=",'/ForumEocars')->where('emplacement',"=",'Gauche')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_d = Publicite::where('nom_page',"=",'/ForumEocars')->where('emplacement',"=",'Droite')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_h = Publicite::where('nom_page',"=",'/ForumEocars')->where('emplacement',"=",'Haut')->orderBy('created_at','desc')->limit(1)->get();
+        $pub_m = Publicite::where('nom_page',"=",'/ForumEocars')->where('emplacement',"=",'Milieu')->orderBy('created_at','desc')->limit(1)->get();
         
         
         $forum = Forum::where('theme','=',$theme)->orderBy('created_at', 'desc')->paginate(10);

@@ -4,12 +4,15 @@
 <link rel="stylesheet" href="/css/articles.css">
 <link rel="stylesheet" href="/css/pub.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<meta name="description" content="{{$seo_forum->description}}">
+<meta name="keywords" content="{{$seo_forum->keywords}}">
 
 <title>Eocars Forum</title>
 
 @include('Components.menu')
 @yield('menu')
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -46,6 +49,30 @@
 <br>
 <br>
 <br>
+
+
+
+
+@if($page_forum->introduction)
+<div class="container">
+    <div class="row">
+        <div class="col-11">
+            <div class="user-card" style="margin-bottom:50px"> 
+                <div class="card">
+                    @if($page_forum->lien_img)
+                    <div class="user-image img-home">
+                        <img src="{{$page_forum->lien_img}}">
+                    </div>
+                    @endif
+                    <div class="card-introduction">
+                        <p  style="padding:50px">{{$page_forum->introduction}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+@endif
 
 
 @if($pub_h->count())
@@ -193,6 +220,7 @@
     <div class="d-flex justify-content-center">
         {!! $forums->links() !!}
     </div>
+</div>
 </div>
     
 <div style="margin-top:400px">

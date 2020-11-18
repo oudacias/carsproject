@@ -7,6 +7,8 @@
     <link rel='stylesheet' href="/css/card.css">
     <link rel='stylesheet' href="/css/mainstyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="description" content="{{$seo_suivi->description}}">
+    <meta name="keywords" content="{{$seo_suivi->keywords}}">
 
     </head>
 
@@ -15,22 +17,27 @@
 @if(session('success'))
     <div class="animated fadeOut success">{{session('success')}}</div>
 @endif
+@if($page_suivi->introduction)
 <div class="container">
   <div class="row justify-content-around">
          <div class="col-md-12">
             <div class="card user-card">
-                 <div class="user-image img-home">
-                    <img src="/project_images/advice.png"></div>
+                @if($page_suivi->lien_img)
+                    <div class="user-image img-home">
+                        <img src="{{$page_suivi->lien_img}}">
+                    </div>
+                @endif
                 <div class="card-block">
                 <div style="text-align:center">Service de Conseil</div>                   
                     <div class="card-introduction">
-                        <p class="m-t-24 text-muted">ELAMDASSI ON CARS est une entreprise dédiée à l’accompagnement des acheteurs des vendeurs et des revendeurs de voitures à travers ses différents services présentés sur nos plateformes aussi bien que le suivis  terrain de nos clients pour leurs assurer toutes les conditions d’une bonne opération achat revente cette entreprise à été à l’instar d’une chaine YouTube en pleine évolutions crée en 2016 par l’équipe de EOCARS</p>                        
+                        <p class="m-t-24 text-muted">{{$page_suivi->introduction}}</p>                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div> 
+@endif
 <div class="container-contact100">
     <div id="form1" class="wrap-contact100">
         <form method="POST" action="{{ action('ServiceController@ajoutersuivi') }}" enctype="multipart/form-data">

@@ -7,15 +7,48 @@ use App\Boutique;
 use App\Voiture;
 use Auth;
 use DateTime;
+use App\Seodata;
+use App\Pagedata;
+
 
 
 class BoutiqueController extends Controller
 {
     public function indexBoutique()
     {
-        $voiture = Voiture::where('vendu',false)->orderBy('created_at','desc')->get();
+        $page_boutique = Pagedata::where('page',"=","Boutique")->orderBy('created_at','desc')->first();
+        $seo_boutique = Seodata::where('page',"=","Boutique")->orderBy('created_at','desc')->first();
+        $boutique = Boutique::where('type',"=",1)->get('id');
+
+        $voiture_pro = Voiture::whereIn('boutique_id',$boutique)->where('vendu',false)->get()->shuffle();
+
+        $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)->where('vendu',false)->orderBy('created_at','desc')->get();
+        
         $nom_boutique = Boutique::all();
-        return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'']);
+        return view('Boutique/boutique',['voiture'=>$voiture,'voiture_pro'=>$voiture_pro,'nom_boutique'=>$nom_boutique,'msg'=>'','seo_boutique'=>$seo_boutique,'page_boutique'=>$page_boutique]);
+    }
+    public function trierBoutique(Request $r)
+    {
+        $page_boutique = Pagedata::where('page',"=","Boutique")->orderBy('created_at','desc')->first();
+        $seo_boutique = Seodata::where('page',"=","Boutique")->orderBy('created_at','desc')->first();
+
+        $boutique = Boutique::where('type',"=",1)->get('id');
+
+        if($r->tri =="ajout_croissant"){
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)->where('vendu',false)->orderBy('created_at','desc')->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)->where('vendu',false)->orderBy('created_at','desc')->get()->shuffle();
+        }elseif($r->tri == "ajout_decroissant"){
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)->where('vendu',false)->orderBy('created_at','asc')->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)->where('vendu',false)->orderBy('created_at','asc')->get();
+        
+        }elseif($r->tri = "nbr_vue"){
+            $voiture = Voiture::whereNotIn('boutique_id',$boutique)->orwhere('boutique_id','=',null)->where('vendu',false)->orderBy('nbr_vu','desc')->get();
+            $voiture_pro = Voiture::whereIn('boutique_id',$boutique)->where('vendu',false)->orderBy('nbr_vu','desc')->get();
+        }
+
+        $nom_boutique = Boutique::all();
+
+        return view('Boutique/boutique',['voiture'=>$voiture,'nom_boutique'=>$nom_boutique,'msg'=>'','seo_boutique'=>$seo_boutique,'page_boutique'=>$page_boutique,'voiture_pro'=>$voiture_pro]);
     }
     public function ajouterBoutique(Request $r)
     {

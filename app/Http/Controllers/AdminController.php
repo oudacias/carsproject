@@ -18,6 +18,10 @@ use App\Voiturepub;
 use DateTime;
 use App\Articlepub;
 use App\Articlescategorie;
+use App\Seodata;
+use App\Pagedata;
+use App\Design;
+use App\Companysocial;
 
 class AdminController extends Controller
 {
@@ -174,7 +178,7 @@ class AdminController extends Controller
     }
     public function confirmerSuivi($id){
         $suivi = Servicesuivi::find($id);
-        $suivi->confirme = true;
+        $suivi->confirmer = true;
         $suivi->save();
         return redirect()->back()->withSuccess('Suivi Confirmé');
     }
@@ -195,6 +199,13 @@ class AdminController extends Controller
         $dates = array_unique($arr);
 
         return view('Admin/Admin_boutique',['boutique'=>$boutique,'dates'=>$dates]);
+    }
+    public function changerTypeBoutique(Request $r)
+    {
+        $boutique = Boutique::find($r->boutique_id);
+        $boutique->type = $r->boutique_type;
+        $boutique->save();
+        return redirect()->back()->withSuccess('Type de Boutique est modifié');
     }
     public function searchBoutique(Request $r)
     {   
@@ -341,7 +352,60 @@ class AdminController extends Controller
         }
         return redirect()->back()->withSuccess('Catégorie supprime');
     }
-    
 
+
+    public function options()
+    {
+        $social = Companysocial::orderBy('created_at', 'desc')->first();
+        $seo = Seodata::all()->sortByDesc('created_at');
+        $pagedata = Pagedata::all()->sortByDesc('created_at');
+        $design = Design::orderBy('created_at', 'desc')->first();
+        return view('Admin/Admin_option',['seo'=>$seo,'pagedata'=>$pagedata,'design'=>$design,'social'=>$social]);
+    }
+    public function ajouterSeo(Request $r)
+    {
+        $seo = Seodata::where('page',"=", $r->page)->first();
+        $seo->description = $r->description;
+        $seo->keywords = $r->keywords;
+        $seo->save();
+        return redirect()->back()->withSuccess('Données Ajoutés');
+    }
+    public function ajouterIntroPage(Request $r)
+    {
+        $page = Pagedata::where('page',"=",$r->page)->first();
+        $page->introduction = $r->introduction;
+        if($r->lien_image){
+            $dt = new DateTime();
+            $image_path = $r->page.$dt->format('H_i_s').'.'.$r->file('lien_image')->getClientOriginalExtension();
+            $r->file('lien_image')->move(public_path('/image_uploads'), $image_path);
+            $page->lien_img = '/image_uploads/'.$image_path;
+        }
+        $page->save();
+        return redirect()->back()->withSuccess('Données Ajoutés');
+    } 
+    public function modifierDesign(Request $r)
+    {
+        $design = Design::orderBy('created_at', 'desc')->first();
+        $design->menu_color = $r->menu_color;
+        $design->btn_color = $r->button_color;
+        if($r->lien_image){
+            $dt = new DateTime();
+            $image_path = "logo".$dt->format('H_i_s').'.'.$r->file('lien_image')->getClientOriginalExtension();
+            $r->file('lien_image')->move(public_path('/image_uploads'), $image_path);
+            $design->logo = '/image_uploads/'.$image_path;
+        }
+        $design->save();
+        return redirect()->back()->withSuccess('Données Ajoutés');
+    } 
+    public function modifierSocial(Request $r)
+    {
+        $social = Companysocial::orderBy('created_at', 'desc')->first();
+        $social->facebook = $r->facebook;
+        $social->instagram = $r->instagram;
+        $social->whatsapp = $r->whatsapp;
+        $social->gmail = $r->gmail;
+        $social->save();
+        return redirect()->back()->withSuccess('Données Ajoutés');
+    } 
     
 }

@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="/css/pub.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<meta name="description" content="{{$seo_article->description}}">
+<meta name="keywords" content="{{$seo_article->keywords}}">
+
 @include('Components.menu')
 @yield('menu')
 
